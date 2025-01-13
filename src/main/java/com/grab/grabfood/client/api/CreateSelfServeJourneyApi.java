@@ -30,8 +30,8 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import com.grab.grabfood.client.model.Error;
-import com.grab.grabfood.client.model.UpdateMenuNotifRequest;
+import com.grab.grabfood.client.model.CreateSelfServeJourneyRequest;
+import com.grab.grabfood.client.model.CreateSelfServeJourneyResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -39,16 +39,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class UpdateMenuNotificationApi {
+public class CreateSelfServeJourneyApi {
     private ApiClient localVarApiClient;
     private int localHostIndex;
     private String localCustomBaseUrl;
 
-    public UpdateMenuNotificationApi() {
+    public CreateSelfServeJourneyApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public UpdateMenuNotificationApi(ApiClient apiClient) {
+    public CreateSelfServeJourneyApi(ApiClient apiClient) {
         this.localVarApiClient = apiClient;
     }
 
@@ -77,21 +77,20 @@ public class UpdateMenuNotificationApi {
     }
 
     /**
-     * Build call for updateMenuNotification
+     * Build call for createSelfServeJourney
      * @param contentType The content type of the request body. You must use &#x60;application/json&#x60; for this header as GrabFood API currently does not support other formats. (required)
      * @param authorization Specify the generated authorization token of the bearer type. (required)
-     * @param updateMenuNotifRequest  (required)
+     * @param createSelfServeJourneyRequest  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> Successful. No Content returned. </td><td>  * x-job-id - Uniquely identifies a menu sync job. Please mention this value while raising any issues on [Menu sync state webhook](#tag/menu-sync-state-webhook). <br>  </td></tr>
-        <tr><td> 4XX </td><td> invalid_argument Fail example with code and reason. | Code | Reason           | Message                                            | | -----| ---------------  | -------------------------------------------------- | | 409  | invalid_argument | sync menu too frequently, retry after 120 seconds  |  &gt; Note: A distributed interval lock mechanism with a default duration of 120 seconds is in place for the same requests sent. The lock duration is customizable and may vary across different partners.  </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateMenuNotificationCall(String contentType, String authorization, UpdateMenuNotifRequest updateMenuNotifRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call createSelfServeJourneyCall(String contentType, String authorization, CreateSelfServeJourneyRequest createSelfServeJourneyRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -105,10 +104,10 @@ public class UpdateMenuNotificationApi {
             basePath = null;
         }
 
-        Object localVarPostBody = updateMenuNotifRequest;
+        Object localVarPostBody = createSelfServeJourneyRequest;
 
         // create path and map variables
-        String localVarPath = "/partner/v1/merchant/menu/notification";
+        String localVarPath = "/partner/v1/self-serve/activation";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -145,84 +144,85 @@ public class UpdateMenuNotificationApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateMenuNotificationValidateBeforeCall(String contentType, String authorization, UpdateMenuNotifRequest updateMenuNotifRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call createSelfServeJourneyValidateBeforeCall(String contentType, String authorization, CreateSelfServeJourneyRequest createSelfServeJourneyRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'contentType' is set
         if (contentType == null) {
-            throw new ApiException("Missing the required parameter 'contentType' when calling updateMenuNotification(Async)");
+            throw new ApiException("Missing the required parameter 'contentType' when calling createSelfServeJourney(Async)");
         }
 
         // verify the required parameter 'authorization' is set
         if (authorization == null) {
-            throw new ApiException("Missing the required parameter 'authorization' when calling updateMenuNotification(Async)");
+            throw new ApiException("Missing the required parameter 'authorization' when calling createSelfServeJourney(Async)");
         }
 
-        // verify the required parameter 'updateMenuNotifRequest' is set
-        if (updateMenuNotifRequest == null) {
-            throw new ApiException("Missing the required parameter 'updateMenuNotifRequest' when calling updateMenuNotification(Async)");
+        // verify the required parameter 'createSelfServeJourneyRequest' is set
+        if (createSelfServeJourneyRequest == null) {
+            throw new ApiException("Missing the required parameter 'createSelfServeJourneyRequest' when calling createSelfServeJourney(Async)");
         }
 
-        return updateMenuNotificationCall(contentType, authorization, updateMenuNotifRequest, _callback);
+        return createSelfServeJourneyCall(contentType, authorization, createSelfServeJourneyRequest, _callback);
 
     }
 
     /**
-     * Notify Grab of updated menu
+     * Create self serve journey
      * 
      * @param contentType The content type of the request body. You must use &#x60;application/json&#x60; for this header as GrabFood API currently does not support other formats. (required)
      * @param authorization Specify the generated authorization token of the bearer type. (required)
-     * @param updateMenuNotifRequest  (required)
+     * @param createSelfServeJourneyRequest  (required)
+     * @return CreateSelfServeJourneyResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> Successful. No Content returned. </td><td>  * x-job-id - Uniquely identifies a menu sync job. Please mention this value while raising any issues on [Menu sync state webhook](#tag/menu-sync-state-webhook). <br>  </td></tr>
-        <tr><td> 4XX </td><td> invalid_argument Fail example with code and reason. | Code | Reason           | Message                                            | | -----| ---------------  | -------------------------------------------------- | | 409  | invalid_argument | sync menu too frequently, retry after 120 seconds  |  &gt; Note: A distributed interval lock mechanism with a default duration of 120 seconds is in place for the same requests sent. The lock duration is customizable and may vary across different partners.  </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
      </table>
      */
-    public void updateMenuNotification(String contentType, String authorization, UpdateMenuNotifRequest updateMenuNotifRequest) throws ApiException {
-        updateMenuNotificationWithHttpInfo(contentType, authorization, updateMenuNotifRequest);
+    public CreateSelfServeJourneyResponse createSelfServeJourney(String contentType, String authorization, CreateSelfServeJourneyRequest createSelfServeJourneyRequest) throws ApiException {
+        ApiResponse<CreateSelfServeJourneyResponse> localVarResp = createSelfServeJourneyWithHttpInfo(contentType, authorization, createSelfServeJourneyRequest);
+        return localVarResp.getData();
     }
 
     /**
-     * Notify Grab of updated menu
+     * Create self serve journey
      * 
      * @param contentType The content type of the request body. You must use &#x60;application/json&#x60; for this header as GrabFood API currently does not support other formats. (required)
      * @param authorization Specify the generated authorization token of the bearer type. (required)
-     * @param updateMenuNotifRequest  (required)
-     * @return ApiResponse&lt;Void&gt;
+     * @param createSelfServeJourneyRequest  (required)
+     * @return ApiResponse&lt;CreateSelfServeJourneyResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> Successful. No Content returned. </td><td>  * x-job-id - Uniquely identifies a menu sync job. Please mention this value while raising any issues on [Menu sync state webhook](#tag/menu-sync-state-webhook). <br>  </td></tr>
-        <tr><td> 4XX </td><td> invalid_argument Fail example with code and reason. | Code | Reason           | Message                                            | | -----| ---------------  | -------------------------------------------------- | | 409  | invalid_argument | sync menu too frequently, retry after 120 seconds  |  &gt; Note: A distributed interval lock mechanism with a default duration of 120 seconds is in place for the same requests sent. The lock duration is customizable and may vary across different partners.  </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Void> updateMenuNotificationWithHttpInfo(String contentType, String authorization, UpdateMenuNotifRequest updateMenuNotifRequest) throws ApiException {
-        okhttp3.Call localVarCall = updateMenuNotificationValidateBeforeCall(contentType, authorization, updateMenuNotifRequest, null);
-        return localVarApiClient.execute(localVarCall);
+    public ApiResponse<CreateSelfServeJourneyResponse> createSelfServeJourneyWithHttpInfo(String contentType, String authorization, CreateSelfServeJourneyRequest createSelfServeJourneyRequest) throws ApiException {
+        okhttp3.Call localVarCall = createSelfServeJourneyValidateBeforeCall(contentType, authorization, createSelfServeJourneyRequest, null);
+        Type localVarReturnType = new TypeToken<CreateSelfServeJourneyResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Notify Grab of updated menu (asynchronously)
+     * Create self serve journey (asynchronously)
      * 
      * @param contentType The content type of the request body. You must use &#x60;application/json&#x60; for this header as GrabFood API currently does not support other formats. (required)
      * @param authorization Specify the generated authorization token of the bearer type. (required)
-     * @param updateMenuNotifRequest  (required)
+     * @param createSelfServeJourneyRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> Successful. No Content returned. </td><td>  * x-job-id - Uniquely identifies a menu sync job. Please mention this value while raising any issues on [Menu sync state webhook](#tag/menu-sync-state-webhook). <br>  </td></tr>
-        <tr><td> 4XX </td><td> invalid_argument Fail example with code and reason. | Code | Reason           | Message                                            | | -----| ---------------  | -------------------------------------------------- | | 409  | invalid_argument | sync menu too frequently, retry after 120 seconds  |  &gt; Note: A distributed interval lock mechanism with a default duration of 120 seconds is in place for the same requests sent. The lock duration is customizable and may vary across different partners.  </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateMenuNotificationAsync(String contentType, String authorization, UpdateMenuNotifRequest updateMenuNotifRequest, final ApiCallback<Void> _callback) throws ApiException {
+    public okhttp3.Call createSelfServeJourneyAsync(String contentType, String authorization, CreateSelfServeJourneyRequest createSelfServeJourneyRequest, final ApiCallback<CreateSelfServeJourneyResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateMenuNotificationValidateBeforeCall(contentType, authorization, updateMenuNotifRequest, _callback);
-        localVarApiClient.executeAsync(localVarCall, _callback);
+        okhttp3.Call localVarCall = createSelfServeJourneyValidateBeforeCall(contentType, authorization, createSelfServeJourneyRequest, _callback);
+        Type localVarReturnType = new TypeToken<CreateSelfServeJourneyResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 }

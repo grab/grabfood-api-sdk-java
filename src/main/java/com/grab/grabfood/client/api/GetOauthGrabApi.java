@@ -92,7 +92,7 @@ public class GetOauthGrabApi {
     public okhttp3.Call getOauthGrabCall(String contentType, GrabOauthRequest grabOauthRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] { "https://api.stg-myteksi.com", "https://api.grab.com", "https://api.grab.com" };
+        String[] localBasePaths = new String[] { "https://api.grab.com", "https://api.grab.com" };
 
         // Determine Base Path to Use
         if (localCustomBaseUrl != null){

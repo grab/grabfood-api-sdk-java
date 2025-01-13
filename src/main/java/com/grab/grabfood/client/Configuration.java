@@ -18,12 +18,11 @@ package com.grab.grabfood.client;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class Configuration {
-    public static final String VERSION = "1.0.0";
+    public static final String VERSION = "1.0.1";
 
     // Custom const
-    public static final Integer StgManualEnv = 0;   // staging environment for manual onboarding partner
-    public static final Integer StgEnv = 1;         // staging environment for self serve onboarding partner
-    public static final Integer PrdEnv = 2;         // production environment
+    public static final Integer StgEnv = 0; // staging environment for self serve onboarding partner
+    public static final Integer PrdEnv = 1; // production environment
 
     private static ApiClient defaultApiClient = new ApiClient();
 

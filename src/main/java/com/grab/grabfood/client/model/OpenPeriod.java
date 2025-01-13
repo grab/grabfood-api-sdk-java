@@ -70,7 +70,7 @@ public class OpenPeriod {
   }
 
   /**
-   * The open start time in 24h format.
+   * The open start time in 24h format. Local time format is expected.
    * @return startTime
    */
   @javax.annotation.Nonnull
@@ -89,7 +89,7 @@ public class OpenPeriod {
   }
 
   /**
-   * The open start time in 24h format.
+   * The open end time in 24h format. Local time format is expected.
    * @return endTime
    */
   @javax.annotation.Nonnull

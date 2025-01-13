@@ -64,16 +64,11 @@ import com.grab.grabfood.client.auth.ApiKeyAuth;
  */
 public class ApiClient {
 
-    private String basePath = "https://partner-api.stg-myteksi.com/grabfood-sandbox";
+    private String basePath = "https://partner-api.grab.com/grabfood-sandbox";
     protected List<ServerConfiguration> servers = new ArrayList<ServerConfiguration>(Arrays.asList(
     new ServerConfiguration(
-      "https://partner-api.stg-myteksi.com/grabfood-sandbox",
-      "Staging Environment - Manual Partner Onboarding",
-      new HashMap<String, ServerVariable>()
-    ),
-    new ServerConfiguration(
       "https://partner-api.grab.com/grabfood-sandbox",
-      "Staging Environment - Self Serve Partner Onboarding",
+      "Staging Environment",
       new HashMap<String, ServerVariable>()
     ),
     new ServerConfiguration(
@@ -152,7 +147,7 @@ public class ApiClient {
         json = new JSON();
 
         // Set default User-Agent.
-        setUserAgent("GrabFood-API-SDK/1.0.0/java");
+        setUserAgent("GrabFood-API-SDK/1.0.1/java");
 
         authentications = new HashMap<String, Authentication>();
     }
@@ -169,7 +164,7 @@ public class ApiClient {
     /**
      * Set base path
      *
-     * @param basePath Base path of the URL (e.g https://partner-api.stg-myteksi.com/grabfood-sandbox
+     * @param basePath Base path of the URL (e.g https://partner-api.grab.com/grabfood-sandbox
      * @return An instance of OkHttpClient
      */
     public ApiClient setBasePath(String basePath) {

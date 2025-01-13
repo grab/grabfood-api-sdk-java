@@ -134,6 +134,10 @@ public class MenuCategory {
   @SerializedName(SERIALIZED_NAME_SELLING_TIME_I_D)
   private String sellingTimeID;
 
+  public static final String SERIALIZED_NAME_SEQUENCE = "sequence";
+  @SerializedName(SERIALIZED_NAME_SEQUENCE)
+  private Integer sequence;
+
   public static final String SERIALIZED_NAME_ITEMS = "items";
   @SerializedName(SERIALIZED_NAME_ITEMS)
   private List<MenuItem> items = new ArrayList<>();
@@ -147,7 +151,7 @@ public class MenuCategory {
   }
 
   /**
-   * The category&#39;s ID that is on the partner system. This ID should be unique with a min length of 1 and max of 64.
+   * The category&#39;s ID that is on the partner system. This ID should be unique.
    * @return id
    */
   @javax.annotation.Nonnull
@@ -244,6 +248,25 @@ public class MenuCategory {
   }
 
 
+  public MenuCategory sequence(Integer sequence) {
+    this.sequence = sequence;
+    return this;
+  }
+
+  /**
+   * The sort or display order of the category within the menu.
+   * @return sequence
+   */
+  @javax.annotation.Nullable
+  public Integer getSequence() {
+    return sequence;
+  }
+
+  public void setSequence(Integer sequence) {
+    this.sequence = sequence;
+  }
+
+
   public MenuCategory items(List<MenuItem> items) {
     this.items = items;
     return this;
@@ -330,13 +353,14 @@ public class MenuCategory {
         Objects.equals(this.nameTranslation, menuCategory.nameTranslation) &&
         Objects.equals(this.availableStatus, menuCategory.availableStatus) &&
         Objects.equals(this.sellingTimeID, menuCategory.sellingTimeID) &&
+        Objects.equals(this.sequence, menuCategory.sequence) &&
         Objects.equals(this.items, menuCategory.items)&&
         Objects.equals(this.additionalProperties, menuCategory.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, nameTranslation, availableStatus, sellingTimeID, items, additionalProperties);
+    return Objects.hash(id, name, nameTranslation, availableStatus, sellingTimeID, sequence, items, additionalProperties);
   }
 
   @Override
@@ -348,6 +372,7 @@ public class MenuCategory {
     sb.append("    nameTranslation: ").append(toIndentedString(nameTranslation)).append("\n");
     sb.append("    availableStatus: ").append(toIndentedString(availableStatus)).append("\n");
     sb.append("    sellingTimeID: ").append(toIndentedString(sellingTimeID)).append("\n");
+    sb.append("    sequence: ").append(toIndentedString(sequence)).append("\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
@@ -377,6 +402,7 @@ public class MenuCategory {
     openapiFields.add("nameTranslation");
     openapiFields.add("availableStatus");
     openapiFields.add("sellingTimeID");
+    openapiFields.add("sequence");
     openapiFields.add("items");
 
     // a set of required properties/fields (JSON key names)

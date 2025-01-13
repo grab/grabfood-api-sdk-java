@@ -1,6 +1,6 @@
 # UpdateStoreSpecialHourApi
 
-All URIs are relative to *https://partner-api.stg-myteksi.com/grabfood-sandbox*
+All URIs are relative to *https://partner-api.grab.com/grabfood-sandbox*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -25,7 +25,7 @@ import com.grab.grabfood.client.api.UpdateStoreSpecialHourApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://partner-api.stg-myteksi.com/grabfood-sandbox");
+    defaultClient.setBasePath("https://partner-api.grab.com/grabfood-sandbox");
 
     UpdateStoreSpecialHourApi apiInstance = new UpdateStoreSpecialHourApi(defaultClient);
     String contentType = "application/json"; // String | The content type of the request body. You must use `application/json` for this header as GrabFood API currently does not support other formats.

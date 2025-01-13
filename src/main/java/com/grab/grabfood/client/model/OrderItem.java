@@ -99,7 +99,7 @@ public class OrderItem {
   }
 
   /**
-   * The item&#39;s ExternalID in the partner system. 
+   * The item&#39;s externalID in the partner system. 
    * @return id
    */
   @javax.annotation.Nonnull
@@ -156,7 +156,7 @@ public class OrderItem {
   }
 
   /**
-   * The price (tax-inclusive) in minor format for 1 item and modifiers under it. &#x60;Item price(tax inclusive) + Modifier price(tax inclusive) | (2241*1.06)+(165*1.06)&#x3D;2550&#x60;. 
+   * The price for a single item along with its associated modifiers in minor unit and tax-inclusive.  &#x60;&#x60;&#x60; price &#x3D; Item price(tax inclusive) + Modifier price(tax inclusive) | (2241*1.06)+(165*1.06)&#x3D;2550 
    * @return price
    */
   @javax.annotation.Nonnull
@@ -175,7 +175,7 @@ public class OrderItem {
   }
 
   /**
-   * Tax in minor format for 1 item and all modifiers under it. &#x60;0&#x60; if tax configuration is absent. &#x60;Item tax + Modifier tax | (2241*0.06)+(165*0.06)&#x3D;144&#x60;. Refer to FAQs for more details about [tax](#section/Order/How-is-tax-calculated).
+   * Tax in minor format for a single item along with its associated modifiers. &#x60;0&#x60; if tax configuration is absent. Refer to FAQs for more details about [tax](#section/Order/How-is-tax-calculated). &#x60;&#x60;&#x60; tax &#x3D; Item tax + Modifier tax | (2241*0.06)+(165*0.06)&#x3D;144 
    * @return tax
    */
   @javax.annotation.Nullable
@@ -194,7 +194,7 @@ public class OrderItem {
   }
 
   /**
-   * An extra note for the merchant. &#x60;Blank&#x60; if no note from consumer. 
+   * An extra note for the merchant. Empty if no note from consumer. 
    * @return specifications
    */
   @javax.annotation.Nullable
@@ -240,7 +240,7 @@ public class OrderItem {
   }
 
   /**
-   * An array of JSON objects modifiers. Read [this](#categories) for more information.
+   * An array of JSON objects modifiers.
    * @return modifiers
    */
   @javax.annotation.Nullable

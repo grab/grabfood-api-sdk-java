@@ -71,7 +71,7 @@ public class ModifierGroup {
   private Map<String, String> nameTranslation = new HashMap<>();
 
   /**
-   * The status for the ModifierGroup that is in the item.
+   * The status for the modifier group.   &gt; The item may be marked as &#x60;\&quot;UNAVAILABLE\&quot;&#x60; if no available modifier to be selected within the required modifier group where &#x60;\&quot;selectionRangeMin\&quot;: 1&#x60;. 
    */
   @JsonAdapter(AvailableStatusEnum.Adapter.class)
   public enum AvailableStatusEnum {
@@ -140,6 +140,10 @@ public class ModifierGroup {
   @SerializedName(SERIALIZED_NAME_SELECTION_RANGE_MAX)
   private Integer selectionRangeMax;
 
+  public static final String SERIALIZED_NAME_SEQUENCE = "sequence";
+  @SerializedName(SERIALIZED_NAME_SEQUENCE)
+  private Integer sequence;
+
   public static final String SERIALIZED_NAME_MODIFIERS = "modifiers";
   @SerializedName(SERIALIZED_NAME_MODIFIERS)
   private List<MenuModifier> modifiers = new ArrayList<>();
@@ -153,7 +157,7 @@ public class ModifierGroup {
   }
 
   /**
-   * The ModifierGroup&#39;s ID that is on the partner system. This ID should be unique with a min length of 1 and max of 64.
+   * The modifier group&#39;s ID that is on the partner system. This ID should be unique.
    * @return id
    */
   @javax.annotation.Nonnull
@@ -172,7 +176,7 @@ public class ModifierGroup {
   }
 
   /**
-   * The name of the ModifierGroup for the item that is in the parent category and section.
+   * The name of the modifier group.
    * @return name
    */
   @javax.annotation.Nonnull
@@ -218,7 +222,7 @@ public class ModifierGroup {
   }
 
   /**
-   * The status for the ModifierGroup that is in the item.
+   * The status for the modifier group.   &gt; The item may be marked as &#x60;\&quot;UNAVAILABLE\&quot;&#x60; if no available modifier to be selected within the required modifier group where &#x60;\&quot;selectionRangeMin\&quot;: 1&#x60;. 
    * @return availableStatus
    */
   @javax.annotation.Nonnull
@@ -237,7 +241,7 @@ public class ModifierGroup {
   }
 
   /**
-   * The minimum quantity of the attribute. Refer to FAQs for more details about [selection range](#section/Menu/What-does-the-selection-range-do).
+   * The minimum quantity of the modifiers to be selected. Refer to FAQs for more details about [selection range](#section/Menu/What-does-the-selection-range-do).
    * @return selectionRangeMin
    */
   @javax.annotation.Nullable
@@ -256,7 +260,7 @@ public class ModifierGroup {
   }
 
   /**
-   * The maximum quantity of the attribute. Refer to FAQs for more details about [selection range](#section/Menu/What-does-the-selection-range-do).
+   * The maximum quantity of the modifiers to be selected. Refer to FAQs for more details about [selection range](#section/Menu/What-does-the-selection-range-do).
    * @return selectionRangeMax
    */
   @javax.annotation.Nonnull
@@ -266,6 +270,25 @@ public class ModifierGroup {
 
   public void setSelectionRangeMax(Integer selectionRangeMax) {
     this.selectionRangeMax = selectionRangeMax;
+  }
+
+
+  public ModifierGroup sequence(Integer sequence) {
+    this.sequence = sequence;
+    return this;
+  }
+
+  /**
+   * The sort or display order of the modifier group within the menu.
+   * @return sequence
+   */
+  @javax.annotation.Nullable
+  public Integer getSequence() {
+    return sequence;
+  }
+
+  public void setSequence(Integer sequence) {
+    this.sequence = sequence;
   }
 
 
@@ -356,13 +379,14 @@ public class ModifierGroup {
         Objects.equals(this.availableStatus, modifierGroup.availableStatus) &&
         Objects.equals(this.selectionRangeMin, modifierGroup.selectionRangeMin) &&
         Objects.equals(this.selectionRangeMax, modifierGroup.selectionRangeMax) &&
+        Objects.equals(this.sequence, modifierGroup.sequence) &&
         Objects.equals(this.modifiers, modifierGroup.modifiers)&&
         Objects.equals(this.additionalProperties, modifierGroup.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, nameTranslation, availableStatus, selectionRangeMin, selectionRangeMax, modifiers, additionalProperties);
+    return Objects.hash(id, name, nameTranslation, availableStatus, selectionRangeMin, selectionRangeMax, sequence, modifiers, additionalProperties);
   }
 
   @Override
@@ -375,6 +399,7 @@ public class ModifierGroup {
     sb.append("    availableStatus: ").append(toIndentedString(availableStatus)).append("\n");
     sb.append("    selectionRangeMin: ").append(toIndentedString(selectionRangeMin)).append("\n");
     sb.append("    selectionRangeMax: ").append(toIndentedString(selectionRangeMax)).append("\n");
+    sb.append("    sequence: ").append(toIndentedString(sequence)).append("\n");
     sb.append("    modifiers: ").append(toIndentedString(modifiers)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
@@ -405,6 +430,7 @@ public class ModifierGroup {
     openapiFields.add("availableStatus");
     openapiFields.add("selectionRangeMin");
     openapiFields.add("selectionRangeMax");
+    openapiFields.add("sequence");
     openapiFields.add("modifiers");
 
     // a set of required properties/fields (JSON key names)

@@ -69,7 +69,7 @@ public class MenuModifier {
   private Map<String, String> nameTranslation = new HashMap<>();
 
   /**
-   * The status for the modifier that is in the ModifierGroup.
+   * The status for the modifier. Refer to FAQs for more details about [availableStatus](#section/Menu/What-is-availableStatus).
    */
   @JsonAdapter(AvailableStatusEnum.Adapter.class)
   public enum AvailableStatusEnum {
@@ -138,6 +138,10 @@ public class MenuModifier {
   @SerializedName(SERIALIZED_NAME_BARCODE)
   private String barcode;
 
+  public static final String SERIALIZED_NAME_SEQUENCE = "sequence";
+  @SerializedName(SERIALIZED_NAME_SEQUENCE)
+  private Integer sequence;
+
   public static final String SERIALIZED_NAME_ADVANCED_PRICING = "advancedPricing";
   @SerializedName(SERIALIZED_NAME_ADVANCED_PRICING)
   private AdvancedPricing advancedPricing;
@@ -151,7 +155,7 @@ public class MenuModifier {
   }
 
   /**
-   * The modifier&#39;s ID that is on the partner&#39;s system. This ID should be unique with a min length of 1 and max of 64.
+   * The modifier&#39;s ID that is on the partner&#39;s system. This ID should be unique.
    * @return id
    */
   @javax.annotation.Nonnull
@@ -216,7 +220,7 @@ public class MenuModifier {
   }
 
   /**
-   * The status for the modifier that is in the ModifierGroup.
+   * The status for the modifier. Refer to FAQs for more details about [availableStatus](#section/Menu/What-is-availableStatus).
    * @return availableStatus
    */
   @javax.annotation.Nonnull
@@ -235,7 +239,7 @@ public class MenuModifier {
   }
 
   /**
-   * The modifier&#39;s price (excluding tax) in minor format. Refer to FAQs for more details about [tax](#section/Order/How-is-tax-calculated).
+   * The modifier&#39;s price in minor format. Refer to FAQs for more details about [tax](#section/Menu/Is-the-menu-price-with-or-without-tax).
    * @return price
    */
   @javax.annotation.Nullable
@@ -264,6 +268,25 @@ public class MenuModifier {
 
   public void setBarcode(String barcode) {
     this.barcode = barcode;
+  }
+
+
+  public MenuModifier sequence(Integer sequence) {
+    this.sequence = sequence;
+    return this;
+  }
+
+  /**
+   * The sort or display order of the modifier within the menu.
+   * @return sequence
+   */
+  @javax.annotation.Nullable
+  public Integer getSequence() {
+    return sequence;
+  }
+
+  public void setSequence(Integer sequence) {
+    this.sequence = sequence;
   }
 
 
@@ -346,13 +369,14 @@ public class MenuModifier {
         Objects.equals(this.availableStatus, menuModifier.availableStatus) &&
         Objects.equals(this.price, menuModifier.price) &&
         Objects.equals(this.barcode, menuModifier.barcode) &&
+        Objects.equals(this.sequence, menuModifier.sequence) &&
         Objects.equals(this.advancedPricing, menuModifier.advancedPricing)&&
         Objects.equals(this.additionalProperties, menuModifier.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, nameTranslation, availableStatus, price, barcode, advancedPricing, additionalProperties);
+    return Objects.hash(id, name, nameTranslation, availableStatus, price, barcode, sequence, advancedPricing, additionalProperties);
   }
 
   @Override
@@ -365,6 +389,7 @@ public class MenuModifier {
     sb.append("    availableStatus: ").append(toIndentedString(availableStatus)).append("\n");
     sb.append("    price: ").append(toIndentedString(price)).append("\n");
     sb.append("    barcode: ").append(toIndentedString(barcode)).append("\n");
+    sb.append("    sequence: ").append(toIndentedString(sequence)).append("\n");
     sb.append("    advancedPricing: ").append(toIndentedString(advancedPricing)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
@@ -395,6 +420,7 @@ public class MenuModifier {
     openapiFields.add("availableStatus");
     openapiFields.add("price");
     openapiFields.add("barcode");
+    openapiFields.add("sequence");
     openapiFields.add("advancedPricing");
 
     // a set of required properties/fields (JSON key names)

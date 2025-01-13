@@ -22,9 +22,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.grab.grabfood.client.model.WorkingHour;
 import java.io.IOException;
-import java.time.OffsetDateTime;
 import java.util.Arrays;
 
 import com.google.gson.Gson;
@@ -51,32 +49,36 @@ import java.util.Set;
 import com.grab.grabfood.client.JSON;
 
 /**
- * The conditions to apply to a campaign.
+ * 
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
-public class CampaignConditions {
-  public static final String SERIALIZED_NAME_START_TIME = "startTime";
-  @SerializedName(SERIALIZED_NAME_START_TIME)
-  private OffsetDateTime startTime;
+public class PushIntegrationStatusWebhookRequest {
+  public static final String SERIALIZED_NAME_PARTNER_MERCHANT_I_D = "partnerMerchantID";
+  @SerializedName(SERIALIZED_NAME_PARTNER_MERCHANT_I_D)
+  private String partnerMerchantID;
 
-  public static final String SERIALIZED_NAME_END_TIME = "endTime";
-  @SerializedName(SERIALIZED_NAME_END_TIME)
-  private OffsetDateTime endTime;
+  public static final String SERIALIZED_NAME_GRAB_MERCHANT_I_D = "grabMerchantID";
+  @SerializedName(SERIALIZED_NAME_GRAB_MERCHANT_I_D)
+  private String grabMerchantID;
 
   /**
-   * The type of eater eligible for the campaign.  * &#x60;all&#x60; - campaign will be applied to everyone. No limitation on campaign type. * &#x60;new&#x60; - campaign will be applied to consumers who have not ordered from this store in the last three months. Only applicable to **order-level** campaign. 
+   * The store integration status. - &#x60;INACTIVE&#x60;: Merchant integration deactivated - &#x60;ACTIVE&#x60;: Merchant integration activated - &#x60;SYNCING&#x60;: Merchant integration is syncing - &#x60;FAILED&#x60;: Merchant integration has failed 
    */
-  @JsonAdapter(EaterTypeEnum.Adapter.class)
-  public enum EaterTypeEnum {
-    ALL("all"),
+  @JsonAdapter(IntegrationStatusEnum.Adapter.class)
+  public enum IntegrationStatusEnum {
+    INACTIVE("INACTIVE"),
     
-    NEW("new"),
+    ACTIVE("ACTIVE"),
+    
+    SYNCING("SYNCING"),
+    
+    FAILED("FAILED"),
     
     UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
-    EaterTypeEnum(String value) {
+    IntegrationStatusEnum(String value) {
       this.value = value;
     }
 
@@ -89,8 +91,8 @@ public class CampaignConditions {
       return String.valueOf(value);
     }
 
-    public static EaterTypeEnum fromValue(String value) {
-      for (EaterTypeEnum b : EaterTypeEnum.values()) {
+    public static IntegrationStatusEnum fromValue(String value) {
+      for (IntegrationStatusEnum b : IntegrationStatusEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -98,155 +100,86 @@ public class CampaignConditions {
       return UNKNOWN_DEFAULT_OPEN_API;
     }
 
-    public static class Adapter extends TypeAdapter<EaterTypeEnum> {
+    public static class Adapter extends TypeAdapter<IntegrationStatusEnum> {
       @Override
-      public void write(final JsonWriter jsonWriter, final EaterTypeEnum enumeration) throws IOException {
+      public void write(final JsonWriter jsonWriter, final IntegrationStatusEnum enumeration) throws IOException {
         jsonWriter.value(enumeration.getValue());
       }
 
       @Override
-      public EaterTypeEnum read(final JsonReader jsonReader) throws IOException {
+      public IntegrationStatusEnum read(final JsonReader jsonReader) throws IOException {
         String value =  jsonReader.nextString();
-        return EaterTypeEnum.fromValue(value);
+        return IntegrationStatusEnum.fromValue(value);
       }
     }
 
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       String value = jsonElement.getAsString();
-      EaterTypeEnum.fromValue(value);
+      IntegrationStatusEnum.fromValue(value);
     }
   }
 
-  public static final String SERIALIZED_NAME_EATER_TYPE = "eaterType";
-  @SerializedName(SERIALIZED_NAME_EATER_TYPE)
-  private EaterTypeEnum eaterType;
+  public static final String SERIALIZED_NAME_INTEGRATION_STATUS = "integrationStatus";
+  @SerializedName(SERIALIZED_NAME_INTEGRATION_STATUS)
+  private IntegrationStatusEnum integrationStatus;
 
-  public static final String SERIALIZED_NAME_MIN_BASKET_AMOUNT = "minBasketAmount";
-  @SerializedName(SERIALIZED_NAME_MIN_BASKET_AMOUNT)
-  private Double minBasketAmount;
-
-  public static final String SERIALIZED_NAME_BUNDLE_QUANTITY = "bundleQuantity";
-  @SerializedName(SERIALIZED_NAME_BUNDLE_QUANTITY)
-  private Integer bundleQuantity;
-
-  public static final String SERIALIZED_NAME_WORKING_HOUR = "workingHour";
-  @SerializedName(SERIALIZED_NAME_WORKING_HOUR)
-  private WorkingHour workingHour;
-
-  public CampaignConditions() {
+  public PushIntegrationStatusWebhookRequest() {
   }
 
-  public CampaignConditions startTime(OffsetDateTime startTime) {
-    this.startTime = startTime;
+  public PushIntegrationStatusWebhookRequest partnerMerchantID(String partnerMerchantID) {
+    this.partnerMerchantID = partnerMerchantID;
     return this;
   }
 
   /**
-   * The campaign&#39;s start time in UTC format. For example, 2021-09-23T03:30:00Z means 2021-09-23 11:30:00 (UTC +08:00).
-   * @return startTime
+   * The merchant&#39;s ID that is on the partner&#39;s database.
+   * @return partnerMerchantID
    */
   @javax.annotation.Nonnull
-  public OffsetDateTime getStartTime() {
-    return startTime;
+  public String getPartnerMerchantID() {
+    return partnerMerchantID;
   }
 
-  public void setStartTime(OffsetDateTime startTime) {
-    this.startTime = startTime;
+  public void setPartnerMerchantID(String partnerMerchantID) {
+    this.partnerMerchantID = partnerMerchantID;
   }
 
 
-  public CampaignConditions endTime(OffsetDateTime endTime) {
-    this.endTime = endTime;
+  public PushIntegrationStatusWebhookRequest grabMerchantID(String grabMerchantID) {
+    this.grabMerchantID = grabMerchantID;
     return this;
   }
 
   /**
-   * The campaign&#39;s end time in UTC format.
-   * @return endTime
+   * The merchant&#39;s ID that is in GrabFood&#39;s database.
+   * @return grabMerchantID
    */
   @javax.annotation.Nonnull
-  public OffsetDateTime getEndTime() {
-    return endTime;
+  public String getGrabMerchantID() {
+    return grabMerchantID;
   }
 
-  public void setEndTime(OffsetDateTime endTime) {
-    this.endTime = endTime;
+  public void setGrabMerchantID(String grabMerchantID) {
+    this.grabMerchantID = grabMerchantID;
   }
 
 
-  public CampaignConditions eaterType(EaterTypeEnum eaterType) {
-    this.eaterType = eaterType;
+  public PushIntegrationStatusWebhookRequest integrationStatus(IntegrationStatusEnum integrationStatus) {
+    this.integrationStatus = integrationStatus;
     return this;
   }
 
   /**
-   * The type of eater eligible for the campaign.  * &#x60;all&#x60; - campaign will be applied to everyone. No limitation on campaign type. * &#x60;new&#x60; - campaign will be applied to consumers who have not ordered from this store in the last three months. Only applicable to **order-level** campaign. 
-   * @return eaterType
+   * The store integration status. - &#x60;INACTIVE&#x60;: Merchant integration deactivated - &#x60;ACTIVE&#x60;: Merchant integration activated - &#x60;SYNCING&#x60;: Merchant integration is syncing - &#x60;FAILED&#x60;: Merchant integration has failed 
+   * @return integrationStatus
    */
   @javax.annotation.Nonnull
-  public EaterTypeEnum getEaterType() {
-    return eaterType;
+  public IntegrationStatusEnum getIntegrationStatus() {
+    return integrationStatus;
   }
 
-  public void setEaterType(EaterTypeEnum eaterType) {
-    this.eaterType = eaterType;
-  }
-
-
-  public CampaignConditions minBasketAmount(Double minBasketAmount) {
-    this.minBasketAmount = minBasketAmount;
-    return this;
-  }
-
-  /**
-   * The minimum basket amount to be eligible for the campaign. Only applicable to **order-level** campaign but not to item-level discount campaign.
-   * @return minBasketAmount
-   */
-  @javax.annotation.Nullable
-  public Double getMinBasketAmount() {
-    return minBasketAmount;
-  }
-
-  public void setMinBasketAmount(Double minBasketAmount) {
-    this.minBasketAmount = minBasketAmount;
-  }
-
-
-  public CampaignConditions bundleQuantity(Integer bundleQuantity) {
-    this.bundleQuantity = bundleQuantity;
-    return this;
-  }
-
-  /**
-   * Specify the bundle quantity for bundle offer campaign.
-   * @return bundleQuantity
-   */
-  @javax.annotation.Nullable
-  public Integer getBundleQuantity() {
-    return bundleQuantity;
-  }
-
-  public void setBundleQuantity(Integer bundleQuantity) {
-    this.bundleQuantity = bundleQuantity;
-  }
-
-
-  public CampaignConditions workingHour(WorkingHour workingHour) {
-    this.workingHour = workingHour;
-    return this;
-  }
-
-  /**
-   * Get workingHour
-   * @return workingHour
-   */
-  @javax.annotation.Nullable
-  public WorkingHour getWorkingHour() {
-    return workingHour;
-  }
-
-  public void setWorkingHour(WorkingHour workingHour) {
-    this.workingHour = workingHour;
+  public void setIntegrationStatus(IntegrationStatusEnum integrationStatus) {
+    this.integrationStatus = integrationStatus;
   }
 
   /**
@@ -262,9 +195,9 @@ public class CampaignConditions {
    *
    * @param key name of the property
    * @param value value of the property
-   * @return the CampaignConditions instance itself
+   * @return the PushIntegrationStatusWebhookRequest instance itself
    */
-  public CampaignConditions putAdditionalProperty(String key, Object value) {
+  public PushIntegrationStatusWebhookRequest putAdditionalProperty(String key, Object value) {
     if (this.additionalProperties == null) {
         this.additionalProperties = new HashMap<String, Object>();
     }
@@ -303,31 +236,25 @@ public class CampaignConditions {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CampaignConditions campaignConditions = (CampaignConditions) o;
-    return Objects.equals(this.startTime, campaignConditions.startTime) &&
-        Objects.equals(this.endTime, campaignConditions.endTime) &&
-        Objects.equals(this.eaterType, campaignConditions.eaterType) &&
-        Objects.equals(this.minBasketAmount, campaignConditions.minBasketAmount) &&
-        Objects.equals(this.bundleQuantity, campaignConditions.bundleQuantity) &&
-        Objects.equals(this.workingHour, campaignConditions.workingHour)&&
-        Objects.equals(this.additionalProperties, campaignConditions.additionalProperties);
+    PushIntegrationStatusWebhookRequest pushIntegrationStatusWebhookRequest = (PushIntegrationStatusWebhookRequest) o;
+    return Objects.equals(this.partnerMerchantID, pushIntegrationStatusWebhookRequest.partnerMerchantID) &&
+        Objects.equals(this.grabMerchantID, pushIntegrationStatusWebhookRequest.grabMerchantID) &&
+        Objects.equals(this.integrationStatus, pushIntegrationStatusWebhookRequest.integrationStatus)&&
+        Objects.equals(this.additionalProperties, pushIntegrationStatusWebhookRequest.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(startTime, endTime, eaterType, minBasketAmount, bundleQuantity, workingHour, additionalProperties);
+    return Objects.hash(partnerMerchantID, grabMerchantID, integrationStatus, additionalProperties);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CampaignConditions {\n");
-    sb.append("    startTime: ").append(toIndentedString(startTime)).append("\n");
-    sb.append("    endTime: ").append(toIndentedString(endTime)).append("\n");
-    sb.append("    eaterType: ").append(toIndentedString(eaterType)).append("\n");
-    sb.append("    minBasketAmount: ").append(toIndentedString(minBasketAmount)).append("\n");
-    sb.append("    bundleQuantity: ").append(toIndentedString(bundleQuantity)).append("\n");
-    sb.append("    workingHour: ").append(toIndentedString(workingHour)).append("\n");
+    sb.append("class PushIntegrationStatusWebhookRequest {\n");
+    sb.append("    partnerMerchantID: ").append(toIndentedString(partnerMerchantID)).append("\n");
+    sb.append("    grabMerchantID: ").append(toIndentedString(grabMerchantID)).append("\n");
+    sb.append("    integrationStatus: ").append(toIndentedString(integrationStatus)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -351,65 +278,64 @@ public class CampaignConditions {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("startTime");
-    openapiFields.add("endTime");
-    openapiFields.add("eaterType");
-    openapiFields.add("minBasketAmount");
-    openapiFields.add("bundleQuantity");
-    openapiFields.add("workingHour");
+    openapiFields.add("partnerMerchantID");
+    openapiFields.add("grabMerchantID");
+    openapiFields.add("integrationStatus");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("startTime");
-    openapiRequiredFields.add("endTime");
-    openapiRequiredFields.add("eaterType");
+    openapiRequiredFields.add("partnerMerchantID");
+    openapiRequiredFields.add("grabMerchantID");
+    openapiRequiredFields.add("integrationStatus");
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to CampaignConditions
+   * @throws IOException if the JSON Element is invalid with respect to PushIntegrationStatusWebhookRequest
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!CampaignConditions.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in CampaignConditions is not found in the empty JSON string", CampaignConditions.openapiRequiredFields.toString()));
+        if (!PushIntegrationStatusWebhookRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in PushIntegrationStatusWebhookRequest is not found in the empty JSON string", PushIntegrationStatusWebhookRequest.openapiRequiredFields.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : CampaignConditions.openapiRequiredFields) {
+      for (String requiredField : PushIntegrationStatusWebhookRequest.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("eaterType").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `eaterType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("eaterType").toString()));
+      if (!jsonObj.get("partnerMerchantID").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `partnerMerchantID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("partnerMerchantID").toString()));
       }
-      // validate the required field `eaterType`
-      EaterTypeEnum.validateJsonElement(jsonObj.get("eaterType"));
-      // validate the optional field `workingHour`
-      if (jsonObj.get("workingHour") != null && !jsonObj.get("workingHour").isJsonNull()) {
-        WorkingHour.validateJsonElement(jsonObj.get("workingHour"));
+      if (!jsonObj.get("grabMerchantID").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `grabMerchantID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("grabMerchantID").toString()));
       }
+      if (!jsonObj.get("integrationStatus").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `integrationStatus` to be a primitive type in the JSON string but got `%s`", jsonObj.get("integrationStatus").toString()));
+      }
+      // validate the required field `integrationStatus`
+      IntegrationStatusEnum.validateJsonElement(jsonObj.get("integrationStatus"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!CampaignConditions.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'CampaignConditions' and its subtypes
+       if (!PushIntegrationStatusWebhookRequest.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'PushIntegrationStatusWebhookRequest' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<CampaignConditions> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(CampaignConditions.class));
+       final TypeAdapter<PushIntegrationStatusWebhookRequest> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(PushIntegrationStatusWebhookRequest.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<CampaignConditions>() {
+       return (TypeAdapter<T>) new TypeAdapter<PushIntegrationStatusWebhookRequest>() {
            @Override
-           public void write(JsonWriter out, CampaignConditions value) throws IOException {
+           public void write(JsonWriter out, PushIntegrationStatusWebhookRequest value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              obj.remove("additionalProperties");
              // serialize additional properties
@@ -437,12 +363,12 @@ public class CampaignConditions {
            }
 
            @Override
-           public CampaignConditions read(JsonReader in) throws IOException {
+           public PushIntegrationStatusWebhookRequest read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              JsonObject jsonObj = jsonElement.getAsJsonObject();
              // store additional fields in the deserialized instance
-             CampaignConditions instance = thisAdapter.fromJsonTree(jsonObj);
+             PushIntegrationStatusWebhookRequest instance = thisAdapter.fromJsonTree(jsonObj);
              for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
                if (!openapiFields.contains(entry.getKey())) {
                  if (entry.getValue().isJsonPrimitive()) { // primitive type
@@ -469,18 +395,18 @@ public class CampaignConditions {
   }
 
   /**
-   * Create an instance of CampaignConditions given an JSON string
+   * Create an instance of PushIntegrationStatusWebhookRequest given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of CampaignConditions
-   * @throws IOException if the JSON string is invalid with respect to CampaignConditions
+   * @return An instance of PushIntegrationStatusWebhookRequest
+   * @throws IOException if the JSON string is invalid with respect to PushIntegrationStatusWebhookRequest
    */
-  public static CampaignConditions fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, CampaignConditions.class);
+  public static PushIntegrationStatusWebhookRequest fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, PushIntegrationStatusWebhookRequest.class);
   }
 
   /**
-   * Convert an instance of CampaignConditions to an JSON string
+   * Convert an instance of PushIntegrationStatusWebhookRequest to an JSON string
    *
    * @return JSON string
    */
