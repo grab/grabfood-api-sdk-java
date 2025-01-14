@@ -58,6 +58,10 @@ public class OrderStateRequest {
   @SerializedName(SERIALIZED_NAME_MERCHANT_I_D)
   private String merchantID;
 
+  public static final String SERIALIZED_NAME_PARTNER_MERCHANT_I_D = "partnerMerchantID";
+  @SerializedName(SERIALIZED_NAME_PARTNER_MERCHANT_I_D)
+  private String partnerMerchantID;
+
   public static final String SERIALIZED_NAME_ORDER_I_D = "orderID";
   @SerializedName(SERIALIZED_NAME_ORDER_I_D)
   private String orderID;
@@ -161,6 +165,25 @@ public class OrderStateRequest {
 
   public void setMerchantID(String merchantID) {
     this.merchantID = merchantID;
+  }
+
+
+  public OrderStateRequest partnerMerchantID(String partnerMerchantID) {
+    this.partnerMerchantID = partnerMerchantID;
+    return this;
+  }
+
+  /**
+   * The merchant&#39;s ID that is on the partner&#39;s database.
+   * @return partnerMerchantID
+   */
+  @javax.annotation.Nullable
+  public String getPartnerMerchantID() {
+    return partnerMerchantID;
+  }
+
+  public void setPartnerMerchantID(String partnerMerchantID) {
+    this.partnerMerchantID = partnerMerchantID;
   }
 
 
@@ -314,6 +337,7 @@ public class OrderStateRequest {
     }
     OrderStateRequest orderStateRequest = (OrderStateRequest) o;
     return Objects.equals(this.merchantID, orderStateRequest.merchantID) &&
+        Objects.equals(this.partnerMerchantID, orderStateRequest.partnerMerchantID) &&
         Objects.equals(this.orderID, orderStateRequest.orderID) &&
         Objects.equals(this.state, orderStateRequest.state) &&
         Objects.equals(this.driverETA, orderStateRequest.driverETA) &&
@@ -328,7 +352,7 @@ public class OrderStateRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(merchantID, orderID, state, driverETA, code, message, additionalProperties);
+    return Objects.hash(merchantID, partnerMerchantID, orderID, state, driverETA, code, message, additionalProperties);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -343,6 +367,7 @@ public class OrderStateRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class OrderStateRequest {\n");
     sb.append("    merchantID: ").append(toIndentedString(merchantID)).append("\n");
+    sb.append("    partnerMerchantID: ").append(toIndentedString(partnerMerchantID)).append("\n");
     sb.append("    orderID: ").append(toIndentedString(orderID)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");
     sb.append("    driverETA: ").append(toIndentedString(driverETA)).append("\n");
@@ -372,6 +397,7 @@ public class OrderStateRequest {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("merchantID");
+    openapiFields.add("partnerMerchantID");
     openapiFields.add("orderID");
     openapiFields.add("state");
     openapiFields.add("driverETA");
@@ -407,6 +433,9 @@ public class OrderStateRequest {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("merchantID").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `merchantID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("merchantID").toString()));
+      }
+      if ((jsonObj.get("partnerMerchantID") != null && !jsonObj.get("partnerMerchantID").isJsonNull()) && !jsonObj.get("partnerMerchantID").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `partnerMerchantID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("partnerMerchantID").toString()));
       }
       if (!jsonObj.get("orderID").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `orderID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("orderID").toString()));

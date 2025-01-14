@@ -22,11 +22,9 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.grab.grabfood.client.model.OpenPeriod;
+import com.grab.grabfood.client.model.CreateSelfServeJourneyRequestPartner;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -52,120 +50,33 @@ import java.util.Set;
 import com.grab.grabfood.client.JSON;
 
 /**
- * A JSON object serviceHour for each day. An empty JSON object indicates the menu item is not available on the day.
+ * 
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
-public class ServiceHour {
-  /**
-   * Defines the specific time period during which the menu is available  - OpenPeriod &#x3D; open only in given periods - OpenAllDay &#x3D; open 24 hours - CloseAllDay &#x3D; closed 24 hours 
-   */
-  @JsonAdapter(OpenPeriodTypeEnum.Adapter.class)
-  public enum OpenPeriodTypeEnum {
-    OPEN_PERIOD("OpenPeriod"),
-    
-    OPEN_ALL_DAY("OpenAllDay"),
-    
-    CLOSE_ALL_DAY("CloseAllDay"),
-    
-    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
+public class CreateSelfServeJourneyRequest {
+  public static final String SERIALIZED_NAME_PARTNER = "partner";
+  @SerializedName(SERIALIZED_NAME_PARTNER)
+  private CreateSelfServeJourneyRequestPartner partner;
 
-    private String value;
-
-    OpenPeriodTypeEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static OpenPeriodTypeEnum fromValue(String value) {
-      for (OpenPeriodTypeEnum b : OpenPeriodTypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      return UNKNOWN_DEFAULT_OPEN_API;
-    }
-
-    public static class Adapter extends TypeAdapter<OpenPeriodTypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final OpenPeriodTypeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public OpenPeriodTypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return OpenPeriodTypeEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      OpenPeriodTypeEnum.fromValue(value);
-    }
+  public CreateSelfServeJourneyRequest() {
   }
 
-  public static final String SERIALIZED_NAME_OPEN_PERIOD_TYPE = "openPeriodType";
-  @SerializedName(SERIALIZED_NAME_OPEN_PERIOD_TYPE)
-  private OpenPeriodTypeEnum openPeriodType;
-
-  public static final String SERIALIZED_NAME_PERIODS = "periods";
-  @SerializedName(SERIALIZED_NAME_PERIODS)
-  private List<OpenPeriod> periods = new ArrayList<>();
-
-  public ServiceHour() {
-  }
-
-  public ServiceHour openPeriodType(OpenPeriodTypeEnum openPeriodType) {
-    this.openPeriodType = openPeriodType;
+  public CreateSelfServeJourneyRequest partner(CreateSelfServeJourneyRequestPartner partner) {
+    this.partner = partner;
     return this;
   }
 
   /**
-   * Defines the specific time period during which the menu is available  - OpenPeriod &#x3D; open only in given periods - OpenAllDay &#x3D; open 24 hours - CloseAllDay &#x3D; closed 24 hours 
-   * @return openPeriodType
+   * Get partner
+   * @return partner
    */
   @javax.annotation.Nonnull
-  public OpenPeriodTypeEnum getOpenPeriodType() {
-    return openPeriodType;
+  public CreateSelfServeJourneyRequestPartner getPartner() {
+    return partner;
   }
 
-  public void setOpenPeriodType(OpenPeriodTypeEnum openPeriodType) {
-    this.openPeriodType = openPeriodType;
-  }
-
-
-  public ServiceHour periods(List<OpenPeriod> periods) {
-    this.periods = periods;
-    return this;
-  }
-
-  public ServiceHour addPeriodsItem(OpenPeriod periodsItem) {
-    if (this.periods == null) {
-      this.periods = new ArrayList<>();
-    }
-    this.periods.add(periodsItem);
-    return this;
-  }
-
-  /**
-   * An array of open periods. Only required when &#x60;openPeriodType&#x60; is **OpenPeriod**
-   * @return periods
-   */
-  @javax.annotation.Nullable
-  public List<OpenPeriod> getPeriods() {
-    return periods;
-  }
-
-  public void setPeriods(List<OpenPeriod> periods) {
-    this.periods = periods;
+  public void setPartner(CreateSelfServeJourneyRequestPartner partner) {
+    this.partner = partner;
   }
 
   /**
@@ -181,9 +92,9 @@ public class ServiceHour {
    *
    * @param key name of the property
    * @param value value of the property
-   * @return the ServiceHour instance itself
+   * @return the CreateSelfServeJourneyRequest instance itself
    */
-  public ServiceHour putAdditionalProperty(String key, Object value) {
+  public CreateSelfServeJourneyRequest putAdditionalProperty(String key, Object value) {
     if (this.additionalProperties == null) {
         this.additionalProperties = new HashMap<String, Object>();
     }
@@ -222,23 +133,21 @@ public class ServiceHour {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ServiceHour serviceHour = (ServiceHour) o;
-    return Objects.equals(this.openPeriodType, serviceHour.openPeriodType) &&
-        Objects.equals(this.periods, serviceHour.periods)&&
-        Objects.equals(this.additionalProperties, serviceHour.additionalProperties);
+    CreateSelfServeJourneyRequest createSelfServeJourneyRequest = (CreateSelfServeJourneyRequest) o;
+    return Objects.equals(this.partner, createSelfServeJourneyRequest.partner)&&
+        Objects.equals(this.additionalProperties, createSelfServeJourneyRequest.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(openPeriodType, periods, additionalProperties);
+    return Objects.hash(partner, additionalProperties);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ServiceHour {\n");
-    sb.append("    openPeriodType: ").append(toIndentedString(openPeriodType)).append("\n");
-    sb.append("    periods: ").append(toIndentedString(periods)).append("\n");
+    sb.append("class CreateSelfServeJourneyRequest {\n");
+    sb.append("    partner: ").append(toIndentedString(partner)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -262,69 +171,51 @@ public class ServiceHour {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("openPeriodType");
-    openapiFields.add("periods");
+    openapiFields.add("partner");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("openPeriodType");
+    openapiRequiredFields.add("partner");
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ServiceHour
+   * @throws IOException if the JSON Element is invalid with respect to CreateSelfServeJourneyRequest
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!ServiceHour.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ServiceHour is not found in the empty JSON string", ServiceHour.openapiRequiredFields.toString()));
+        if (!CreateSelfServeJourneyRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in CreateSelfServeJourneyRequest is not found in the empty JSON string", CreateSelfServeJourneyRequest.openapiRequiredFields.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : ServiceHour.openapiRequiredFields) {
+      for (String requiredField : CreateSelfServeJourneyRequest.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("openPeriodType").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `openPeriodType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("openPeriodType").toString()));
-      }
-      // validate the required field `openPeriodType`
-      OpenPeriodTypeEnum.validateJsonElement(jsonObj.get("openPeriodType"));
-      if (jsonObj.get("periods") != null && !jsonObj.get("periods").isJsonNull()) {
-        JsonArray jsonArrayperiods = jsonObj.getAsJsonArray("periods");
-        if (jsonArrayperiods != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("periods").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `periods` to be an array in the JSON string but got `%s`", jsonObj.get("periods").toString()));
-          }
-
-          // validate the optional field `periods` (array)
-          for (int i = 0; i < jsonArrayperiods.size(); i++) {
-            OpenPeriod.validateJsonElement(jsonArrayperiods.get(i));
-          };
-        }
-      }
+      // validate the required field `partner`
+      CreateSelfServeJourneyRequestPartner.validateJsonElement(jsonObj.get("partner"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ServiceHour.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ServiceHour' and its subtypes
+       if (!CreateSelfServeJourneyRequest.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'CreateSelfServeJourneyRequest' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ServiceHour> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ServiceHour.class));
+       final TypeAdapter<CreateSelfServeJourneyRequest> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(CreateSelfServeJourneyRequest.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<ServiceHour>() {
+       return (TypeAdapter<T>) new TypeAdapter<CreateSelfServeJourneyRequest>() {
            @Override
-           public void write(JsonWriter out, ServiceHour value) throws IOException {
+           public void write(JsonWriter out, CreateSelfServeJourneyRequest value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              obj.remove("additionalProperties");
              // serialize additional properties
@@ -352,12 +243,12 @@ public class ServiceHour {
            }
 
            @Override
-           public ServiceHour read(JsonReader in) throws IOException {
+           public CreateSelfServeJourneyRequest read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              JsonObject jsonObj = jsonElement.getAsJsonObject();
              // store additional fields in the deserialized instance
-             ServiceHour instance = thisAdapter.fromJsonTree(jsonObj);
+             CreateSelfServeJourneyRequest instance = thisAdapter.fromJsonTree(jsonObj);
              for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
                if (!openapiFields.contains(entry.getKey())) {
                  if (entry.getValue().isJsonPrimitive()) { // primitive type
@@ -384,18 +275,18 @@ public class ServiceHour {
   }
 
   /**
-   * Create an instance of ServiceHour given an JSON string
+   * Create an instance of CreateSelfServeJourneyRequest given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of ServiceHour
-   * @throws IOException if the JSON string is invalid with respect to ServiceHour
+   * @return An instance of CreateSelfServeJourneyRequest
+   * @throws IOException if the JSON string is invalid with respect to CreateSelfServeJourneyRequest
    */
-  public static ServiceHour fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ServiceHour.class);
+  public static CreateSelfServeJourneyRequest fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, CreateSelfServeJourneyRequest.class);
   }
 
   /**
-   * Convert an instance of ServiceHour to an JSON string
+   * Convert an instance of CreateSelfServeJourneyRequest to an JSON string
    *
    * @return JSON string
    */

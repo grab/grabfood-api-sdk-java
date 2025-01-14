@@ -2,7 +2,7 @@
 
 # Receiver
 
-A JSON object containing the receiver information. Currently only for orders that are delivered by the restaurant.
+A JSON object containing the receiver information. Only applicable for orders that are delivered by the restaurant. `null` if not applicable.
 
 ## Properties
 

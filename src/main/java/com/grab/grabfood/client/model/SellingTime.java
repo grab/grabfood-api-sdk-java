@@ -83,7 +83,7 @@ public class SellingTime {
   }
 
   /**
-   * The selling time group start time in date &amp; time format. 
+   * The selling time group start time in date &amp; time format. UTC format is expected. 
    * @return startTime
    */
   @javax.annotation.Nullable
@@ -102,7 +102,7 @@ public class SellingTime {
   }
 
   /**
-   * The selling time group end time in date &amp; time format. 
+   * The selling time group end time in date &amp; time format. UTC format is expected. 
    * @return endTime
    */
   @javax.annotation.Nullable

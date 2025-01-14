@@ -73,7 +73,7 @@ public class MenuItem {
   private Map<String, String> nameTranslation = new HashMap<>();
 
   /**
-   * The status for the item that is in the category.  Note: In order to set an item as \&quot;UNAVAILABLE\&quot;, it is required to update both the &#x60;availableStatus&#x60; and &#x60;maxStock&#x60; fields, whereby the &#x60;maxStock&#x60; value should be set to 0. 
+   * The status for the item. Refer to FAQs for more details about [availableStatus](#section/Menu/What-is-availableStatus).  &gt; Note: In order to set an item as &#x60;\&quot;UNAVAILABLE\&quot;&#x60;, it is required to update both the &#x60;availableStatus&#x60; and &#x60;maxStock&#x60; fields, whereby the &#x60;maxStock&#x60; should be set to 0. 
    */
   @JsonAdapter(AvailableStatusEnum.Adapter.class)
   public enum AvailableStatusEnum {
@@ -224,6 +224,10 @@ public class MenuItem {
   @SerializedName(SERIALIZED_NAME_MAX_STOCK)
   private Long maxStock;
 
+  public static final String SERIALIZED_NAME_SEQUENCE = "sequence";
+  @SerializedName(SERIALIZED_NAME_SEQUENCE)
+  private Integer sequence;
+
   public static final String SERIALIZED_NAME_ADVANCED_PRICING = "advancedPricing";
   @SerializedName(SERIALIZED_NAME_ADVANCED_PRICING)
   private AdvancedPricing advancedPricing;
@@ -245,7 +249,7 @@ public class MenuItem {
   }
 
   /**
-   * The item&#39;s ID in the partner system. 
+   * The item&#39;s ID in the partner system. This ID should be unique. 
    * @return id
    */
   @javax.annotation.Nonnull
@@ -310,7 +314,7 @@ public class MenuItem {
   }
 
   /**
-   * The status for the item that is in the category.  Note: In order to set an item as \&quot;UNAVAILABLE\&quot;, it is required to update both the &#x60;availableStatus&#x60; and &#x60;maxStock&#x60; fields, whereby the &#x60;maxStock&#x60; value should be set to 0. 
+   * The status for the item. Refer to FAQs for more details about [availableStatus](#section/Menu/What-is-availableStatus).  &gt; Note: In order to set an item as &#x60;\&quot;UNAVAILABLE\&quot;&#x60;, it is required to update both the &#x60;availableStatus&#x60; and &#x60;maxStock&#x60; fields, whereby the &#x60;maxStock&#x60; should be set to 0. 
    * @return availableStatus
    */
   @javax.annotation.Nonnull
@@ -375,7 +379,7 @@ public class MenuItem {
   }
 
   /**
-   * The item&#39;s price (excluding tax) in minor format. For example: 1900 means $19 with &#x60;currency.exponent&#x60; as 2. Refer to [FAQ](#section/Menu/Is-the-item-price-with-or-without-tax) for more details. 
+   * The item&#39;s price in minor format. For example: 1900 means $19 with &#x60;currency.exponent&#x60; as 2. Refer to [FAQ](#section/Menu/Is-the-menu-price-with-or-without-tax) to determine whether the pricing should be tax-inclusive or tax-exclusive. 
    * @return price
    */
   @javax.annotation.Nonnull
@@ -402,7 +406,7 @@ public class MenuItem {
   }
 
   /**
-   * An array string for the item’s image URL links. Refer to FAQs for more details about [images](#section/Menu/What-are-the-recommended-formats-for-an-item-image). 
+   * An array string for the item’s image URL link. Only 1 image is supported. Refer to FAQs for more details about [images formats](#section/Menu/What-are-the-recommended-formats-for-an-item-image). 
    * @return photos
    */
   @javax.annotation.Nullable
@@ -478,7 +482,7 @@ public class MenuItem {
   }
 
   /**
-   * The selling time&#39;s ID for the item. This value overwrites the category&#39;s selling time if it is different. Empty value implies the category&#39;s selling time will be applied. 
+   * The selling time&#39;s ID for the item. This value overrides the category&#39;s selling time if it is different. Empty value implies the category&#39;s selling time will be applied. 
    * @return sellingTimeID
    */
   @javax.annotation.Nullable
@@ -497,7 +501,7 @@ public class MenuItem {
   }
 
   /**
-   * Available stocks under inventory for this item. Auto reduce when there is order placed for this item. Empty value implies no limit.  Note: It is necessary to set &#x60;maxStock&#x60; to 0 if the &#x60;availableStatus&#x60; of the item is \&quot;UNAVAILABLE\&quot;. Item will be set to \&quot;AVAILABLE\&quot; if &#x60;maxStock&#x60; &gt; 0. 
+   * Available stocks under inventory for this item. Auto reduce when there is order placed for this item. Empty value implies no limit.  &gt; Note: It is necessary to set &#x60;maxStock&#x60; to 0 if the &#x60;availableStatus&#x60; of the item is &#x60;\&quot;UNAVAILABLE\&quot;&#x60;. Item will be set to &#x60;\&quot;AVAILABLE\&quot;&#x60; if &#x60;maxStock&#x60; &gt; 0. 
    * @return maxStock
    */
   @javax.annotation.Nullable
@@ -507,6 +511,25 @@ public class MenuItem {
 
   public void setMaxStock(Long maxStock) {
     this.maxStock = maxStock;
+  }
+
+
+  public MenuItem sequence(Integer sequence) {
+    this.sequence = sequence;
+    return this;
+  }
+
+  /**
+   * The sort or display order of the item within the menu.
+   * @return sequence
+   */
+  @javax.annotation.Nullable
+  public Integer getSequence() {
+    return sequence;
+  }
+
+  public void setSequence(Integer sequence) {
+    this.sequence = sequence;
   }
 
 
@@ -642,6 +665,7 @@ public class MenuItem {
         Objects.equals(this.barcode, menuItem.barcode) &&
         Objects.equals(this.sellingTimeID, menuItem.sellingTimeID) &&
         Objects.equals(this.maxStock, menuItem.maxStock) &&
+        Objects.equals(this.sequence, menuItem.sequence) &&
         Objects.equals(this.advancedPricing, menuItem.advancedPricing) &&
         Objects.equals(this.purchasability, menuItem.purchasability) &&
         Objects.equals(this.modifierGroups, menuItem.modifierGroups)&&
@@ -650,7 +674,7 @@ public class MenuItem {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, nameTranslation, availableStatus, description, descriptionTranslation, price, photos, specialType, taxable, barcode, sellingTimeID, maxStock, advancedPricing, purchasability, modifierGroups, additionalProperties);
+    return Objects.hash(id, name, nameTranslation, availableStatus, description, descriptionTranslation, price, photos, specialType, taxable, barcode, sellingTimeID, maxStock, sequence, advancedPricing, purchasability, modifierGroups, additionalProperties);
   }
 
   @Override
@@ -670,6 +694,7 @@ public class MenuItem {
     sb.append("    barcode: ").append(toIndentedString(barcode)).append("\n");
     sb.append("    sellingTimeID: ").append(toIndentedString(sellingTimeID)).append("\n");
     sb.append("    maxStock: ").append(toIndentedString(maxStock)).append("\n");
+    sb.append("    sequence: ").append(toIndentedString(sequence)).append("\n");
     sb.append("    advancedPricing: ").append(toIndentedString(advancedPricing)).append("\n");
     sb.append("    purchasability: ").append(toIndentedString(purchasability)).append("\n");
     sb.append("    modifierGroups: ").append(toIndentedString(modifierGroups)).append("\n");
@@ -709,6 +734,7 @@ public class MenuItem {
     openapiFields.add("barcode");
     openapiFields.add("sellingTimeID");
     openapiFields.add("maxStock");
+    openapiFields.add("sequence");
     openapiFields.add("advancedPricing");
     openapiFields.add("purchasability");
     openapiFields.add("modifierGroups");

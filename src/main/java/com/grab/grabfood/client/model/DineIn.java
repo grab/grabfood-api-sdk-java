@@ -49,7 +49,7 @@ import java.util.Set;
 import com.grab.grabfood.client.JSON;
 
 /**
- * A JSON object containing order at table information. Present only for dineIn order. **Not available** in [ListOrder](#tag/list-order/operation/list-orders) response.
+ * A JSON object containing order at table information. Only applicable for dine-in order. &#x60;null&#x60; if not applicable. Not present in [ListOrder](#tag/list-order/operation/list-orders) response.
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class DineIn {

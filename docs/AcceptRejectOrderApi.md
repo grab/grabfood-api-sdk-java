@@ -1,6 +1,6 @@
 # AcceptRejectOrderApi
 
-All URIs are relative to *https://partner-api.stg-myteksi.com/grabfood-sandbox*
+All URIs are relative to *https://partner-api.grab.com/grabfood-sandbox*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -25,7 +25,7 @@ import com.grab.grabfood.client.api.AcceptRejectOrderApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://partner-api.stg-myteksi.com/grabfood-sandbox");
+    defaultClient.setBasePath("https://partner-api.grab.com/grabfood-sandbox");
 
     AcceptRejectOrderApi apiInstance = new AcceptRejectOrderApi(defaultClient);
     String authorization = "Bearer <ACCESS_TOKEN_HERE>"; // String | Specify the generated authorization token of the bearer type.

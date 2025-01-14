@@ -149,7 +149,7 @@ public class OrderItemModifier {
   }
 
   /**
-   * The modifier&#39;s price (tax-inclusive) in minor format. &#x60;round(165 * (1 + 0.06)) &#x3D; 175&#x60;.
+   * The modifier&#39;s price (tax-inclusive) in minor format.  &#x60;&#x60;&#x60; price &#x3D; round(165 * (1 + 0.06)) &#x3D; 175 
    * @return price
    */
   @javax.annotation.Nullable
@@ -168,7 +168,7 @@ public class OrderItemModifier {
   }
 
   /**
-   * Tax in minor format for 1 modifier. &#x60;165*0.06&#x3D;10&#x60;. Refer to FAQs for more details about [tax](#section/Order/How-is-tax-calculated).
+   * Tax in minor format for 1 modifier. Refer to FAQs for more details about [tax](#section/Order/How-is-tax-calculated). &#x60;&#x60;&#x60; tax &#x3D; 165*0.06&#x3D;10 
    * @return tax
    */
   @javax.annotation.Nullable

@@ -383,7 +383,7 @@ public class OrderCampaign {
   }
 
   /**
-   * The campaign redemption count in this order.
+   * The redemption count of same campaign in this order.
    * @return usageCount
    */
   @javax.annotation.Nullable
@@ -421,7 +421,7 @@ public class OrderCampaign {
   }
 
   /**
-   * The deducted amount in minor unit format. &#x60;Item price(tax inclusive) * 20% discount | 2375*0.2&#x60;
+   * The total discount amount in minor unit format applied to the order based on the campaign&#39;s usage count. The amount is rounded to the nearest value for &#x60;VND&#x60;, &#x60;IDR&#x60;, and &#x60;THB&#x60;, as decimals are not supported.  &#x60;&#x60;&#x60; deductedAmount &#x3D; Item price(tax inclusive) * 20% discount | 2375*0.2&#x3D;475 
    * @return deductedAmount
    */
   @javax.annotation.Nullable

@@ -179,7 +179,7 @@ public class GetMenuNewResponse {
   }
 
   /**
-   * An array of category JSON objects. Max 100 allowed per section. Refer to [Categories](#categories) for more information.
+   * An array of category JSON objects. Max 100 allowed. Refer to [Categories](#categories) for more information.
    * @return categories
    */
   @javax.annotation.Nonnull

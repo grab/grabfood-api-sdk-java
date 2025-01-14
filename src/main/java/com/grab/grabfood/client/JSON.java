@@ -115,6 +115,9 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.Coordinates.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.CreateCampaignRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.CreateCampaignResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.CreateSelfServeJourneyRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.CreateSelfServeJourneyRequestPartner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.CreateSelfServeJourneyResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.Currency.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.DineIn.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.EditOrderItem.CustomTypeAdapterFactory());
@@ -170,6 +173,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.PartnerOauthResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.PauseStoreRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.Purchasability.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.PushIntegrationStatusWebhookRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.Receiver.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.RedeemDineInVoucherRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.RedeemDineInVoucherResponse.CustomTypeAdapterFactory());

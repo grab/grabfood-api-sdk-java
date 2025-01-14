@@ -78,7 +78,7 @@ public class WorkingHourDay {
   }
 
   /**
-   * An array of open periods. &#x60;null&#x60; in [ListCampaign](#tag/list-campaign) response if the campaign is available all day.
+   * An array of open periods. &#x60;null&#x60; if the campaign period is closed all day.
    * @return periods
    */
   @javax.annotation.Nullable

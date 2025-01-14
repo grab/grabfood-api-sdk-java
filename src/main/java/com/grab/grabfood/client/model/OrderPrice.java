@@ -81,6 +81,10 @@ public class OrderPrice {
   @SerializedName(SERIALIZED_NAME_DELIVERY_FEE)
   private Long deliveryFee;
 
+  public static final String SERIALIZED_NAME_SMALL_ORDER_FEE = "smallOrderFee";
+  @SerializedName(SERIALIZED_NAME_SMALL_ORDER_FEE)
+  private Long smallOrderFee;
+
   public static final String SERIALIZED_NAME_EATER_PAYMENT = "eaterPayment";
   @SerializedName(SERIALIZED_NAME_EATER_PAYMENT)
   private Long eaterPayment;
@@ -94,7 +98,7 @@ public class OrderPrice {
   }
 
   /**
-   * Total item and modifier price (tax-inclusive) in the minor unit. &#x60;Sum of all (Item price * quantity) | 2550*1&#x3D;2550&#x60;.
+   * Total item and modifier price (tax-inclusive) in the minor unit. &#x60;&#x60;&#x60; subtotal &#x3D; Sum of all (item price * quantity) | 2550*1&#x3D;2550 
    * @return subtotal
    */
   @javax.annotation.Nonnull
@@ -113,7 +117,7 @@ public class OrderPrice {
   }
 
   /**
-   * GrabFood&#39;s tax in the minor unit. &#x60;(subtotal-merchantFundPromo)* Tax /(1+Tax) | (2550-475)*0.06/1.06&#x3D;117&#x60;. Refer to FAQs for more details about [tax](#section/Order/How-is-tax-calculated).
+   * GrabFood&#39;s tax in the minor unit. Refer to FAQs for more details about [tax](#section/Order/How-is-tax-calculated). &#x60;&#x60;&#x60; tax &#x3D; (subtotal + merchantChargeFee - merchantFundPromo) * Tax / (1+Tax) | (2550-475)*0.06/1.06&#x3D;117 
    * @return tax
    */
   @javax.annotation.Nullable
@@ -132,7 +136,7 @@ public class OrderPrice {
   }
 
   /**
-   * Any additional fee charged by merchant, which is 100% paid out to the merchant. Eg. Takeaway, packaging costs, dine-in charge.
+   * Any additional fee charged by merchant (tax-inclusive), which is 100% paid out to the merchant. Eg. Takeaway, packaging costs, dine-in charge. 
    * @return merchantChargeFee
    */
   @javax.annotation.Nullable
@@ -151,7 +155,7 @@ public class OrderPrice {
   }
 
   /**
-   * GrabFood&#39;s promo fund in the minor unit. Calculated based on funded ratio.
+   * GrabFood&#39;s promo fund in the minor unit. Calculated based on funded ratio. Only present when &#x60;paymentType:CASH&#x60; or &#x60;orderType:DeliveredByRestaurant&#x60;. Otherwise, it will be set to &#x60;0&#x60;.
    * @return grabFundPromo
    */
   @javax.annotation.Nullable
@@ -189,7 +193,7 @@ public class OrderPrice {
   }
 
   /**
-   * The total amount promo applied to the basket items only (item level/order level) in the minor unit. Delivery fee is excluded. &#x60;(grabFundPromo + merchantFundPromo) | 300 + 475 &#x3D; 775&#x60; 
+   * The total amount promo applied to the basket items only (item level/order level) in the minor unit, excluding delivery fee. Only present when &#x60;paymentType: CASH&#x60; or &#x60;orderType: DeliveredByRestaurant&#x60;. Otherwise, it will be set to &#x60;0&#x60;.  &#x60;&#x60;&#x60; basketPromo &#x3D; (grabFundPromo + merchantFundPromo) | 300 + 475 &#x3D; 775 
    * @return basketPromo
    */
   @javax.annotation.Nullable
@@ -208,7 +212,7 @@ public class OrderPrice {
   }
 
   /**
-   * The delivery fee in the minor unit.
+   * The delivery fee in the minor unit. Only present when &#x60;paymentType:CASH&#x60; or &#x60;orderType:DeliveredByRestaurant&#x60;. Otherwise, it will be set to &#x60;0&#x60;.
    * @return deliveryFee
    */
   @javax.annotation.Nullable
@@ -221,16 +225,35 @@ public class OrderPrice {
   }
 
 
+  public OrderPrice smallOrderFee(Long smallOrderFee) {
+    this.smallOrderFee = smallOrderFee;
+    return this;
+  }
+
+  /**
+   * The fee charged by GrabFood for order that does not meet a certain minimum order value. Only present when &#x60;paymentType:CASH&#x60; and &#x60;orderType:DeliveredByRestaurant&#x60;.
+   * @return smallOrderFee
+   */
+  @javax.annotation.Nullable
+  public Long getSmallOrderFee() {
+    return smallOrderFee;
+  }
+
+  public void setSmallOrderFee(Long smallOrderFee) {
+    this.smallOrderFee = smallOrderFee;
+  }
+
+
   public OrderPrice eaterPayment(Long eaterPayment) {
     this.eaterPayment = eaterPayment;
     return this;
   }
 
   /**
-   * The total amount consumer paid in the minor unit. &#x60;(subtotal + deliveryFee) - (sum of all promo) | (2550+400)-775&#x3D;2175&#x60;
+   * The total amount paid by the consumer in the minor unit, excluding some additional fees charged by GrabFood. Only present when &#x60;paymentType:CASH&#x60; or &#x60;orderType:DeliveredByRestaurant&#x60;. Otherwise, it will be set to &#x60;0&#x60;.  &#x60;&#x60;&#x60; eaterPayment &#x3D; (subtotal + merchantChargeFee + deliveryFee) - (sum of all promo) | (2550+400)-775&#x3D;2175 
    * @return eaterPayment
    */
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   public Long getEaterPayment() {
     return eaterPayment;
   }
@@ -301,13 +324,14 @@ public class OrderPrice {
         Objects.equals(this.merchantFundPromo, orderPrice.merchantFundPromo) &&
         Objects.equals(this.basketPromo, orderPrice.basketPromo) &&
         Objects.equals(this.deliveryFee, orderPrice.deliveryFee) &&
+        Objects.equals(this.smallOrderFee, orderPrice.smallOrderFee) &&
         Objects.equals(this.eaterPayment, orderPrice.eaterPayment)&&
         Objects.equals(this.additionalProperties, orderPrice.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(subtotal, tax, merchantChargeFee, grabFundPromo, merchantFundPromo, basketPromo, deliveryFee, eaterPayment, additionalProperties);
+    return Objects.hash(subtotal, tax, merchantChargeFee, grabFundPromo, merchantFundPromo, basketPromo, deliveryFee, smallOrderFee, eaterPayment, additionalProperties);
   }
 
   @Override
@@ -321,6 +345,7 @@ public class OrderPrice {
     sb.append("    merchantFundPromo: ").append(toIndentedString(merchantFundPromo)).append("\n");
     sb.append("    basketPromo: ").append(toIndentedString(basketPromo)).append("\n");
     sb.append("    deliveryFee: ").append(toIndentedString(deliveryFee)).append("\n");
+    sb.append("    smallOrderFee: ").append(toIndentedString(smallOrderFee)).append("\n");
     sb.append("    eaterPayment: ").append(toIndentedString(eaterPayment)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
@@ -352,12 +377,12 @@ public class OrderPrice {
     openapiFields.add("merchantFundPromo");
     openapiFields.add("basketPromo");
     openapiFields.add("deliveryFee");
+    openapiFields.add("smallOrderFee");
     openapiFields.add("eaterPayment");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("subtotal");
-    openapiRequiredFields.add("eaterPayment");
   }
 
   /**

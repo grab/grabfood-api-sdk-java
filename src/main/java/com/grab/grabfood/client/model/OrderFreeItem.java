@@ -78,7 +78,7 @@ public class OrderFreeItem {
   }
 
   /**
-   * The item&#39;s ID
+   * The free item&#39;s externalID in the partner system. Empty if not applicable.
    * @return id
    */
   @javax.annotation.Nullable
@@ -97,7 +97,7 @@ public class OrderFreeItem {
   }
 
   /**
-   * The name of the item. 
+   * The name of the free item. Empty if not applicable. 
    * @return name
    */
   @javax.annotation.Nullable

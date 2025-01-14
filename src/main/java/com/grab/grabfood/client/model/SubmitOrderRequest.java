@@ -182,7 +182,7 @@ public class SubmitOrderRequest {
 
   public static final String SERIALIZED_NAME_PROMOS = "promos";
   @SerializedName(SERIALIZED_NAME_PROMOS)
-  private List<OrderPromo> promos = new ArrayList<>();
+  private List<OrderPromo> promos;
 
   public static final String SERIALIZED_NAME_PRICE = "price";
   @SerializedName(SERIALIZED_NAME_PRICE)
@@ -346,7 +346,7 @@ public class SubmitOrderRequest {
   }
 
   /**
-   * The order submit time, based on ISO_8601/RFC3339. Only present in the [List Orders](#tag/list-order) response.
+   * The order submit time, based on ISO_8601/RFC3339. &#x60;null&#x60; in Submit Order payload. Only present in the [List Orders](#tag/list-order) response.
    * @return submitTime
    */
   @javax.annotation.Nullable
@@ -365,7 +365,7 @@ public class SubmitOrderRequest {
   }
 
   /**
-   * The order complete time, based on ISO_8601/RFC3339. Only present in the [List Orders](#tag/list-order) response.
+   * The order complete time, based on ISO_8601/RFC3339. &#x60;null&#x60; in Submit Order payload. Only present in the [List Orders](#tag/list-order) response.
    * @return completeTime
    */
   @javax.annotation.Nullable
@@ -403,7 +403,7 @@ public class SubmitOrderRequest {
   }
 
   /**
-   * The state of the order. Only present in the [List Orders](#tag/list-order) response. Refer to [Order States](#section/Order-states).
+   * The state of the order. Empty in Submit Order payload. Only present in the [List Orders](#tag/list-order) response. Refer to [Order States](#section/Order-states).
    * @return orderState
    */
   @javax.annotation.Nullable
@@ -468,7 +468,7 @@ public class SubmitOrderRequest {
   }
 
   /**
-   * The items in an array of JSON Object. Refer to [Items](#items) for more information.
+   * The ordered items in an array of JSON Object. 
    * @return items
    */
   @javax.annotation.Nonnull
@@ -495,7 +495,7 @@ public class SubmitOrderRequest {
   }
 
   /**
-   * The campaigns that are applicable for the order.&#x60;null&#x60; when there is no campaign applied. 
+   * The campaigns that are applicable for the order. &#x60;null&#x60; when there is no campaign applied. Only campaigns that are funded by merchants will be sent. 
    * @return campaigns
    */
   @javax.annotation.Nullable
@@ -522,7 +522,7 @@ public class SubmitOrderRequest {
   }
 
   /**
-   * An array of promotion objects. Only promotions that are funded by merchants will be sent.
+   * An array of promotion objects. &#x60;null&#x60; when there is no promo code applied. Only promotions that are funded by merchants will be sent.
    * @return promos
    */
   @javax.annotation.Nullable
@@ -617,7 +617,7 @@ public class SubmitOrderRequest {
   }
 
   /**
-   * Membership ID for loyalty project. Only present for loyalty program partners.
+   * Membership ID for loyalty project. Only present for loyalty program partners. Empty if not applicable.
    * @return membershipID
    */
   @javax.annotation.Nullable

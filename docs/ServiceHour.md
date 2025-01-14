@@ -2,13 +2,13 @@
 
 # ServiceHour
 
-A JSON object serviceHour for each day.
+A JSON object serviceHour for each day. An empty JSON object indicates the menu item is not available on the day.
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**openPeriodType** | [**OpenPeriodTypeEnum**](#OpenPeriodTypeEnum) | The period type for when the outlet is open. - OpenPeriod &#x3D; open only in given periods - OpenAllDay &#x3D; open 24 hours - CloseAllDay &#x3D; closed 24 hours  |  |
+|**openPeriodType** | [**OpenPeriodTypeEnum**](#OpenPeriodTypeEnum) | Defines the specific time period during which the menu is available  - OpenPeriod &#x3D; open only in given periods - OpenAllDay &#x3D; open 24 hours - CloseAllDay &#x3D; closed 24 hours  |  |
 |**periods** | [**List&lt;OpenPeriod&gt;**](OpenPeriod.md) | An array of open periods. Only required when &#x60;openPeriodType&#x60; is **OpenPeriod** |  [optional] |
 
 

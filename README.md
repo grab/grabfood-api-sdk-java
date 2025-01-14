@@ -39,7 +39,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.grab</groupId>
   <artifactId>grabfood-api-sdk-java</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -55,7 +55,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.grab:grabfood-api-sdk-java:1.0.0"
+     implementation "com.grab:grabfood-api-sdk-java:1.0.1"
   }
 ```
 
@@ -69,7 +69,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/grabfood-api-sdk-java-1.0.0.jar`
+- `target/grabfood-api-sdk-java-1.0.1.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -146,6 +146,7 @@ Class | Method | HTTP request | Description
 *CancelOrderApi* | [**cancelOrder**](docs/CancelOrderApi.md#cancelOrder) | **PUT** /partner/v1/order/cancel | Cancel an order
 *CheckOrderCancelableApi* | [**checkOrderCancelable**](docs/CheckOrderCancelableApi.md#checkOrderCancelable) | **GET** /partner/v1/order/cancelable | Check order cancelable
 *CreateCampaignApi* | [**createCampaign**](docs/CreateCampaignApi.md#createCampaign) | **POST** /partner/v1/campaigns | Create campaign
+*CreateSelfServeJourneyApi* | [**createSelfServeJourney**](docs/CreateSelfServeJourneyApi.md#createSelfServeJourney) | **POST** /partner/v1/self-serve/activation | Create self serve journey
 *DeleteCampaignApi* | [**deleteCampaign**](docs/DeleteCampaignApi.md#deleteCampaign) | **DELETE** /partner/v1/campaigns/{campaign_id} | Delete campaigns
 *EditOrderApi* | [**editOrder**](docs/EditOrderApi.md#editOrder) | **PUT** /partner/v1/orders/{orderID} | Edit Order
 *GetDineinVoucherApi* | [**getDineinVoucher**](docs/GetDineinVoucherApi.md#getDineinVoucher) | **GET** /partner/v1/dinein/voucher | Get Dine In Voucher
@@ -193,6 +194,9 @@ Class | Method | HTTP request | Description
  - [Coordinates](docs/Coordinates.md)
  - [CreateCampaignRequest](docs/CreateCampaignRequest.md)
  - [CreateCampaignResponse](docs/CreateCampaignResponse.md)
+ - [CreateSelfServeJourneyRequest](docs/CreateSelfServeJourneyRequest.md)
+ - [CreateSelfServeJourneyRequestPartner](docs/CreateSelfServeJourneyRequestPartner.md)
+ - [CreateSelfServeJourneyResponse](docs/CreateSelfServeJourneyResponse.md)
  - [Currency](docs/Currency.md)
  - [DineIn](docs/DineIn.md)
  - [EditOrderItem](docs/EditOrderItem.md)
@@ -248,6 +252,7 @@ Class | Method | HTTP request | Description
  - [PartnerOauthResponse](docs/PartnerOauthResponse.md)
  - [PauseStoreRequest](docs/PauseStoreRequest.md)
  - [Purchasability](docs/Purchasability.md)
+ - [PushIntegrationStatusWebhookRequest](docs/PushIntegrationStatusWebhookRequest.md)
  - [Receiver](docs/Receiver.md)
  - [RedeemDineInVoucherRequest](docs/RedeemDineInVoucherRequest.md)
  - [RedeemDineInVoucherResponse](docs/RedeemDineInVoucherResponse.md)

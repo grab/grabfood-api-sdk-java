@@ -2,7 +2,7 @@
 
 # DineIn
 
-A JSON object containing order at table information. Present only for dineIn order. **Not available** in [ListOrder](#tag/list-order/operation/list-orders) response.
+A JSON object containing order at table information. Only applicable for dine-in order. `null` if not applicable. Not present in [ListOrder](#tag/list-order/operation/list-orders) response.
 
 ## Properties
 
