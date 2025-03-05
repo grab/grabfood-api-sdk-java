@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.2] - 2025-03-04
+
+### Added
+- Get orders by orderIDs
+- New currency enums
+
+### Changed
+
+### Deprecated
+
+[1.0.2]: https://github.com/grab/grabfood-api-sdk-go/releases/tag/v1.0.2
+
 ## [1.0.1] - 2025-01-13
 
 ### Added
