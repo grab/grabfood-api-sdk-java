@@ -79,18 +79,19 @@ public class ListOrdersApi {
      * Build call for listOrders
      * @param authorization Specify the generated authorization token of the bearer type. (required)
      * @param merchantID The merchant&#39;s ID that is in GrabFood&#39;s database. (required)
-     * @param date  (required)
-     * @param page Specify the page number for the report. (required)
+     * @param date  (optional)
+     * @param page Specify the page number for the report. Required if orderIDs is not provided. (optional)
+     * @param orderIDs List of order IDs. If provided, date and page are not required. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 2xx </td><td> Sync success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Sync success </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listOrdersCall(String authorization, String merchantID, String date, Integer page, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listOrdersCall(String authorization, String merchantID, String date, Integer page, List<String> orderIDs, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -127,6 +128,10 @@ public class ListOrdersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("page", page));
         }
 
+        if (orderIDs != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "orderIDs", orderIDs));
+        }
+
         if (authorization != null) {
             localVarHeaderParams.put("Authorization", localVarApiClient.parameterToString(authorization));
         }
@@ -151,7 +156,7 @@ public class ListOrdersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listOrdersValidateBeforeCall(String authorization, String merchantID, String date, Integer page, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listOrdersValidateBeforeCall(String authorization, String merchantID, String date, Integer page, List<String> orderIDs, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'authorization' is set
         if (authorization == null) {
             throw new ApiException("Missing the required parameter 'authorization' when calling listOrders(Async)");
@@ -162,17 +167,7 @@ public class ListOrdersApi {
             throw new ApiException("Missing the required parameter 'merchantID' when calling listOrders(Async)");
         }
 
-        // verify the required parameter 'date' is set
-        if (date == null) {
-            throw new ApiException("Missing the required parameter 'date' when calling listOrders(Async)");
-        }
-
-        // verify the required parameter 'page' is set
-        if (page == null) {
-            throw new ApiException("Missing the required parameter 'page' when calling listOrders(Async)");
-        }
-
-        return listOrdersCall(authorization, merchantID, date, page, _callback);
+        return listOrdersCall(authorization, merchantID, date, page, orderIDs, _callback);
 
     }
 
@@ -181,18 +176,19 @@ public class ListOrdersApi {
      * 
      * @param authorization Specify the generated authorization token of the bearer type. (required)
      * @param merchantID The merchant&#39;s ID that is in GrabFood&#39;s database. (required)
-     * @param date  (required)
-     * @param page Specify the page number for the report. (required)
+     * @param date  (optional)
+     * @param page Specify the page number for the report. Required if orderIDs is not provided. (optional)
+     * @param orderIDs List of order IDs. If provided, date and page are not required. (optional)
      * @return ListOrdersResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 2xx </td><td> Sync success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Sync success </td><td>  -  </td></tr>
      </table>
      */
-    public ListOrdersResponse listOrders(String authorization, String merchantID, String date, Integer page) throws ApiException {
-        ApiResponse<ListOrdersResponse> localVarResp = listOrdersWithHttpInfo(authorization, merchantID, date, page);
+    public ListOrdersResponse listOrders(String authorization, String merchantID, String date, Integer page, List<String> orderIDs) throws ApiException {
+        ApiResponse<ListOrdersResponse> localVarResp = listOrdersWithHttpInfo(authorization, merchantID, date, page, orderIDs);
         return localVarResp.getData();
     }
 
@@ -201,18 +197,19 @@ public class ListOrdersApi {
      * 
      * @param authorization Specify the generated authorization token of the bearer type. (required)
      * @param merchantID The merchant&#39;s ID that is in GrabFood&#39;s database. (required)
-     * @param date  (required)
-     * @param page Specify the page number for the report. (required)
+     * @param date  (optional)
+     * @param page Specify the page number for the report. Required if orderIDs is not provided. (optional)
+     * @param orderIDs List of order IDs. If provided, date and page are not required. (optional)
      * @return ApiResponse&lt;ListOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 2xx </td><td> Sync success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Sync success </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ListOrdersResponse> listOrdersWithHttpInfo(String authorization, String merchantID, String date, Integer page) throws ApiException {
-        okhttp3.Call localVarCall = listOrdersValidateBeforeCall(authorization, merchantID, date, page, null);
+    public ApiResponse<ListOrdersResponse> listOrdersWithHttpInfo(String authorization, String merchantID, String date, Integer page, List<String> orderIDs) throws ApiException {
+        okhttp3.Call localVarCall = listOrdersValidateBeforeCall(authorization, merchantID, date, page, orderIDs, null);
         Type localVarReturnType = new TypeToken<ListOrdersResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -222,20 +219,21 @@ public class ListOrdersApi {
      * 
      * @param authorization Specify the generated authorization token of the bearer type. (required)
      * @param merchantID The merchant&#39;s ID that is in GrabFood&#39;s database. (required)
-     * @param date  (required)
-     * @param page Specify the page number for the report. (required)
+     * @param date  (optional)
+     * @param page Specify the page number for the report. Required if orderIDs is not provided. (optional)
+     * @param orderIDs List of order IDs. If provided, date and page are not required. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 2xx </td><td> Sync success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Sync success </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listOrdersAsync(String authorization, String merchantID, String date, Integer page, final ApiCallback<ListOrdersResponse> _callback) throws ApiException {
+    public okhttp3.Call listOrdersAsync(String authorization, String merchantID, String date, Integer page, List<String> orderIDs, final ApiCallback<ListOrdersResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listOrdersValidateBeforeCall(authorization, merchantID, date, page, _callback);
+        okhttp3.Call localVarCall = listOrdersValidateBeforeCall(authorization, merchantID, date, page, orderIDs, _callback);
         Type localVarReturnType = new TypeToken<ListOrdersResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

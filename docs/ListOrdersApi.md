@@ -9,7 +9,7 @@ All URIs are relative to *https://partner-api.grab.com/grabfood-sandbox*
 
 <a id="listOrders"></a>
 # **listOrders**
-> ListOrdersResponse listOrders(authorization, merchantID, date, page)
+> ListOrdersResponse listOrders(authorization, merchantID, date, page, orderIDs)
 
 List orders
 
@@ -31,9 +31,10 @@ public class Example {
     String authorization = "Bearer <ACCESS_TOKEN_HERE>"; // String | Specify the generated authorization token of the bearer type.
     String merchantID = "1-CYNGRUNGSBCCC"; // String | The merchant's ID that is in GrabFood's database.
     String date = "date_example"; // String | 
-    Integer page = 1; // Integer | Specify the page number for the report.
+    Integer page = 1; // Integer | Specify the page number for the report. Required if orderIDs is not provided.
+    List<String> orderIDs = Arrays.asList(); // List<String> | List of order IDs. If provided, date and page are not required.
     try {
-      ListOrdersResponse result = apiInstance.listOrders(authorization, merchantID, date, page);
+      ListOrdersResponse result = apiInstance.listOrders(authorization, merchantID, date, page, orderIDs);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ListOrdersApi#listOrders");
@@ -52,8 +53,9 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **authorization** | **String**| Specify the generated authorization token of the bearer type. | |
 | **merchantID** | **String**| The merchant&#39;s ID that is in GrabFood&#39;s database. | |
-| **date** | **String**|  | |
-| **page** | **Integer**| Specify the page number for the report. | |
+| **date** | **String**|  | [optional] |
+| **page** | **Integer**| Specify the page number for the report. Required if orderIDs is not provided. | [optional] |
+| **orderIDs** | [**List&lt;String&gt;**](String.md)| List of order IDs. If provided, date and page are not required. | [optional] |
 
 ### Return type
 
@@ -71,5 +73,5 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **2xx** | Sync success |  -  |
+| **200** | Sync success |  -  |
 

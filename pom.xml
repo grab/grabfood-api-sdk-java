@@ -5,7 +5,7 @@
     <artifactId>grabfood-api-sdk-java</artifactId>
     <packaging>jar</packaging>
     <name>grabfood-api-sdk-java</name>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <url>https://github.com/grab/grabfood-api-sdk-java</url>
     <description>GrabFood API SDK for Java</description>
     <scm>

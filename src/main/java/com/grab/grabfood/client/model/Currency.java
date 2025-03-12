@@ -70,6 +70,10 @@ public class Currency {
     
     VND("VND"),
     
+    KHR("KHR"),
+    
+    MMK("MMK"),
+    
     UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
@@ -135,6 +139,10 @@ public class Currency {
     u2("฿"),
     
     u3("₫"),
+    
+    u4("៛"),
+    
+    K("K"),
     
     UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
@@ -236,7 +244,7 @@ public class Currency {
   }
 
   /**
-   * The log base 10 of the number of times we have to multiply the major unit to get the minor unit. Should be 0 for VN and 2 for other countries (SG/MY/ID/TH/PH/KH). 
+   * The log base 10 of the number of times we have to multiply the major unit to get the minor unit. Should be 0 for VN and 2 for other countries (&#x60;SG&#x60;/&#x60;MY&#x60;/&#x60;ID&#x60;/&#x60;TH&#x60;/&#x60;PH&#x60;/&#x60;KH&#x60;/&#x60;MM&#x60;). 
    * @return exponent
    */
   @javax.annotation.Nonnull
