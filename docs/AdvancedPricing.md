@@ -8,13 +8,13 @@ Price configuration (in minor unit) for different service, order type and channe
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**deliveryOnDemandGrabApp** | **Long** | Service type: &#x60;Delivery&#x60;, Order type: &#x60;Instant&#x60;, Channel: &#x60;Grab App&#x60;  |  [optional] |
-|**deliveryScheduledGrabApp** | **Long** | Service type: &#x60;Delivery&#x60;, Order type: &#x60;Scheduled&#x60;, Channel: &#x60;Grab App&#x60;  |  [optional] |
-|**selfPickUpOnDemandGrabApp** | **Long** | Service type: &#x60;Self Pick Up&#x60;, Order type: &#x60;Instant&#x60;, Channel: &#x60;Grab App&#x60;  |  [optional] |
-|**dineInOnDemandGrabApp** | **Long** | Service type: &#x60;Dine In&#x60;, Order type: &#x60;Instant&#x60;, Channel: &#x60;Grab App&#x60;  |  [optional] |
-|**deliveryOnDemandStoreFront** | **Long** | Service type: &#x60;Delivery&#x60;, Order type: &#x60;Instant&#x60;, Channel: &#x60;Store Front&#x60;  |  [optional] |
-|**deliveryScheduledStoreFront** | **Long** | Service type: &#x60;Delivery&#x60;, Order type: &#x60;Scheduled&#x60;, Channel: &#x60;Store Front&#x60;  |  [optional] |
-|**selfPickUpOnDemandStoreFront** | **Long** | Service type: &#x60;Self Pick Up&#x60;, Order type: &#x60;Instant&#x60;, Channel: &#x60;Store Front&#x60;  |  [optional] |
+|**deliveryOnDemandGrabApp** | **Long** | **Case-sensitive**. Service type: &#x60;Delivery&#x60;, Order type: &#x60;Instant&#x60;, Channel: &#x60;Grab App&#x60;  |  [optional] |
+|**deliveryScheduledGrabApp** | **Long** | **Case-sensitive**. Service type: &#x60;Delivery&#x60;, Order type: &#x60;Scheduled&#x60;, Channel: &#x60;Grab App&#x60;  |  [optional] |
+|**selfPickUpOnDemandGrabApp** | **Long** | **Case-sensitive**. Service type: &#x60;Self Pick Up&#x60;, Order type: &#x60;Instant&#x60;, Channel: &#x60;Grab App&#x60;  |  [optional] |
+|**dineInOnDemandGrabApp** | **Long** | **Case-sensitive**. Service type: &#x60;Dine In&#x60;, Order type: &#x60;Instant&#x60;, Channel: &#x60;Grab App&#x60;  |  [optional] |
+|**deliveryOnDemandStoreFront** | **Long** | **Case-sensitive**. Service type: &#x60;Delivery&#x60;, Order type: &#x60;Instant&#x60;, Channel: &#x60;Store Front&#x60;  |  [optional] |
+|**deliveryScheduledStoreFront** | **Long** | **Case-sensitive**. Service type: &#x60;Delivery&#x60;, Order type: &#x60;Scheduled&#x60;, Channel: &#x60;Store Front&#x60;  |  [optional] |
+|**selfPickUpOnDemandStoreFront** | **Long** | **Case-sensitive**. Service type: &#x60;Self Pick Up&#x60;, Order type: &#x60;Instant&#x60;, Channel: &#x60;Store Front&#x60;  |  [optional] |
 
 
 

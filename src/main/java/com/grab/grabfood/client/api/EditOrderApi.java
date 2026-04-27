@@ -31,6 +31,7 @@ import java.io.IOException;
 
 
 import com.grab.grabfood.client.model.EditOrderRequest;
+import com.grab.grabfood.client.model.EditOrderV2Response;
 import com.grab.grabfood.client.model.Error;
 
 import java.lang.reflect.Type;
@@ -77,7 +78,7 @@ public class EditOrderApi {
     }
 
     /**
-     * Build call for editOrder
+     * Build call for editOrderV1
      * @param contentType The content type of the request body. You must use &#x60;application/json&#x60; for this header as GrabFood API currently does not support other formats. (required)
      * @param authorization Specify the generated authorization token of the bearer type. (required)
      * @param orderID  (required)
@@ -89,10 +90,14 @@ public class EditOrderApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Successful. No content returned. </td><td>  -  </td></tr>
-        <tr><td> 4XX </td><td> invalid_argument Fail example with code and reason. | Code | Reason | Message | | ------| ------| ------ | | 400 | invalid_argument | nothing changed | | 400 | invalid_argument | can&#39;t remove all items | | 404 | not_found | order detail abnormal | | 403 | forbidden | not editable | | 400 | invalid_argument | recalculate failed | | 400 | invalid_argument| submit edit failed | | 404 | not_found | get merchant failed | | 400 | invalid_argument | exceed basket limit | | 400 | invalid_argument | exceed price increase limit | | 400 | invalid_argument | negative weight | | 400 | invalid_argument | parameters must include all items | | 400 | invalid_argument | fraud check error | | 400  | invalid_argument | externalItemID not supported for this status | | 400 | invalid_argument | externalItemID inactive or out of selling time | | 400 | invalid_argument | added item invalid |  </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> invalid_argument | Code | Reason           | Message                                    | Description                                                                                               |  | ---- | ---------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------- |  | 400  | invalid_argument | nothing changed                            | The items struct is empty                                                                                | | 400  | invalid_argument | can&#39;t remove all items                     | we don&#39;t allow clean all the items                                                                      | | 400  | invalid_argument | externalItemID not supported for this status | externalItemID not supported for this status                                                          | | 400  | invalid_argument | externalItemID only allowed for ADDED item status | externalItemID only allowed for ADDED item status                                                 | | 400  | invalid_argument | invalid price, price can&#39;t be negative     | DepositAmountInMin is negative, OfflinePOSDiscountInMin is negative                                     | | 400  | invalid_argument | params must include all items              | params must include all items in the order                                                              | | 400  | invalid_argument | exceed basket limit                        | Total price exceed basket limit                                                                          | | 400  | invalid_argument | exceed max price amount limit              | Total price exceed limit:&lt;br/&gt;• SG: S$1000&lt;br/&gt;• ID: Rp10,000,000&lt;br/&gt;• PH: ₱15,000&lt;br/&gt;• VN: ₫15,000,000&lt;br/&gt;• TH: ฿300,000&lt;br/&gt;• MY: RM1,500 | | 400  | invalid_argument | recalculate failed                         | recalculate failed                                                                                       | | 400  | invalid_argument | submit edit failed                         | submit edit failed                                                                                       | | 400  | invalid_argument | exceed price increase limit                | exceed price increase limit                                                                              | | 400  | invalid_argument | negative weight                            | negative weight                                                                                          | | 400  | invalid_argument | fraud check error                          | fraud check error                                                                                        | | 400  | invalid_argument | externalItemID inactive or out of selling time | externalItemID inactive or out of selling time                                                      | | 400  | invalid_argument | added item invalid                         | added item invalid                                                                                       |  </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> forbidden | Code | Reason    | Message      | Description                                                                                               |  | ---- | --------- | ------------ | --------------------------------------------------------------------------------------------------------- |  | 403  | forbidden | not editable | not editable                                                                                              |  </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> not_found | Code | Reason    | Message              | Description                                                                                               |  | ---- | --------- | -------------------- | --------------------------------------------------------------------------------------------------------- |  | 404  | not_found | not found order      | The orderID is not found grab status.                                                                   | | 404  | not_found | invalid order        | The order status is wrong for edit action.                                                              | | 404  | not_found | not found item       | The itemID doesn&#39;t match with isExternalItemID and can&#39;t be found from grab system.                     | | 404  | not_found | Invalid item status  | The item status isn&#39;t correct. Eg, there is no item in the order but want to delete it.                | | 404  | not_found | order detail abnormal | order detail abnormal                                                                                   | | 404  | not_found | get merchant failed  | get merchant failed                                                                                      |  </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
-    public okhttp3.Call editOrderCall(String contentType, String authorization, String orderID, EditOrderRequest editOrderRequest, final ApiCallback _callback) throws ApiException {
+    @Deprecated
+    public okhttp3.Call editOrderV1Call(String contentType, String authorization, String orderID, EditOrderRequest editOrderRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -146,34 +151,35 @@ public class EditOrderApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call editOrderValidateBeforeCall(String contentType, String authorization, String orderID, EditOrderRequest editOrderRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call editOrderV1ValidateBeforeCall(String contentType, String authorization, String orderID, EditOrderRequest editOrderRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'contentType' is set
         if (contentType == null) {
-            throw new ApiException("Missing the required parameter 'contentType' when calling editOrder(Async)");
+            throw new ApiException("Missing the required parameter 'contentType' when calling editOrderV1(Async)");
         }
 
         // verify the required parameter 'authorization' is set
         if (authorization == null) {
-            throw new ApiException("Missing the required parameter 'authorization' when calling editOrder(Async)");
+            throw new ApiException("Missing the required parameter 'authorization' when calling editOrderV1(Async)");
         }
 
         // verify the required parameter 'orderID' is set
         if (orderID == null) {
-            throw new ApiException("Missing the required parameter 'orderID' when calling editOrder(Async)");
+            throw new ApiException("Missing the required parameter 'orderID' when calling editOrderV1(Async)");
         }
 
         // verify the required parameter 'editOrderRequest' is set
         if (editOrderRequest == null) {
-            throw new ApiException("Missing the required parameter 'editOrderRequest' when calling editOrder(Async)");
+            throw new ApiException("Missing the required parameter 'editOrderRequest' when calling editOrderV1(Async)");
         }
 
-        return editOrderCall(contentType, authorization, orderID, editOrderRequest, _callback);
+        return editOrderV1Call(contentType, authorization, orderID, editOrderRequest, _callback);
 
     }
 
     /**
-     * Edit Order
+     * Edit Order V1
      * 
      * @param contentType The content type of the request body. You must use &#x60;application/json&#x60; for this header as GrabFood API currently does not support other formats. (required)
      * @param authorization Specify the generated authorization token of the bearer type. (required)
@@ -184,15 +190,19 @@ public class EditOrderApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Successful. No content returned. </td><td>  -  </td></tr>
-        <tr><td> 4XX </td><td> invalid_argument Fail example with code and reason. | Code | Reason | Message | | ------| ------| ------ | | 400 | invalid_argument | nothing changed | | 400 | invalid_argument | can&#39;t remove all items | | 404 | not_found | order detail abnormal | | 403 | forbidden | not editable | | 400 | invalid_argument | recalculate failed | | 400 | invalid_argument| submit edit failed | | 404 | not_found | get merchant failed | | 400 | invalid_argument | exceed basket limit | | 400 | invalid_argument | exceed price increase limit | | 400 | invalid_argument | negative weight | | 400 | invalid_argument | parameters must include all items | | 400 | invalid_argument | fraud check error | | 400  | invalid_argument | externalItemID not supported for this status | | 400 | invalid_argument | externalItemID inactive or out of selling time | | 400 | invalid_argument | added item invalid |  </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> invalid_argument | Code | Reason           | Message                                    | Description                                                                                               |  | ---- | ---------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------- |  | 400  | invalid_argument | nothing changed                            | The items struct is empty                                                                                | | 400  | invalid_argument | can&#39;t remove all items                     | we don&#39;t allow clean all the items                                                                      | | 400  | invalid_argument | externalItemID not supported for this status | externalItemID not supported for this status                                                          | | 400  | invalid_argument | externalItemID only allowed for ADDED item status | externalItemID only allowed for ADDED item status                                                 | | 400  | invalid_argument | invalid price, price can&#39;t be negative     | DepositAmountInMin is negative, OfflinePOSDiscountInMin is negative                                     | | 400  | invalid_argument | params must include all items              | params must include all items in the order                                                              | | 400  | invalid_argument | exceed basket limit                        | Total price exceed basket limit                                                                          | | 400  | invalid_argument | exceed max price amount limit              | Total price exceed limit:&lt;br/&gt;• SG: S$1000&lt;br/&gt;• ID: Rp10,000,000&lt;br/&gt;• PH: ₱15,000&lt;br/&gt;• VN: ₫15,000,000&lt;br/&gt;• TH: ฿300,000&lt;br/&gt;• MY: RM1,500 | | 400  | invalid_argument | recalculate failed                         | recalculate failed                                                                                       | | 400  | invalid_argument | submit edit failed                         | submit edit failed                                                                                       | | 400  | invalid_argument | exceed price increase limit                | exceed price increase limit                                                                              | | 400  | invalid_argument | negative weight                            | negative weight                                                                                          | | 400  | invalid_argument | fraud check error                          | fraud check error                                                                                        | | 400  | invalid_argument | externalItemID inactive or out of selling time | externalItemID inactive or out of selling time                                                      | | 400  | invalid_argument | added item invalid                         | added item invalid                                                                                       |  </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> forbidden | Code | Reason    | Message      | Description                                                                                               |  | ---- | --------- | ------------ | --------------------------------------------------------------------------------------------------------- |  | 403  | forbidden | not editable | not editable                                                                                              |  </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> not_found | Code | Reason    | Message              | Description                                                                                               |  | ---- | --------- | -------------------- | --------------------------------------------------------------------------------------------------------- |  | 404  | not_found | not found order      | The orderID is not found grab status.                                                                   | | 404  | not_found | invalid order        | The order status is wrong for edit action.                                                              | | 404  | not_found | not found item       | The itemID doesn&#39;t match with isExternalItemID and can&#39;t be found from grab system.                     | | 404  | not_found | Invalid item status  | The item status isn&#39;t correct. Eg, there is no item in the order but want to delete it.                | | 404  | not_found | order detail abnormal | order detail abnormal                                                                                   | | 404  | not_found | get merchant failed  | get merchant failed                                                                                      |  </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
-    public void editOrder(String contentType, String authorization, String orderID, EditOrderRequest editOrderRequest) throws ApiException {
-        editOrderWithHttpInfo(contentType, authorization, orderID, editOrderRequest);
+    @Deprecated
+    public void editOrderV1(String contentType, String authorization, String orderID, EditOrderRequest editOrderRequest) throws ApiException {
+        editOrderV1WithHttpInfo(contentType, authorization, orderID, editOrderRequest);
     }
 
     /**
-     * Edit Order
+     * Edit Order V1
      * 
      * @param contentType The content type of the request body. You must use &#x60;application/json&#x60; for this header as GrabFood API currently does not support other formats. (required)
      * @param authorization Specify the generated authorization token of the bearer type. (required)
@@ -204,16 +214,20 @@ public class EditOrderApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Successful. No content returned. </td><td>  -  </td></tr>
-        <tr><td> 4XX </td><td> invalid_argument Fail example with code and reason. | Code | Reason | Message | | ------| ------| ------ | | 400 | invalid_argument | nothing changed | | 400 | invalid_argument | can&#39;t remove all items | | 404 | not_found | order detail abnormal | | 403 | forbidden | not editable | | 400 | invalid_argument | recalculate failed | | 400 | invalid_argument| submit edit failed | | 404 | not_found | get merchant failed | | 400 | invalid_argument | exceed basket limit | | 400 | invalid_argument | exceed price increase limit | | 400 | invalid_argument | negative weight | | 400 | invalid_argument | parameters must include all items | | 400 | invalid_argument | fraud check error | | 400  | invalid_argument | externalItemID not supported for this status | | 400 | invalid_argument | externalItemID inactive or out of selling time | | 400 | invalid_argument | added item invalid |  </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> invalid_argument | Code | Reason           | Message                                    | Description                                                                                               |  | ---- | ---------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------- |  | 400  | invalid_argument | nothing changed                            | The items struct is empty                                                                                | | 400  | invalid_argument | can&#39;t remove all items                     | we don&#39;t allow clean all the items                                                                      | | 400  | invalid_argument | externalItemID not supported for this status | externalItemID not supported for this status                                                          | | 400  | invalid_argument | externalItemID only allowed for ADDED item status | externalItemID only allowed for ADDED item status                                                 | | 400  | invalid_argument | invalid price, price can&#39;t be negative     | DepositAmountInMin is negative, OfflinePOSDiscountInMin is negative                                     | | 400  | invalid_argument | params must include all items              | params must include all items in the order                                                              | | 400  | invalid_argument | exceed basket limit                        | Total price exceed basket limit                                                                          | | 400  | invalid_argument | exceed max price amount limit              | Total price exceed limit:&lt;br/&gt;• SG: S$1000&lt;br/&gt;• ID: Rp10,000,000&lt;br/&gt;• PH: ₱15,000&lt;br/&gt;• VN: ₫15,000,000&lt;br/&gt;• TH: ฿300,000&lt;br/&gt;• MY: RM1,500 | | 400  | invalid_argument | recalculate failed                         | recalculate failed                                                                                       | | 400  | invalid_argument | submit edit failed                         | submit edit failed                                                                                       | | 400  | invalid_argument | exceed price increase limit                | exceed price increase limit                                                                              | | 400  | invalid_argument | negative weight                            | negative weight                                                                                          | | 400  | invalid_argument | fraud check error                          | fraud check error                                                                                        | | 400  | invalid_argument | externalItemID inactive or out of selling time | externalItemID inactive or out of selling time                                                      | | 400  | invalid_argument | added item invalid                         | added item invalid                                                                                       |  </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> forbidden | Code | Reason    | Message      | Description                                                                                               |  | ---- | --------- | ------------ | --------------------------------------------------------------------------------------------------------- |  | 403  | forbidden | not editable | not editable                                                                                              |  </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> not_found | Code | Reason    | Message              | Description                                                                                               |  | ---- | --------- | -------------------- | --------------------------------------------------------------------------------------------------------- |  | 404  | not_found | not found order      | The orderID is not found grab status.                                                                   | | 404  | not_found | invalid order        | The order status is wrong for edit action.                                                              | | 404  | not_found | not found item       | The itemID doesn&#39;t match with isExternalItemID and can&#39;t be found from grab system.                     | | 404  | not_found | Invalid item status  | The item status isn&#39;t correct. Eg, there is no item in the order but want to delete it.                | | 404  | not_found | order detail abnormal | order detail abnormal                                                                                   | | 404  | not_found | get merchant failed  | get merchant failed                                                                                      |  </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
-    public ApiResponse<Void> editOrderWithHttpInfo(String contentType, String authorization, String orderID, EditOrderRequest editOrderRequest) throws ApiException {
-        okhttp3.Call localVarCall = editOrderValidateBeforeCall(contentType, authorization, orderID, editOrderRequest, null);
+    @Deprecated
+    public ApiResponse<Void> editOrderV1WithHttpInfo(String contentType, String authorization, String orderID, EditOrderRequest editOrderRequest) throws ApiException {
+        okhttp3.Call localVarCall = editOrderV1ValidateBeforeCall(contentType, authorization, orderID, editOrderRequest, null);
         return localVarApiClient.execute(localVarCall);
     }
 
     /**
-     * Edit Order (asynchronously)
+     * Edit Order V1 (asynchronously)
      * 
      * @param contentType The content type of the request body. You must use &#x60;application/json&#x60; for this header as GrabFood API currently does not support other formats. (required)
      * @param authorization Specify the generated authorization token of the bearer type. (required)
@@ -226,13 +240,188 @@ public class EditOrderApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Successful. No content returned. </td><td>  -  </td></tr>
-        <tr><td> 4XX </td><td> invalid_argument Fail example with code and reason. | Code | Reason | Message | | ------| ------| ------ | | 400 | invalid_argument | nothing changed | | 400 | invalid_argument | can&#39;t remove all items | | 404 | not_found | order detail abnormal | | 403 | forbidden | not editable | | 400 | invalid_argument | recalculate failed | | 400 | invalid_argument| submit edit failed | | 404 | not_found | get merchant failed | | 400 | invalid_argument | exceed basket limit | | 400 | invalid_argument | exceed price increase limit | | 400 | invalid_argument | negative weight | | 400 | invalid_argument | parameters must include all items | | 400 | invalid_argument | fraud check error | | 400  | invalid_argument | externalItemID not supported for this status | | 400 | invalid_argument | externalItemID inactive or out of selling time | | 400 | invalid_argument | added item invalid |  </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> invalid_argument | Code | Reason           | Message                                    | Description                                                                                               |  | ---- | ---------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------- |  | 400  | invalid_argument | nothing changed                            | The items struct is empty                                                                                | | 400  | invalid_argument | can&#39;t remove all items                     | we don&#39;t allow clean all the items                                                                      | | 400  | invalid_argument | externalItemID not supported for this status | externalItemID not supported for this status                                                          | | 400  | invalid_argument | externalItemID only allowed for ADDED item status | externalItemID only allowed for ADDED item status                                                 | | 400  | invalid_argument | invalid price, price can&#39;t be negative     | DepositAmountInMin is negative, OfflinePOSDiscountInMin is negative                                     | | 400  | invalid_argument | params must include all items              | params must include all items in the order                                                              | | 400  | invalid_argument | exceed basket limit                        | Total price exceed basket limit                                                                          | | 400  | invalid_argument | exceed max price amount limit              | Total price exceed limit:&lt;br/&gt;• SG: S$1000&lt;br/&gt;• ID: Rp10,000,000&lt;br/&gt;• PH: ₱15,000&lt;br/&gt;• VN: ₫15,000,000&lt;br/&gt;• TH: ฿300,000&lt;br/&gt;• MY: RM1,500 | | 400  | invalid_argument | recalculate failed                         | recalculate failed                                                                                       | | 400  | invalid_argument | submit edit failed                         | submit edit failed                                                                                       | | 400  | invalid_argument | exceed price increase limit                | exceed price increase limit                                                                              | | 400  | invalid_argument | negative weight                            | negative weight                                                                                          | | 400  | invalid_argument | fraud check error                          | fraud check error                                                                                        | | 400  | invalid_argument | externalItemID inactive or out of selling time | externalItemID inactive or out of selling time                                                      | | 400  | invalid_argument | added item invalid                         | added item invalid                                                                                       |  </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> forbidden | Code | Reason    | Message      | Description                                                                                               |  | ---- | --------- | ------------ | --------------------------------------------------------------------------------------------------------- |  | 403  | forbidden | not editable | not editable                                                                                              |  </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> not_found | Code | Reason    | Message              | Description                                                                                               |  | ---- | --------- | -------------------- | --------------------------------------------------------------------------------------------------------- |  | 404  | not_found | not found order      | The orderID is not found grab status.                                                                   | | 404  | not_found | invalid order        | The order status is wrong for edit action.                                                              | | 404  | not_found | not found item       | The itemID doesn&#39;t match with isExternalItemID and can&#39;t be found from grab system.                     | | 404  | not_found | Invalid item status  | The item status isn&#39;t correct. Eg, there is no item in the order but want to delete it.                | | 404  | not_found | order detail abnormal | order detail abnormal                                                                                   | | 404  | not_found | get merchant failed  | get merchant failed                                                                                      |  </td><td>  -  </td></tr>
+     </table>
+     * @deprecated
+     */
+    @Deprecated
+    public okhttp3.Call editOrderV1Async(String contentType, String authorization, String orderID, EditOrderRequest editOrderRequest, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = editOrderV1ValidateBeforeCall(contentType, authorization, orderID, editOrderRequest, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for editOrderV2
+     * @param contentType The content type of the request body. You must use &#x60;application/json&#x60; for this header as GrabFood API currently does not support other formats. (required)
+     * @param authorization Specify the generated authorization token of the bearer type. (required)
+     * @param orderID  (required)
+     * @param editOrderRequest  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The API request is successfully processed. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> invalid_argument | Code | Reason           | Message                                    | Description                                                                                               |  | ---- | ---------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------- |  | 400  | invalid_argument | nothing changed                            | The items struct is empty                                                                                | | 400  | invalid_argument | can&#39;t remove all items                     | we don&#39;t allow clean all the items                                                                      | | 400  | invalid_argument | externalItemID not supported for this status | externalItemID not supported for this status                                                          | | 400  | invalid_argument | externalItemID only allowed for ADDED item status | externalItemID only allowed for ADDED item status                                                 | | 400  | invalid_argument | invalid price, price can&#39;t be negative     | DepositAmountInMin is negative, OfflinePOSDiscountInMin is negative                                     | | 400  | invalid_argument | params must include all items              | params must include all items in the order                                                              | | 400  | invalid_argument | exceed basket limit                        | Total price exceed basket limit                                                                          | | 400  | invalid_argument | exceed max price amount limit              | Total price exceed limit:&lt;br/&gt;• SG: S$1000&lt;br/&gt;• ID: Rp10,000,000&lt;br/&gt;• PH: ₱15,000&lt;br/&gt;• VN: ₫15,000,000&lt;br/&gt;• TH: ฿300,000&lt;br/&gt;• MY: RM1,500 | | 400  | invalid_argument | recalculate failed                         | recalculate failed                                                                                       | | 400  | invalid_argument | submit edit failed                         | submit edit failed                                                                                       | | 400  | invalid_argument | exceed price increase limit                | exceed price increase limit                                                                              | | 400  | invalid_argument | negative weight                            | negative weight                                                                                          | | 400  | invalid_argument | fraud check error                          | fraud check error                                                                                        | | 400  | invalid_argument | externalItemID inactive or out of selling time | externalItemID inactive or out of selling time                                                      | | 400  | invalid_argument | added item invalid                         | added item invalid                                                                                       |  </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> forbidden | Code | Reason    | Message      | Description                                                                                               |  | ---- | --------- | ------------ | --------------------------------------------------------------------------------------------------------- |  | 403  | forbidden | not editable | not editable                                                                                              |  </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> not_found | Code | Reason    | Message              | Description                                                                                               |  | ---- | --------- | -------------------- | --------------------------------------------------------------------------------------------------------- |  | 404  | not_found | not found order      | The orderID is not found grab status.                                                                   | | 404  | not_found | invalid order        | The order status is wrong for edit action.                                                              | | 404  | not_found | not found item       | The itemID doesn&#39;t match with isExternalItemID and can&#39;t be found from grab system.                     | | 404  | not_found | Invalid item status  | The item status isn&#39;t correct. Eg, there is no item in the order but want to delete it.                | | 404  | not_found | order detail abnormal | order detail abnormal                                                                                   | | 404  | not_found | get merchant failed  | get merchant failed                                                                                      |  </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call editOrderAsync(String contentType, String authorization, String orderID, EditOrderRequest editOrderRequest, final ApiCallback<Void> _callback) throws ApiException {
+    public okhttp3.Call editOrderV2Call(String contentType, String authorization, String orderID, EditOrderRequest editOrderRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
 
-        okhttp3.Call localVarCall = editOrderValidateBeforeCall(contentType, authorization, orderID, editOrderRequest, _callback);
-        localVarApiClient.executeAsync(localVarCall, _callback);
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = editOrderRequest;
+
+        // create path and map variables
+        String localVarPath = "/partner/v2/orders/{orderID}"
+            .replace("{" + "orderID" + "}", localVarApiClient.escapeString(orderID.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+        if (authorization != null) {
+            localVarHeaderParams.put("Authorization", localVarApiClient.parameterToString(authorization));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call editOrderV2ValidateBeforeCall(String contentType, String authorization, String orderID, EditOrderRequest editOrderRequest, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'contentType' is set
+        if (contentType == null) {
+            throw new ApiException("Missing the required parameter 'contentType' when calling editOrderV2(Async)");
+        }
+
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling editOrderV2(Async)");
+        }
+
+        // verify the required parameter 'orderID' is set
+        if (orderID == null) {
+            throw new ApiException("Missing the required parameter 'orderID' when calling editOrderV2(Async)");
+        }
+
+        // verify the required parameter 'editOrderRequest' is set
+        if (editOrderRequest == null) {
+            throw new ApiException("Missing the required parameter 'editOrderRequest' when calling editOrderV2(Async)");
+        }
+
+        return editOrderV2Call(contentType, authorization, orderID, editOrderRequest, _callback);
+
+    }
+
+    /**
+     * Edit Order V2
+     * 
+     * @param contentType The content type of the request body. You must use &#x60;application/json&#x60; for this header as GrabFood API currently does not support other formats. (required)
+     * @param authorization Specify the generated authorization token of the bearer type. (required)
+     * @param orderID  (required)
+     * @param editOrderRequest  (required)
+     * @return EditOrderV2Response
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The API request is successfully processed. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> invalid_argument | Code | Reason           | Message                                    | Description                                                                                               |  | ---- | ---------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------- |  | 400  | invalid_argument | nothing changed                            | The items struct is empty                                                                                | | 400  | invalid_argument | can&#39;t remove all items                     | we don&#39;t allow clean all the items                                                                      | | 400  | invalid_argument | externalItemID not supported for this status | externalItemID not supported for this status                                                          | | 400  | invalid_argument | externalItemID only allowed for ADDED item status | externalItemID only allowed for ADDED item status                                                 | | 400  | invalid_argument | invalid price, price can&#39;t be negative     | DepositAmountInMin is negative, OfflinePOSDiscountInMin is negative                                     | | 400  | invalid_argument | params must include all items              | params must include all items in the order                                                              | | 400  | invalid_argument | exceed basket limit                        | Total price exceed basket limit                                                                          | | 400  | invalid_argument | exceed max price amount limit              | Total price exceed limit:&lt;br/&gt;• SG: S$1000&lt;br/&gt;• ID: Rp10,000,000&lt;br/&gt;• PH: ₱15,000&lt;br/&gt;• VN: ₫15,000,000&lt;br/&gt;• TH: ฿300,000&lt;br/&gt;• MY: RM1,500 | | 400  | invalid_argument | recalculate failed                         | recalculate failed                                                                                       | | 400  | invalid_argument | submit edit failed                         | submit edit failed                                                                                       | | 400  | invalid_argument | exceed price increase limit                | exceed price increase limit                                                                              | | 400  | invalid_argument | negative weight                            | negative weight                                                                                          | | 400  | invalid_argument | fraud check error                          | fraud check error                                                                                        | | 400  | invalid_argument | externalItemID inactive or out of selling time | externalItemID inactive or out of selling time                                                      | | 400  | invalid_argument | added item invalid                         | added item invalid                                                                                       |  </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> forbidden | Code | Reason    | Message      | Description                                                                                               |  | ---- | --------- | ------------ | --------------------------------------------------------------------------------------------------------- |  | 403  | forbidden | not editable | not editable                                                                                              |  </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> not_found | Code | Reason    | Message              | Description                                                                                               |  | ---- | --------- | -------------------- | --------------------------------------------------------------------------------------------------------- |  | 404  | not_found | not found order      | The orderID is not found grab status.                                                                   | | 404  | not_found | invalid order        | The order status is wrong for edit action.                                                              | | 404  | not_found | not found item       | The itemID doesn&#39;t match with isExternalItemID and can&#39;t be found from grab system.                     | | 404  | not_found | Invalid item status  | The item status isn&#39;t correct. Eg, there is no item in the order but want to delete it.                | | 404  | not_found | order detail abnormal | order detail abnormal                                                                                   | | 404  | not_found | get merchant failed  | get merchant failed                                                                                      |  </td><td>  -  </td></tr>
+     </table>
+     */
+    public EditOrderV2Response editOrderV2(String contentType, String authorization, String orderID, EditOrderRequest editOrderRequest) throws ApiException {
+        ApiResponse<EditOrderV2Response> localVarResp = editOrderV2WithHttpInfo(contentType, authorization, orderID, editOrderRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Edit Order V2
+     * 
+     * @param contentType The content type of the request body. You must use &#x60;application/json&#x60; for this header as GrabFood API currently does not support other formats. (required)
+     * @param authorization Specify the generated authorization token of the bearer type. (required)
+     * @param orderID  (required)
+     * @param editOrderRequest  (required)
+     * @return ApiResponse&lt;EditOrderV2Response&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The API request is successfully processed. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> invalid_argument | Code | Reason           | Message                                    | Description                                                                                               |  | ---- | ---------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------- |  | 400  | invalid_argument | nothing changed                            | The items struct is empty                                                                                | | 400  | invalid_argument | can&#39;t remove all items                     | we don&#39;t allow clean all the items                                                                      | | 400  | invalid_argument | externalItemID not supported for this status | externalItemID not supported for this status                                                          | | 400  | invalid_argument | externalItemID only allowed for ADDED item status | externalItemID only allowed for ADDED item status                                                 | | 400  | invalid_argument | invalid price, price can&#39;t be negative     | DepositAmountInMin is negative, OfflinePOSDiscountInMin is negative                                     | | 400  | invalid_argument | params must include all items              | params must include all items in the order                                                              | | 400  | invalid_argument | exceed basket limit                        | Total price exceed basket limit                                                                          | | 400  | invalid_argument | exceed max price amount limit              | Total price exceed limit:&lt;br/&gt;• SG: S$1000&lt;br/&gt;• ID: Rp10,000,000&lt;br/&gt;• PH: ₱15,000&lt;br/&gt;• VN: ₫15,000,000&lt;br/&gt;• TH: ฿300,000&lt;br/&gt;• MY: RM1,500 | | 400  | invalid_argument | recalculate failed                         | recalculate failed                                                                                       | | 400  | invalid_argument | submit edit failed                         | submit edit failed                                                                                       | | 400  | invalid_argument | exceed price increase limit                | exceed price increase limit                                                                              | | 400  | invalid_argument | negative weight                            | negative weight                                                                                          | | 400  | invalid_argument | fraud check error                          | fraud check error                                                                                        | | 400  | invalid_argument | externalItemID inactive or out of selling time | externalItemID inactive or out of selling time                                                      | | 400  | invalid_argument | added item invalid                         | added item invalid                                                                                       |  </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> forbidden | Code | Reason    | Message      | Description                                                                                               |  | ---- | --------- | ------------ | --------------------------------------------------------------------------------------------------------- |  | 403  | forbidden | not editable | not editable                                                                                              |  </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> not_found | Code | Reason    | Message              | Description                                                                                               |  | ---- | --------- | -------------------- | --------------------------------------------------------------------------------------------------------- |  | 404  | not_found | not found order      | The orderID is not found grab status.                                                                   | | 404  | not_found | invalid order        | The order status is wrong for edit action.                                                              | | 404  | not_found | not found item       | The itemID doesn&#39;t match with isExternalItemID and can&#39;t be found from grab system.                     | | 404  | not_found | Invalid item status  | The item status isn&#39;t correct. Eg, there is no item in the order but want to delete it.                | | 404  | not_found | order detail abnormal | order detail abnormal                                                                                   | | 404  | not_found | get merchant failed  | get merchant failed                                                                                      |  </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<EditOrderV2Response> editOrderV2WithHttpInfo(String contentType, String authorization, String orderID, EditOrderRequest editOrderRequest) throws ApiException {
+        okhttp3.Call localVarCall = editOrderV2ValidateBeforeCall(contentType, authorization, orderID, editOrderRequest, null);
+        Type localVarReturnType = new TypeToken<EditOrderV2Response>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Edit Order V2 (asynchronously)
+     * 
+     * @param contentType The content type of the request body. You must use &#x60;application/json&#x60; for this header as GrabFood API currently does not support other formats. (required)
+     * @param authorization Specify the generated authorization token of the bearer type. (required)
+     * @param orderID  (required)
+     * @param editOrderRequest  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The API request is successfully processed. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> invalid_argument | Code | Reason           | Message                                    | Description                                                                                               |  | ---- | ---------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------- |  | 400  | invalid_argument | nothing changed                            | The items struct is empty                                                                                | | 400  | invalid_argument | can&#39;t remove all items                     | we don&#39;t allow clean all the items                                                                      | | 400  | invalid_argument | externalItemID not supported for this status | externalItemID not supported for this status                                                          | | 400  | invalid_argument | externalItemID only allowed for ADDED item status | externalItemID only allowed for ADDED item status                                                 | | 400  | invalid_argument | invalid price, price can&#39;t be negative     | DepositAmountInMin is negative, OfflinePOSDiscountInMin is negative                                     | | 400  | invalid_argument | params must include all items              | params must include all items in the order                                                              | | 400  | invalid_argument | exceed basket limit                        | Total price exceed basket limit                                                                          | | 400  | invalid_argument | exceed max price amount limit              | Total price exceed limit:&lt;br/&gt;• SG: S$1000&lt;br/&gt;• ID: Rp10,000,000&lt;br/&gt;• PH: ₱15,000&lt;br/&gt;• VN: ₫15,000,000&lt;br/&gt;• TH: ฿300,000&lt;br/&gt;• MY: RM1,500 | | 400  | invalid_argument | recalculate failed                         | recalculate failed                                                                                       | | 400  | invalid_argument | submit edit failed                         | submit edit failed                                                                                       | | 400  | invalid_argument | exceed price increase limit                | exceed price increase limit                                                                              | | 400  | invalid_argument | negative weight                            | negative weight                                                                                          | | 400  | invalid_argument | fraud check error                          | fraud check error                                                                                        | | 400  | invalid_argument | externalItemID inactive or out of selling time | externalItemID inactive or out of selling time                                                      | | 400  | invalid_argument | added item invalid                         | added item invalid                                                                                       |  </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> forbidden | Code | Reason    | Message      | Description                                                                                               |  | ---- | --------- | ------------ | --------------------------------------------------------------------------------------------------------- |  | 403  | forbidden | not editable | not editable                                                                                              |  </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> not_found | Code | Reason    | Message              | Description                                                                                               |  | ---- | --------- | -------------------- | --------------------------------------------------------------------------------------------------------- |  | 404  | not_found | not found order      | The orderID is not found grab status.                                                                   | | 404  | not_found | invalid order        | The order status is wrong for edit action.                                                              | | 404  | not_found | not found item       | The itemID doesn&#39;t match with isExternalItemID and can&#39;t be found from grab system.                     | | 404  | not_found | Invalid item status  | The item status isn&#39;t correct. Eg, there is no item in the order but want to delete it.                | | 404  | not_found | order detail abnormal | order detail abnormal                                                                                   | | 404  | not_found | get merchant failed  | get merchant failed                                                                                      |  </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call editOrderV2Async(String contentType, String authorization, String orderID, EditOrderRequest editOrderRequest, final ApiCallback<EditOrderV2Response> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = editOrderV2ValidateBeforeCall(contentType, authorization, orderID, editOrderRequest, _callback);
+        Type localVarReturnType = new TypeToken<EditOrderV2Response>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 }

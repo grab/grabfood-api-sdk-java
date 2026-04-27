@@ -15,11 +15,11 @@
 |**descriptionTranslation** | **Map&lt;String, String&gt;** | Translation of the item description. Only support up to 1 translated language. Refer [Menu Translation](#section/Menu-Translation). |  [optional] |
 |**price** | **Long** | The item&#39;s price in minor format. For example: 1900 means $19 with &#x60;currency.exponent&#x60; as 2. Refer to [FAQ](#section/Menu/Is-the-menu-price-with-or-without-tax) to determine whether the pricing should be tax-inclusive or tax-exclusive.  |  |
 |**photos** | **List&lt;String&gt;** | An array string for the item’s image URL link. Only 1 image is supported. Refer to FAQs for more details about [images formats](#section/Menu/What-are-the-recommended-formats-for-an-item-image).  |  [optional] |
-|**specialType** | [**SpecialTypeEnum**](#SpecialTypeEnum) | The item&#39;s special Tag. Refer to FAQs for more details about [specialType](#section/Menu/What&#39;s-specialType).  |  [optional] |
+|**specialType** | [**SpecialTypeEnum**](#SpecialTypeEnum) | The special tag of an item. For implementation details and behavior specific to each value, refer to: **Alcohol &amp; Tobacco** [FAQ](#section/Menu/What-happens-when-an-item-is-tagged-with-specialType-alcohol-or-tobacco) and **Meal for One** [documentation](#section/Meal-for-One).  |  [optional] |
 |**taxable** | **Boolean** | **For Indonesia only.** This field allows the configuration for an item to be marked as tax applicable, and marked item would then be included in a commercial invoice to consumers as per the government&#39;s regulations.  |  [optional] |
 |**barcode** | **String** | The barcode Number (GTIN). Max 64 allowed. GTIN must be 8, 12, 13, 14 numeric digits.  |  [optional] |
 |**sellingTimeID** | **String** | The selling time&#39;s ID for the item. This value overrides the category&#39;s selling time if it is different. Empty value implies the category&#39;s selling time will be applied.  |  [optional] |
-|**maxStock** | **Long** | Available stocks under inventory for this item. Auto reduce when there is order placed for this item. Empty value implies no limit.  &gt; Note: It is necessary to set &#x60;maxStock&#x60; to 0 if the &#x60;availableStatus&#x60; of the item is &#x60;\&quot;UNAVAILABLE\&quot;&#x60;. Item will be set to &#x60;\&quot;AVAILABLE\&quot;&#x60; if &#x60;maxStock&#x60; &gt; 0.  |  [optional] |
+|**maxStock** | **Long** | Available stocks under inventory for this item. Auto reduce when there is order placed for this item. The value **must not exceed** &#x60;9999999&#x60;. Empty value implies no limit.  &gt; Note: It is necessary to set &#x60;maxStock&#x60; to 0 if the &#x60;availableStatus&#x60; of the item is &#x60;\&quot;UNAVAILABLE\&quot;&#x60;. Item will be set to &#x60;\&quot;AVAILABLE\&quot;&#x60; if &#x60;maxStock&#x60; &gt; 0.  |  [optional] |
 |**sequence** | **Integer** | The sort or display order of the item within the menu. |  [optional] |
 |**advancedPricing** | [**AdvancedPricing**](AdvancedPricing.md) |  |  [optional] |
 |**purchasability** | [**Purchasability**](Purchasability.md) |  |  [optional] |
@@ -44,6 +44,8 @@
 | Name | Value |
 |---- | -----|
 | ALCOHOL | &quot;alcohol&quot; |
+| TOBACCO | &quot;tobacco&quot; |
+| MEAL_FOR_ONE | &quot;meal_for_one&quot; |
 | EMPTY | &quot;&quot; |
 | UNKNOWN_DEFAULT_OPEN_API | &quot;unknown_default_open_api&quot; |
 

@@ -42,6 +42,14 @@ A JSON object containing code, symbol, and exponent for a given currency. Refer 
 | u3 | &quot;₫&quot; |
 | u4 | &quot;៛&quot; |
 | K | &quot;K&quot; |
+| IDR | &quot;IDR&quot; |
+| MYR | &quot;MYR&quot; |
+| PHP | &quot;PHP&quot; |
+| SGD | &quot;SGD&quot; |
+| THB | &quot;THB&quot; |
+| VND | &quot;VND&quot; |
+| KHR | &quot;KHR&quot; |
+| MMK | &quot;MMK&quot; |
 | UNKNOWN_DEFAULT_OPEN_API | &quot;unknown_default_open_api&quot; |
 
 

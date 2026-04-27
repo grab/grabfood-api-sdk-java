@@ -63,6 +63,8 @@ public class CampaignDiscount {
     
     PERCENTAGE("percentage"),
     
+    FIX_PRICE("fixPrice"),
+    
     DELIVERY("delivery"),
     
     FREE_ITEM("freeItem"),
@@ -168,7 +170,7 @@ public class CampaignDiscount {
   }
 
   /**
-   * The maximum discount dollar amount. It is **not required** and will be ignored when the &#x60;discount.type&#x60; is: - &#x60;net&#x60; - &#x60;delivery&#x60; - &#x60;freeItem&#x60; - &#x60;bundleSameNet&#x60; - &#x60;bundleSamePercentage&#x60; - &#x60;bundleSameFixPrice&#x60; - &#x60;bundleDiffNet&#x60; - &#x60;bundleDiffPercentage&#x60; - &#x60;bundleDiffFixPrice&#x60; 
+   * The maximum discount dollar amount. It is **not required** and will be ignored when the &#x60;discount.type&#x60; is: - &#x60;net&#x60; - &#x60;fixPrice&#x60; - &#x60;delivery&#x60; - &#x60;freeItem&#x60; - &#x60;bundleSameNet&#x60; - &#x60;bundleSamePercentage&#x60; - &#x60;bundleSameFixPrice&#x60; - &#x60;bundleDiffNet&#x60; - &#x60;bundleDiffPercentage&#x60; - &#x60;bundleDiffFixPrice&#x60; 
    * @return cap
    */
   @javax.annotation.Nullable
@@ -187,7 +189,7 @@ public class CampaignDiscount {
   }
 
   /**
-   * Specify the discount amount. Decimal number is not supported For VN, ID and TH. For example, &#x60;10.5&#x60; is not allowed and it should be &#x60;10.0&#x60;. * Dollar amount value when &#x60;discount.type&#x60; is &#x60;net&#x60;, &#x60;delivery&#x60;, &#x60;bundleSameNet&#x60;, &#x60;bundleSameFixPrice&#x60;, &#x60;bundleDiffNet&#x60;, &#x60;bundleDiffFixPrice&#x60;. * Percentage value (0-100) when &#x60;discount.type&#x60; is &#x60;percentage&#x60;, &#x60;bundleSamePercentage&#x60;, &#x60;bundleDiffPercentage&#x60;. * **Not required** when &#x60;discount.type&#x60; is &#x60;freeItem&#x60;. 
+   * Specify the discount amount. Decimal number is not supported For VN, ID and TH. For example, &#x60;10.5&#x60; is not allowed and it should be &#x60;10.0&#x60;. * Dollar amount value when &#x60;discount.type&#x60; is &#x60;net&#x60;, &#x60;delivery&#x60;, &#x60;fixPrice&#x60;, &#x60;bundleSameNet&#x60;, &#x60;bundleSameFixPrice&#x60;, &#x60;bundleDiffNet&#x60;, &#x60;bundleDiffFixPrice&#x60;. * Percentage value (0-100) when &#x60;discount.type&#x60; is &#x60;percentage&#x60;, &#x60;bundleSamePercentage&#x60;, &#x60;bundleDiffPercentage&#x60;. * **Not required** when &#x60;discount.type&#x60; is &#x60;freeItem&#x60;. * The order-level discount given **should not exceed 0.5 * the minimum basket amount**. 
    * @return value
    */
   @javax.annotation.Nullable

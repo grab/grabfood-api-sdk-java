@@ -301,7 +301,7 @@ public class UpdateMenuItem {
   }
 
   /**
-   * Available stocks under inventory for this item. Auto reduce when there is order placed for this item.  Note: It is necessary to set &#x60;maxStock&#x60; to 0 if the &#x60;availableStatus&#x60; of the item is \&quot;UNAVAILABLE\&quot;. Item will be set to \&quot;AVAILABLE\&quot; if &#x60;maxStock&#x60; &gt; 0. 
+   * Available stocks under inventory for this item. Auto reduce when there is order placed for this item. The value **must not exceed** &#x60;9999999&#x60;.  Note: It is necessary to set &#x60;maxStock&#x60; to 0 if the &#x60;availableStatus&#x60; of the item is \&quot;UNAVAILABLE\&quot;. Item will be set to \&quot;AVAILABLE\&quot; if &#x60;maxStock&#x60; &gt; 0. 
    * @return maxStock
    */
   @javax.annotation.Nullable

@@ -65,61 +65,9 @@ public class OrderItemModifier {
   @SerializedName(SERIALIZED_NAME_TAX)
   private Long tax;
 
-  /**
-   * The number of modifiers present. The value is always 1.
-   */
-  @JsonAdapter(QuantityEnum.Adapter.class)
-  public enum QuantityEnum {
-    NUMBER_1(1),
-    
-    NUMBER_unknown_default_open_api(11184809);
-
-    private Integer value;
-
-    QuantityEnum(Integer value) {
-      this.value = value;
-    }
-
-    public Integer getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static QuantityEnum fromValue(Integer value) {
-      for (QuantityEnum b : QuantityEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      return NUMBER_unknown_default_open_api;
-    }
-
-    public static class Adapter extends TypeAdapter<QuantityEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final QuantityEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public QuantityEnum read(final JsonReader jsonReader) throws IOException {
-        Integer value =  jsonReader.nextInt();
-        return QuantityEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      Integer value = jsonElement.getAsInt();
-      QuantityEnum.fromValue(value);
-    }
-  }
-
   public static final String SERIALIZED_NAME_QUANTITY = "quantity";
   @SerializedName(SERIALIZED_NAME_QUANTITY)
-  private QuantityEnum quantity;
+  private Integer quantity;
 
   public OrderItemModifier() {
   }
@@ -181,21 +129,21 @@ public class OrderItemModifier {
   }
 
 
-  public OrderItemModifier quantity(QuantityEnum quantity) {
+  public OrderItemModifier quantity(Integer quantity) {
     this.quantity = quantity;
     return this;
   }
 
   /**
-   * The number of modifiers present. The value is always 1.
+   * The number of modifiers present.
    * @return quantity
    */
   @javax.annotation.Nullable
-  public QuantityEnum getQuantity() {
+  public Integer getQuantity() {
     return quantity;
   }
 
-  public void setQuantity(QuantityEnum quantity) {
+  public void setQuantity(Integer quantity) {
     this.quantity = quantity;
   }
 
@@ -321,10 +269,6 @@ public class OrderItemModifier {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
-      }
-      // validate the optional field `quantity`
-      if (jsonObj.get("quantity") != null && !jsonObj.get("quantity").isJsonNull()) {
-        QuantityEnum.validateJsonElement(jsonObj.get("quantity"));
       }
   }
 

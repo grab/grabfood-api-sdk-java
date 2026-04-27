@@ -22,6 +22,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.grab.grabfood.client.model.Order;
 import java.io.IOException;
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -80,6 +81,12 @@ public class OrderStateRequest {
     COLLECTED("COLLECTED"),
     
     DELIVERED("DELIVERED"),
+    
+    BILL_PAID("BILL_PAID"),
+    
+    COMPLETED("COMPLETED"),
+    
+    REFUNDED("REFUNDED"),
     
     FAILED("FAILED"),
     
@@ -145,6 +152,10 @@ public class OrderStateRequest {
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
   private String message;
+
+  public static final String SERIALIZED_NAME_ORDER = "order";
+  @SerializedName(SERIALIZED_NAME_ORDER)
+  private Order order;
 
   public OrderStateRequest() {
   }
@@ -281,6 +292,25 @@ public class OrderStateRequest {
     this.message = message;
   }
 
+
+  public OrderStateRequest order(Order order) {
+    this.order = order;
+    return this;
+  }
+
+  /**
+   * Get order
+   * @return order
+   */
+  @javax.annotation.Nullable
+  public Order getOrder() {
+    return order;
+  }
+
+  public void setOrder(Order order) {
+    this.order = order;
+  }
+
   /**
    * A container for additional, undeclared properties.
    * This is a holder for any undeclared properties as specified with
@@ -342,7 +372,8 @@ public class OrderStateRequest {
         Objects.equals(this.state, orderStateRequest.state) &&
         Objects.equals(this.driverETA, orderStateRequest.driverETA) &&
         Objects.equals(this.code, orderStateRequest.code) &&
-        Objects.equals(this.message, orderStateRequest.message)&&
+        Objects.equals(this.message, orderStateRequest.message) &&
+        Objects.equals(this.order, orderStateRequest.order)&&
         Objects.equals(this.additionalProperties, orderStateRequest.additionalProperties);
   }
 
@@ -352,7 +383,7 @@ public class OrderStateRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(merchantID, partnerMerchantID, orderID, state, driverETA, code, message, additionalProperties);
+    return Objects.hash(merchantID, partnerMerchantID, orderID, state, driverETA, code, message, order, additionalProperties);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -373,6 +404,7 @@ public class OrderStateRequest {
     sb.append("    driverETA: ").append(toIndentedString(driverETA)).append("\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    order: ").append(toIndentedString(order)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -403,6 +435,7 @@ public class OrderStateRequest {
     openapiFields.add("driverETA");
     openapiFields.add("code");
     openapiFields.add("message");
+    openapiFields.add("order");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -450,6 +483,10 @@ public class OrderStateRequest {
       }
       if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull()) && !jsonObj.get("message").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `message` to be a primitive type in the JSON string but got `%s`", jsonObj.get("message").toString()));
+      }
+      // validate the optional field `order`
+      if (jsonObj.get("order") != null && !jsonObj.get("order").isJsonNull()) {
+        Order.validateJsonElement(jsonObj.get("order"));
       }
   }
 

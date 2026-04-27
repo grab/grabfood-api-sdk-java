@@ -22,8 +22,10 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.grab.grabfood.client.model.MerchantEarning;
 import java.io.IOException;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -65,6 +67,10 @@ public class OrderPrice {
   @SerializedName(SERIALIZED_NAME_MERCHANT_CHARGE_FEE)
   private Long merchantChargeFee;
 
+  public static final String SERIALIZED_NAME_SERVICE_CHARGE_FEE = "serviceChargeFee";
+  @SerializedName(SERIALIZED_NAME_SERVICE_CHARGE_FEE)
+  private Long serviceChargeFee;
+
   public static final String SERIALIZED_NAME_GRAB_FUND_PROMO = "grabFundPromo";
   @SerializedName(SERIALIZED_NAME_GRAB_FUND_PROMO)
   private Long grabFundPromo;
@@ -88,6 +94,14 @@ public class OrderPrice {
   public static final String SERIALIZED_NAME_EATER_PAYMENT = "eaterPayment";
   @SerializedName(SERIALIZED_NAME_EATER_PAYMENT)
   private Long eaterPayment;
+
+  public static final String SERIALIZED_NAME_TOTAL = "total";
+  @SerializedName(SERIALIZED_NAME_TOTAL)
+  private Long total;
+
+  public static final String SERIALIZED_NAME_MERCHANT_EARNING = "merchantEarning";
+  @SerializedName(SERIALIZED_NAME_MERCHANT_EARNING)
+  private MerchantEarning merchantEarning;
 
   public OrderPrice() {
   }
@@ -136,7 +150,7 @@ public class OrderPrice {
   }
 
   /**
-   * Any additional fee charged by merchant (tax-inclusive), which is 100% paid out to the merchant. Eg. Takeaway, packaging costs, dine-in charge. 
+   * Any additional fee charged by merchant (tax-inclusive), which is 100% paid out to the merchant. Reach out to your integration support team for the configuration. Eg. Takeaway, packaging costs, dine-in charge. 
    * @return merchantChargeFee
    */
   @javax.annotation.Nullable
@@ -146,6 +160,25 @@ public class OrderPrice {
 
   public void setMerchantChargeFee(Long merchantChargeFee) {
     this.merchantChargeFee = merchantChargeFee;
+  }
+
+
+  public OrderPrice serviceChargeFee(Long serviceChargeFee) {
+    this.serviceChargeFee = serviceChargeFee;
+    return this;
+  }
+
+  /**
+   * Additional service charge fee charged by merchant (tax-inclusive), which is 100% paid out to the merchant. Reach out to your integration support team for the configuration. 
+   * @return serviceChargeFee
+   */
+  @javax.annotation.Nullable
+  public Long getServiceChargeFee() {
+    return serviceChargeFee;
+  }
+
+  public void setServiceChargeFee(Long serviceChargeFee) {
+    this.serviceChargeFee = serviceChargeFee;
   }
 
 
@@ -262,6 +295,44 @@ public class OrderPrice {
     this.eaterPayment = eaterPayment;
   }
 
+
+  public OrderPrice total(Long total) {
+    this.total = total;
+    return this;
+  }
+
+  /**
+   * The total merchant-related amount calculated exclusive of commission charges. Formulae is the same for all delivery method.  &#x60;&#x60;&#x60; total &#x3D; subtotal + merchantChargeFee - merchantFundPromo | 2550+0-475&#x3D;2075 
+   * @return total
+   */
+  @javax.annotation.Nullable
+  public Long getTotal() {
+    return total;
+  }
+
+  public void setTotal(Long total) {
+    this.total = total;
+  }
+
+
+  public OrderPrice merchantEarning(MerchantEarning merchantEarning) {
+    this.merchantEarning = merchantEarning;
+    return this;
+  }
+
+  /**
+   * Get merchantEarning
+   * @return merchantEarning
+   */
+  @javax.annotation.Nullable
+  public MerchantEarning getMerchantEarning() {
+    return merchantEarning;
+  }
+
+  public void setMerchantEarning(MerchantEarning merchantEarning) {
+    this.merchantEarning = merchantEarning;
+  }
+
   /**
    * A container for additional, undeclared properties.
    * This is a holder for any undeclared properties as specified with
@@ -320,18 +391,32 @@ public class OrderPrice {
     return Objects.equals(this.subtotal, orderPrice.subtotal) &&
         Objects.equals(this.tax, orderPrice.tax) &&
         Objects.equals(this.merchantChargeFee, orderPrice.merchantChargeFee) &&
+        Objects.equals(this.serviceChargeFee, orderPrice.serviceChargeFee) &&
         Objects.equals(this.grabFundPromo, orderPrice.grabFundPromo) &&
         Objects.equals(this.merchantFundPromo, orderPrice.merchantFundPromo) &&
         Objects.equals(this.basketPromo, orderPrice.basketPromo) &&
         Objects.equals(this.deliveryFee, orderPrice.deliveryFee) &&
         Objects.equals(this.smallOrderFee, orderPrice.smallOrderFee) &&
-        Objects.equals(this.eaterPayment, orderPrice.eaterPayment)&&
+        Objects.equals(this.eaterPayment, orderPrice.eaterPayment) &&
+        Objects.equals(this.total, orderPrice.total) &&
+        Objects.equals(this.merchantEarning, orderPrice.merchantEarning)&&
         Objects.equals(this.additionalProperties, orderPrice.additionalProperties);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(subtotal, tax, merchantChargeFee, grabFundPromo, merchantFundPromo, basketPromo, deliveryFee, smallOrderFee, eaterPayment, additionalProperties);
+    return Objects.hash(subtotal, tax, merchantChargeFee, serviceChargeFee, grabFundPromo, merchantFundPromo, basketPromo, deliveryFee, smallOrderFee, eaterPayment, total, merchantEarning, additionalProperties);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -341,12 +426,15 @@ public class OrderPrice {
     sb.append("    subtotal: ").append(toIndentedString(subtotal)).append("\n");
     sb.append("    tax: ").append(toIndentedString(tax)).append("\n");
     sb.append("    merchantChargeFee: ").append(toIndentedString(merchantChargeFee)).append("\n");
+    sb.append("    serviceChargeFee: ").append(toIndentedString(serviceChargeFee)).append("\n");
     sb.append("    grabFundPromo: ").append(toIndentedString(grabFundPromo)).append("\n");
     sb.append("    merchantFundPromo: ").append(toIndentedString(merchantFundPromo)).append("\n");
     sb.append("    basketPromo: ").append(toIndentedString(basketPromo)).append("\n");
     sb.append("    deliveryFee: ").append(toIndentedString(deliveryFee)).append("\n");
     sb.append("    smallOrderFee: ").append(toIndentedString(smallOrderFee)).append("\n");
     sb.append("    eaterPayment: ").append(toIndentedString(eaterPayment)).append("\n");
+    sb.append("    total: ").append(toIndentedString(total)).append("\n");
+    sb.append("    merchantEarning: ").append(toIndentedString(merchantEarning)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -373,12 +461,15 @@ public class OrderPrice {
     openapiFields.add("subtotal");
     openapiFields.add("tax");
     openapiFields.add("merchantChargeFee");
+    openapiFields.add("serviceChargeFee");
     openapiFields.add("grabFundPromo");
     openapiFields.add("merchantFundPromo");
     openapiFields.add("basketPromo");
     openapiFields.add("deliveryFee");
     openapiFields.add("smallOrderFee");
     openapiFields.add("eaterPayment");
+    openapiFields.add("total");
+    openapiFields.add("merchantEarning");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -405,6 +496,10 @@ public class OrderPrice {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+      // validate the optional field `merchantEarning`
+      if (jsonObj.get("merchantEarning") != null && !jsonObj.get("merchantEarning").isJsonNull()) {
+        MerchantEarning.validateJsonElement(jsonObj.get("merchantEarning"));
+      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

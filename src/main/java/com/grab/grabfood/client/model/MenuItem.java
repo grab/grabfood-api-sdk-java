@@ -151,11 +151,15 @@ public class MenuItem {
   private List<String> photos = new ArrayList<>();
 
   /**
-   * The item&#39;s special Tag. Refer to FAQs for more details about [specialType](#section/Menu/What&#39;s-specialType). 
+   * The special tag of an item. For implementation details and behavior specific to each value, refer to: **Alcohol &amp; Tobacco** [FAQ](#section/Menu/What-happens-when-an-item-is-tagged-with-specialType-alcohol-or-tobacco) and **Meal for One** [documentation](#section/Meal-for-One). 
    */
   @JsonAdapter(SpecialTypeEnum.Adapter.class)
   public enum SpecialTypeEnum {
     ALCOHOL("alcohol"),
+    
+    TOBACCO("tobacco"),
+    
+    MEAL_FOR_ONE("meal_for_one"),
     
     EMPTY(""),
     
@@ -425,7 +429,7 @@ public class MenuItem {
   }
 
   /**
-   * The item&#39;s special Tag. Refer to FAQs for more details about [specialType](#section/Menu/What&#39;s-specialType). 
+   * The special tag of an item. For implementation details and behavior specific to each value, refer to: **Alcohol &amp; Tobacco** [FAQ](#section/Menu/What-happens-when-an-item-is-tagged-with-specialType-alcohol-or-tobacco) and **Meal for One** [documentation](#section/Meal-for-One). 
    * @return specialType
    */
   @javax.annotation.Nullable
@@ -501,7 +505,7 @@ public class MenuItem {
   }
 
   /**
-   * Available stocks under inventory for this item. Auto reduce when there is order placed for this item. Empty value implies no limit.  &gt; Note: It is necessary to set &#x60;maxStock&#x60; to 0 if the &#x60;availableStatus&#x60; of the item is &#x60;\&quot;UNAVAILABLE\&quot;&#x60;. Item will be set to &#x60;\&quot;AVAILABLE\&quot;&#x60; if &#x60;maxStock&#x60; &gt; 0. 
+   * Available stocks under inventory for this item. Auto reduce when there is order placed for this item. The value **must not exceed** &#x60;9999999&#x60;. Empty value implies no limit.  &gt; Note: It is necessary to set &#x60;maxStock&#x60; to 0 if the &#x60;availableStatus&#x60; of the item is &#x60;\&quot;UNAVAILABLE\&quot;&#x60;. Item will be set to &#x60;\&quot;AVAILABLE\&quot;&#x60; if &#x60;maxStock&#x60; &gt; 0. 
    * @return maxStock
    */
   @javax.annotation.Nullable

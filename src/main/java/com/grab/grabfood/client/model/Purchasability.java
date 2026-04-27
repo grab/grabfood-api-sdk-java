@@ -90,7 +90,7 @@ public class Purchasability {
   }
 
   /**
-   * Get deliveryOnDemandGrabApp
+   * **Case-sensitive**. 
    * @return deliveryOnDemandGrabApp
    */
   @javax.annotation.Nullable
@@ -109,7 +109,7 @@ public class Purchasability {
   }
 
   /**
-   * Get deliveryScheduledGrabApp
+   * **Case-sensitive**. 
    * @return deliveryScheduledGrabApp
    */
   @javax.annotation.Nullable
@@ -128,7 +128,7 @@ public class Purchasability {
   }
 
   /**
-   * Get selfPickUpOnDemandGrabApp
+   * **Case-sensitive**. 
    * @return selfPickUpOnDemandGrabApp
    */
   @javax.annotation.Nullable
@@ -147,7 +147,7 @@ public class Purchasability {
   }
 
   /**
-   * Get dineInOnDemandGrabApp
+   * **Case-sensitive**. 
    * @return dineInOnDemandGrabApp
    */
   @javax.annotation.Nullable
@@ -166,7 +166,7 @@ public class Purchasability {
   }
 
   /**
-   * Get deliveryOnDemandStoreFront
+   * **Case-sensitive**. 
    * @return deliveryOnDemandStoreFront
    */
   @javax.annotation.Nullable
@@ -185,7 +185,7 @@ public class Purchasability {
   }
 
   /**
-   * Get deliveryScheduledStoreFront
+   * **Case-sensitive**. 
    * @return deliveryScheduledStoreFront
    */
   @javax.annotation.Nullable
@@ -204,7 +204,7 @@ public class Purchasability {
   }
 
   /**
-   * Get selfPickUpOnDemandStoreFront
+   * **Case-sensitive**.
    * @return selfPickUpOnDemandStoreFront
    */
   @javax.annotation.Nullable
