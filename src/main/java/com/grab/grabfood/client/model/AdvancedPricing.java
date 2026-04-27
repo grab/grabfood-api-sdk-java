@@ -90,7 +90,7 @@ public class AdvancedPricing {
   }
 
   /**
-   * Service type: &#x60;Delivery&#x60;, Order type: &#x60;Instant&#x60;, Channel: &#x60;Grab App&#x60; 
+   * **Case-sensitive**. Service type: &#x60;Delivery&#x60;, Order type: &#x60;Instant&#x60;, Channel: &#x60;Grab App&#x60; 
    * @return deliveryOnDemandGrabApp
    */
   @javax.annotation.Nullable
@@ -109,7 +109,7 @@ public class AdvancedPricing {
   }
 
   /**
-   * Service type: &#x60;Delivery&#x60;, Order type: &#x60;Scheduled&#x60;, Channel: &#x60;Grab App&#x60; 
+   * **Case-sensitive**. Service type: &#x60;Delivery&#x60;, Order type: &#x60;Scheduled&#x60;, Channel: &#x60;Grab App&#x60; 
    * @return deliveryScheduledGrabApp
    */
   @javax.annotation.Nullable
@@ -128,7 +128,7 @@ public class AdvancedPricing {
   }
 
   /**
-   * Service type: &#x60;Self Pick Up&#x60;, Order type: &#x60;Instant&#x60;, Channel: &#x60;Grab App&#x60; 
+   * **Case-sensitive**. Service type: &#x60;Self Pick Up&#x60;, Order type: &#x60;Instant&#x60;, Channel: &#x60;Grab App&#x60; 
    * @return selfPickUpOnDemandGrabApp
    */
   @javax.annotation.Nullable
@@ -147,7 +147,7 @@ public class AdvancedPricing {
   }
 
   /**
-   * Service type: &#x60;Dine In&#x60;, Order type: &#x60;Instant&#x60;, Channel: &#x60;Grab App&#x60; 
+   * **Case-sensitive**. Service type: &#x60;Dine In&#x60;, Order type: &#x60;Instant&#x60;, Channel: &#x60;Grab App&#x60; 
    * @return dineInOnDemandGrabApp
    */
   @javax.annotation.Nullable
@@ -166,7 +166,7 @@ public class AdvancedPricing {
   }
 
   /**
-   * Service type: &#x60;Delivery&#x60;, Order type: &#x60;Instant&#x60;, Channel: &#x60;Store Front&#x60; 
+   * **Case-sensitive**. Service type: &#x60;Delivery&#x60;, Order type: &#x60;Instant&#x60;, Channel: &#x60;Store Front&#x60; 
    * @return deliveryOnDemandStoreFront
    */
   @javax.annotation.Nullable
@@ -185,7 +185,7 @@ public class AdvancedPricing {
   }
 
   /**
-   * Service type: &#x60;Delivery&#x60;, Order type: &#x60;Scheduled&#x60;, Channel: &#x60;Store Front&#x60; 
+   * **Case-sensitive**. Service type: &#x60;Delivery&#x60;, Order type: &#x60;Scheduled&#x60;, Channel: &#x60;Store Front&#x60; 
    * @return deliveryScheduledStoreFront
    */
   @javax.annotation.Nullable
@@ -204,7 +204,7 @@ public class AdvancedPricing {
   }
 
   /**
-   * Service type: &#x60;Self Pick Up&#x60;, Order type: &#x60;Instant&#x60;, Channel: &#x60;Store Front&#x60; 
+   * **Case-sensitive**. Service type: &#x60;Self Pick Up&#x60;, Order type: &#x60;Instant&#x60;, Channel: &#x60;Store Front&#x60; 
    * @return selfPickUpOnDemandStoreFront
    */
   @javax.annotation.Nullable

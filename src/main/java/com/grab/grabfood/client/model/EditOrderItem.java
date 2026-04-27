@@ -22,8 +22,11 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.grab.grabfood.client.model.EditOrderItemModifier;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -127,6 +130,10 @@ public class EditOrderItem {
   @SerializedName(SERIALIZED_NAME_IS_EXTERNAL_ITEM_I_D)
   private Boolean isExternalItemID;
 
+  public static final String SERIALIZED_NAME_MODIFIERS = "modifiers";
+  @SerializedName(SERIALIZED_NAME_MODIFIERS)
+  private List<EditOrderItemModifier> modifiers = new ArrayList<>();
+
   public EditOrderItem() {
   }
 
@@ -205,6 +212,33 @@ public class EditOrderItem {
     this.isExternalItemID = isExternalItemID;
   }
 
+
+  public EditOrderItem modifiers(List<EditOrderItemModifier> modifiers) {
+    this.modifiers = modifiers;
+    return this;
+  }
+
+  public EditOrderItem addModifiersItem(EditOrderItemModifier modifiersItem) {
+    if (this.modifiers == null) {
+      this.modifiers = new ArrayList<>();
+    }
+    this.modifiers.add(modifiersItem);
+    return this;
+  }
+
+  /**
+   * The modifiers of the item. Only required when you want to update the modifiers of the item. Refer [Edit Order](#section/Edit-Order) for more use cases.
+   * @return modifiers
+   */
+  @javax.annotation.Nullable
+  public List<EditOrderItemModifier> getModifiers() {
+    return modifiers;
+  }
+
+  public void setModifiers(List<EditOrderItemModifier> modifiers) {
+    this.modifiers = modifiers;
+  }
+
   /**
    * A container for additional, undeclared properties.
    * This is a holder for any undeclared properties as specified with
@@ -263,13 +297,14 @@ public class EditOrderItem {
     return Objects.equals(this.itemID, editOrderItem.itemID) &&
         Objects.equals(this.status, editOrderItem.status) &&
         Objects.equals(this.quantity, editOrderItem.quantity) &&
-        Objects.equals(this.isExternalItemID, editOrderItem.isExternalItemID)&&
+        Objects.equals(this.isExternalItemID, editOrderItem.isExternalItemID) &&
+        Objects.equals(this.modifiers, editOrderItem.modifiers)&&
         Objects.equals(this.additionalProperties, editOrderItem.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(itemID, status, quantity, isExternalItemID, additionalProperties);
+    return Objects.hash(itemID, status, quantity, isExternalItemID, modifiers, additionalProperties);
   }
 
   @Override
@@ -280,6 +315,7 @@ public class EditOrderItem {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
     sb.append("    isExternalItemID: ").append(toIndentedString(isExternalItemID)).append("\n");
+    sb.append("    modifiers: ").append(toIndentedString(modifiers)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -307,6 +343,7 @@ public class EditOrderItem {
     openapiFields.add("status");
     openapiFields.add("quantity");
     openapiFields.add("isExternalItemID");
+    openapiFields.add("modifiers");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -342,6 +379,20 @@ public class EditOrderItem {
       }
       // validate the required field `status`
       StatusEnum.validateJsonElement(jsonObj.get("status"));
+      if (jsonObj.get("modifiers") != null && !jsonObj.get("modifiers").isJsonNull()) {
+        JsonArray jsonArraymodifiers = jsonObj.getAsJsonArray("modifiers");
+        if (jsonArraymodifiers != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("modifiers").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `modifiers` to be an array in the JSON string but got `%s`", jsonObj.get("modifiers").toString()));
+          }
+
+          // validate the optional field `modifiers` (array)
+          for (int i = 0; i < jsonArraymodifiers.size(); i++) {
+            EditOrderItemModifier.validateJsonElement(jsonArraymodifiers.get(i));
+          };
+        }
+      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

@@ -15,6 +15,7 @@ This request pushes the state of an order on GrabFood.
 |**driverETA** | **Integer** | The driver&#39;s estimated of arrival (ETA) in seconds when the state is &#x60;DRIVER_ALLOCATED&#x60;. |  [optional] |
 |**code** | **String** | The current order&#39;s sub-state. This is in free text so you should only use for reference. Grab may use this for troubleshooting. If you want some analysis, kindly use &#x60;state&#x60; instead. |  [optional] |
 |**message** | **String** | Additional information to explain the current order state. May be system status or human entered message. |  [optional] |
+|**order** | [**Order**](Order.md) |  |  [optional] |
 
 
 
@@ -27,6 +28,9 @@ This request pushes the state of an order on GrabFood.
 | DRIVER_ARRIVED | &quot;DRIVER_ARRIVED&quot; |
 | COLLECTED | &quot;COLLECTED&quot; |
 | DELIVERED | &quot;DELIVERED&quot; |
+| BILL_PAID | &quot;BILL_PAID&quot; |
+| COMPLETED | &quot;COMPLETED&quot; |
+| REFUNDED | &quot;REFUNDED&quot; |
 | FAILED | &quot;FAILED&quot; |
 | CANCELLED | &quot;CANCELLED&quot; |
 | UNKNOWN_DEFAULT_OPEN_API | &quot;unknown_default_open_api&quot; |

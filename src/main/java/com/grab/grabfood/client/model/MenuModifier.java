@@ -69,7 +69,7 @@ public class MenuModifier {
   private Map<String, String> nameTranslation = new HashMap<>();
 
   /**
-   * The status for the modifier. Refer to FAQs for more details about [availableStatus](#section/Menu/What-is-availableStatus).
+   * The status for the modifier. Refer to FAQs for more details about [availableStatus](#section/Menu/What-is-availableStatus).   Note: &#x60;HIDE&#x60; will only update the modifier to unavailable, remove the modifier from the menu if you want to hide it entirely. 
    */
   @JsonAdapter(AvailableStatusEnum.Adapter.class)
   public enum AvailableStatusEnum {
@@ -220,7 +220,7 @@ public class MenuModifier {
   }
 
   /**
-   * The status for the modifier. Refer to FAQs for more details about [availableStatus](#section/Menu/What-is-availableStatus).
+   * The status for the modifier. Refer to FAQs for more details about [availableStatus](#section/Menu/What-is-availableStatus).   Note: &#x60;HIDE&#x60; will only update the modifier to unavailable, remove the modifier from the menu if you want to hide it entirely. 
    * @return availableStatus
    */
   @javax.annotation.Nonnull

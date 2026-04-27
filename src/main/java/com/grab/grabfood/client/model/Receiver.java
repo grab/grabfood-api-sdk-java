@@ -23,6 +23,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.grab.grabfood.client.model.Address;
+import com.grab.grabfood.client.model.VirtualContact;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -50,7 +51,7 @@ import java.util.Set;
 import com.grab.grabfood.client.JSON;
 
 /**
- * A JSON object containing the receiver information. Only applicable for orders that are delivered by the restaurant. &#x60;null&#x60; if not applicable.
+ * A JSON object containing the receiver information.
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class Receiver {
@@ -65,6 +66,10 @@ public class Receiver {
   public static final String SERIALIZED_NAME_ADDRESS = "address";
   @SerializedName(SERIALIZED_NAME_ADDRESS)
   private Address address;
+
+  public static final String SERIALIZED_NAME_VIRTUAL_CONTACT = "virtualContact";
+  @SerializedName(SERIALIZED_NAME_VIRTUAL_CONTACT)
+  private VirtualContact virtualContact;
 
   public Receiver() {
   }
@@ -94,7 +99,7 @@ public class Receiver {
   }
 
   /**
-   * The receiver&#39;s phone number.
+   * The receiver&#39;s phone number. Only applicable for orders that are delivered by the restaurant. &#x60;null&#x60; if not applicable.  &gt; Note: The &#x60;phones&#x60; field will be deprecated once the virtualContact feature is fully rolled out. 
    * @return phones
    */
   @javax.annotation.Nullable
@@ -123,6 +128,25 @@ public class Receiver {
 
   public void setAddress(Address address) {
     this.address = address;
+  }
+
+
+  public Receiver virtualContact(VirtualContact virtualContact) {
+    this.virtualContact = virtualContact;
+    return this;
+  }
+
+  /**
+   * Get virtualContact
+   * @return virtualContact
+   */
+  @javax.annotation.Nullable
+  public VirtualContact getVirtualContact() {
+    return virtualContact;
+  }
+
+  public void setVirtualContact(VirtualContact virtualContact) {
+    this.virtualContact = virtualContact;
   }
 
   /**
@@ -182,13 +206,14 @@ public class Receiver {
     Receiver receiver = (Receiver) o;
     return Objects.equals(this.name, receiver.name) &&
         Objects.equals(this.phones, receiver.phones) &&
-        Objects.equals(this.address, receiver.address)&&
+        Objects.equals(this.address, receiver.address) &&
+        Objects.equals(this.virtualContact, receiver.virtualContact)&&
         Objects.equals(this.additionalProperties, receiver.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, phones, address, additionalProperties);
+    return Objects.hash(name, phones, address, virtualContact, additionalProperties);
   }
 
   @Override
@@ -198,6 +223,7 @@ public class Receiver {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    phones: ").append(toIndentedString(phones)).append("\n");
     sb.append("    address: ").append(toIndentedString(address)).append("\n");
+    sb.append("    virtualContact: ").append(toIndentedString(virtualContact)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -224,6 +250,7 @@ public class Receiver {
     openapiFields.add("name");
     openapiFields.add("phones");
     openapiFields.add("address");
+    openapiFields.add("virtualContact");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -251,6 +278,10 @@ public class Receiver {
       // validate the optional field `address`
       if (jsonObj.get("address") != null && !jsonObj.get("address").isJsonNull()) {
         Address.validateJsonElement(jsonObj.get("address"));
+      }
+      // validate the optional field `virtualContact`
+      if (jsonObj.get("virtualContact") != null && !jsonObj.get("virtualContact").isJsonNull()) {
+        VirtualContact.validateJsonElement(jsonObj.get("virtualContact"));
       }
   }
 

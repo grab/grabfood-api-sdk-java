@@ -50,7 +50,7 @@ import java.util.Set;
 import com.grab.grabfood.client.JSON;
 
 /**
- * A JSON object containing the receiver’s location information.
+ * A JSON object containing the receiver’s location information. Only applicable for orders that are delivered by the restaurant. &#x60;null&#x60; if not applicable.
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class Address {

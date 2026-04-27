@@ -71,7 +71,7 @@ public class ModifierGroup {
   private Map<String, String> nameTranslation = new HashMap<>();
 
   /**
-   * The status for the modifier group.   &gt; The item may be marked as &#x60;\&quot;UNAVAILABLE\&quot;&#x60; if no available modifier to be selected within the required modifier group where &#x60;\&quot;selectionRangeMin\&quot;: 1&#x60;. 
+   * The status for the modifier group.   Note: &#x60;HIDE&#x60; will only update the modifier group to unavailable, remove the modifier group from the menu if you want to hide it entirely. &gt; The item may be marked as &#x60;\&quot;UNAVAILABLE\&quot;&#x60; if no available modifier to be selected within the required modifier group where &#x60;\&quot;selectionRangeMin\&quot;: 1&#x60;. 
    */
   @JsonAdapter(AvailableStatusEnum.Adapter.class)
   public enum AvailableStatusEnum {
@@ -222,7 +222,7 @@ public class ModifierGroup {
   }
 
   /**
-   * The status for the modifier group.   &gt; The item may be marked as &#x60;\&quot;UNAVAILABLE\&quot;&#x60; if no available modifier to be selected within the required modifier group where &#x60;\&quot;selectionRangeMin\&quot;: 1&#x60;. 
+   * The status for the modifier group.   Note: &#x60;HIDE&#x60; will only update the modifier group to unavailable, remove the modifier group from the menu if you want to hide it entirely. &gt; The item may be marked as &#x60;\&quot;UNAVAILABLE\&quot;&#x60; if no available modifier to be selected within the required modifier group where &#x60;\&quot;selectionRangeMin\&quot;: 1&#x60;. 
    * @return availableStatus
    */
   @javax.annotation.Nonnull

@@ -124,6 +124,12 @@ public class OrderFeatureFlags {
     
     DINE_IN("DineIn"),
     
+    SCAN_TO_ORDER("ScanToOrder"),
+    
+    TAKE_AWAY_ORDER("TakeAwayOrder"),
+    
+    POS_DINE_OUT_ORDER("PosDineOutOrder"),
+    
     UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
@@ -224,7 +230,7 @@ public class OrderFeatureFlags {
   }
 
   /**
-   * A boolean value that indicates if the order is edited. 
+   * A boolean value that indicates if the order is edited or recalculated. It does not necessarily mean the order was edited by the merchant. The changes could have been made by Grab, the Merchant, or the Customer. 
    * @return isMexEditOrder
    */
   @javax.annotation.Nullable

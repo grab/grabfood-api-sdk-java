@@ -144,6 +144,22 @@ public class Currency {
     
     K("K"),
     
+    IDR("IDR"),
+    
+    MYR("MYR"),
+    
+    PHP("PHP"),
+    
+    SGD("SGD"),
+    
+    THB("THB"),
+    
+    VND("VND"),
+    
+    KHR("KHR"),
+    
+    MMK("MMK"),
+    
     UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;

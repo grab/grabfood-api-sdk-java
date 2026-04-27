@@ -147,7 +147,7 @@ public class ApiClient {
         json = new JSON();
 
         // Set default User-Agent.
-        setUserAgent("GrabFood-API-SDK/1.0.2/java");
+        setUserAgent("GrabFood-API-SDK/1.0.3/java");
 
         authentications = new HashMap<String, Authentication>();
     }

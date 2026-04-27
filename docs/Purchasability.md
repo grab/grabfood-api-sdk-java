@@ -8,13 +8,13 @@ Purchasability is set to true by default for all service type, unless it is expl
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**deliveryOnDemandGrabApp** | **Boolean** |  |  [optional] |
-|**deliveryScheduledGrabApp** | **Boolean** |  |  [optional] |
-|**selfPickUpOnDemandGrabApp** | **Boolean** |  |  [optional] |
-|**dineInOnDemandGrabApp** | **Boolean** |  |  [optional] |
-|**deliveryOnDemandStoreFront** | **Boolean** |  |  [optional] |
-|**deliveryScheduledStoreFront** | **Boolean** |  |  [optional] |
-|**selfPickUpOnDemandStoreFront** | **Boolean** |  |  [optional] |
+|**deliveryOnDemandGrabApp** | **Boolean** | **Case-sensitive**.  |  [optional] |
+|**deliveryScheduledGrabApp** | **Boolean** | **Case-sensitive**.  |  [optional] |
+|**selfPickUpOnDemandGrabApp** | **Boolean** | **Case-sensitive**.  |  [optional] |
+|**dineInOnDemandGrabApp** | **Boolean** | **Case-sensitive**.  |  [optional] |
+|**deliveryOnDemandStoreFront** | **Boolean** | **Case-sensitive**.  |  [optional] |
+|**deliveryScheduledStoreFront** | **Boolean** | **Case-sensitive**.  |  [optional] |
+|**selfPickUpOnDemandStoreFront** | **Boolean** | **Case-sensitive**. |  [optional] |
 
 
 

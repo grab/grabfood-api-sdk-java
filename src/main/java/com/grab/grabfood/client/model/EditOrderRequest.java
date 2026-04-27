@@ -68,6 +68,14 @@ public class EditOrderRequest {
   @SerializedName(SERIALIZED_NAME_ONLY_RECALCULATE)
   private Boolean onlyRecalculate;
 
+  public static final String SERIALIZED_NAME_DEPOSIT_AMOUNT_IN_MIN = "depositAmountInMin";
+  @SerializedName(SERIALIZED_NAME_DEPOSIT_AMOUNT_IN_MIN)
+  private Long depositAmountInMin;
+
+  public static final String SERIALIZED_NAME_OFFLINE_P_O_S_DISCOUNT_IN_MIN = "offlinePOSDiscountInMin";
+  @SerializedName(SERIALIZED_NAME_OFFLINE_P_O_S_DISCOUNT_IN_MIN)
+  private Long offlinePOSDiscountInMin;
+
   public EditOrderRequest() {
   }
 
@@ -135,6 +143,44 @@ public class EditOrderRequest {
     this.onlyRecalculate = onlyRecalculate;
   }
 
+
+  public EditOrderRequest depositAmountInMin(Long depositAmountInMin) {
+    this.depositAmountInMin = depositAmountInMin;
+    return this;
+  }
+
+  /**
+   * The deposit amount in minor unit in POS system. This is only applicable for STO order
+   * @return depositAmountInMin
+   */
+  @javax.annotation.Nullable
+  public Long getDepositAmountInMin() {
+    return depositAmountInMin;
+  }
+
+  public void setDepositAmountInMin(Long depositAmountInMin) {
+    this.depositAmountInMin = depositAmountInMin;
+  }
+
+
+  public EditOrderRequest offlinePOSDiscountInMin(Long offlinePOSDiscountInMin) {
+    this.offlinePOSDiscountInMin = offlinePOSDiscountInMin;
+    return this;
+  }
+
+  /**
+   * The POS side discount amount in minor unit. This is only applicable for STO order
+   * @return offlinePOSDiscountInMin
+   */
+  @javax.annotation.Nullable
+  public Long getOfflinePOSDiscountInMin() {
+    return offlinePOSDiscountInMin;
+  }
+
+  public void setOfflinePOSDiscountInMin(Long offlinePOSDiscountInMin) {
+    this.offlinePOSDiscountInMin = offlinePOSDiscountInMin;
+  }
+
   /**
    * A container for additional, undeclared properties.
    * This is a holder for any undeclared properties as specified with
@@ -192,13 +238,15 @@ public class EditOrderRequest {
     EditOrderRequest editOrderRequest = (EditOrderRequest) o;
     return Objects.equals(this.orderID, editOrderRequest.orderID) &&
         Objects.equals(this.items, editOrderRequest.items) &&
-        Objects.equals(this.onlyRecalculate, editOrderRequest.onlyRecalculate)&&
+        Objects.equals(this.onlyRecalculate, editOrderRequest.onlyRecalculate) &&
+        Objects.equals(this.depositAmountInMin, editOrderRequest.depositAmountInMin) &&
+        Objects.equals(this.offlinePOSDiscountInMin, editOrderRequest.offlinePOSDiscountInMin)&&
         Objects.equals(this.additionalProperties, editOrderRequest.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(orderID, items, onlyRecalculate, additionalProperties);
+    return Objects.hash(orderID, items, onlyRecalculate, depositAmountInMin, offlinePOSDiscountInMin, additionalProperties);
   }
 
   @Override
@@ -208,6 +256,8 @@ public class EditOrderRequest {
     sb.append("    orderID: ").append(toIndentedString(orderID)).append("\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("    onlyRecalculate: ").append(toIndentedString(onlyRecalculate)).append("\n");
+    sb.append("    depositAmountInMin: ").append(toIndentedString(depositAmountInMin)).append("\n");
+    sb.append("    offlinePOSDiscountInMin: ").append(toIndentedString(offlinePOSDiscountInMin)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -234,6 +284,8 @@ public class EditOrderRequest {
     openapiFields.add("orderID");
     openapiFields.add("items");
     openapiFields.add("onlyRecalculate");
+    openapiFields.add("depositAmountInMin");
+    openapiFields.add("offlinePOSDiscountInMin");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

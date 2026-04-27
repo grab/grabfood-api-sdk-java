@@ -272,7 +272,7 @@ public class MenuSyncWebhookRequest {
   }
 
   /**
-   * A string array of errors that occurred during processing. This array is empty if the status is not &#x60;FAILED&#x60;.
+   * A string array of errors that occurred during processing.
    * @return errors
    */
   @javax.annotation.Nullable

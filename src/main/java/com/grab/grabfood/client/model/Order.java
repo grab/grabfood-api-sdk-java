@@ -24,12 +24,14 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.grab.grabfood.client.model.Currency;
 import com.grab.grabfood.client.model.DineIn;
+import com.grab.grabfood.client.model.GrabDiscount1;
 import com.grab.grabfood.client.model.OrderCampaign;
 import com.grab.grabfood.client.model.OrderFeatureFlags;
 import com.grab.grabfood.client.model.OrderItem;
 import com.grab.grabfood.client.model.OrderPrice;
 import com.grab.grabfood.client.model.OrderPromo;
 import com.grab.grabfood.client.model.OrderReadyEstimation;
+import com.grab.grabfood.client.model.Payment;
 import com.grab.grabfood.client.model.Receiver;
 import java.io.IOException;
 import java.time.OffsetDateTime;
@@ -62,7 +64,7 @@ import java.util.Set;
 import com.grab.grabfood.client.JSON;
 
 /**
- * A JSON object containing the order information. 
+ * A JSON object containing the order information. This is only applicable for STO order in Push Order State Webhook 
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class Order {
@@ -203,6 +205,14 @@ public class Order {
   public static final String SERIALIZED_NAME_MEMBERSHIP_I_D = "membershipID";
   @SerializedName(SERIALIZED_NAME_MEMBERSHIP_I_D)
   private String membershipID;
+
+  public static final String SERIALIZED_NAME_DISCOUNTS = "discounts";
+  @SerializedName(SERIALIZED_NAME_DISCOUNTS)
+  private List<GrabDiscount1> discounts;
+
+  public static final String SERIALIZED_NAME_PAYMENTS = "payments";
+  @SerializedName(SERIALIZED_NAME_PAYMENTS)
+  private List<Payment> payments;
 
   public Order() {
   }
@@ -629,6 +639,60 @@ public class Order {
     this.membershipID = membershipID;
   }
 
+
+  public Order discounts(List<GrabDiscount1> discounts) {
+    this.discounts = discounts;
+    return this;
+  }
+
+  public Order addDiscountsItem(GrabDiscount1 discountsItem) {
+    if (this.discounts == null) {
+      this.discounts = new ArrayList<>();
+    }
+    this.discounts.add(discountsItem);
+    return this;
+  }
+
+  /**
+   * The discounts that are applicable for the paybill order in dineout STO case. &#x60;null&#x60; when there is no discount applied. This is only applicable for STO order 
+   * @return discounts
+   */
+  @javax.annotation.Nullable
+  public List<GrabDiscount1> getDiscounts() {
+    return discounts;
+  }
+
+  public void setDiscounts(List<GrabDiscount1> discounts) {
+    this.discounts = discounts;
+  }
+
+
+  public Order payments(List<Payment> payments) {
+    this.payments = payments;
+    return this;
+  }
+
+  public Order addPaymentsItem(Payment paymentsItem) {
+    if (this.payments == null) {
+      this.payments = new ArrayList<>();
+    }
+    this.payments.add(paymentsItem);
+    return this;
+  }
+
+  /**
+   * An array of payment objects. &#x60;null&#x60; when there is no payment info from pos. This is only applicable for STO order
+   * @return payments
+   */
+  @javax.annotation.Nullable
+  public List<Payment> getPayments() {
+    return payments;
+  }
+
+  public void setPayments(List<Payment> payments) {
+    this.payments = payments;
+  }
+
   /**
    * A container for additional, undeclared properties.
    * This is a holder for any undeclared properties as specified with
@@ -704,7 +768,9 @@ public class Order {
         Objects.equals(this.dineIn, order.dineIn) &&
         Objects.equals(this.receiver, order.receiver) &&
         Objects.equals(this.orderReadyEstimation, order.orderReadyEstimation) &&
-        Objects.equals(this.membershipID, order.membershipID)&&
+        Objects.equals(this.membershipID, order.membershipID) &&
+        Objects.equals(this.discounts, order.discounts) &&
+        Objects.equals(this.payments, order.payments)&&
         Objects.equals(this.additionalProperties, order.additionalProperties);
   }
 
@@ -714,7 +780,7 @@ public class Order {
 
   @Override
   public int hashCode() {
-    return Objects.hash(orderID, shortOrderNumber, merchantID, partnerMerchantID, paymentType, cutlery, orderTime, submitTime, completeTime, scheduledTime, orderState, currency, featureFlags, items, campaigns, promos, price, dineIn, receiver, orderReadyEstimation, membershipID, additionalProperties);
+    return Objects.hash(orderID, shortOrderNumber, merchantID, partnerMerchantID, paymentType, cutlery, orderTime, submitTime, completeTime, scheduledTime, orderState, currency, featureFlags, items, campaigns, promos, price, dineIn, receiver, orderReadyEstimation, membershipID, discounts, payments, additionalProperties);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -749,6 +815,8 @@ public class Order {
     sb.append("    receiver: ").append(toIndentedString(receiver)).append("\n");
     sb.append("    orderReadyEstimation: ").append(toIndentedString(orderReadyEstimation)).append("\n");
     sb.append("    membershipID: ").append(toIndentedString(membershipID)).append("\n");
+    sb.append("    discounts: ").append(toIndentedString(discounts)).append("\n");
+    sb.append("    payments: ").append(toIndentedString(payments)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -793,6 +861,8 @@ public class Order {
     openapiFields.add("receiver");
     openapiFields.add("orderReadyEstimation");
     openapiFields.add("membershipID");
+    openapiFields.add("discounts");
+    openapiFields.add("payments");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -912,6 +982,34 @@ public class Order {
       }
       if ((jsonObj.get("membershipID") != null && !jsonObj.get("membershipID").isJsonNull()) && !jsonObj.get("membershipID").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `membershipID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("membershipID").toString()));
+      }
+      if (jsonObj.get("discounts") != null && !jsonObj.get("discounts").isJsonNull()) {
+        JsonArray jsonArraydiscounts = jsonObj.getAsJsonArray("discounts");
+        if (jsonArraydiscounts != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("discounts").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `discounts` to be an array in the JSON string but got `%s`", jsonObj.get("discounts").toString()));
+          }
+
+          // validate the optional field `discounts` (array)
+          for (int i = 0; i < jsonArraydiscounts.size(); i++) {
+            GrabDiscount1.validateJsonElement(jsonArraydiscounts.get(i));
+          };
+        }
+      }
+      if (jsonObj.get("payments") != null && !jsonObj.get("payments").isJsonNull()) {
+        JsonArray jsonArraypayments = jsonObj.getAsJsonArray("payments");
+        if (jsonArraypayments != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("payments").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `payments` to be an array in the JSON string but got `%s`", jsonObj.get("payments").toString()));
+          }
+
+          // validate the optional field `payments` (array)
+          for (int i = 0; i < jsonArraypayments.size(); i++) {
+            Payment.validateJsonElement(jsonArraypayments.get(i));
+          };
+        }
       }
   }
 

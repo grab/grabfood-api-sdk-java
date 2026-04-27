@@ -240,7 +240,7 @@ public class CampaignConditions {
    * Get workingHour
    * @return workingHour
    */
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public WorkingHour getWorkingHour() {
     return workingHour;
   }
@@ -363,6 +363,7 @@ public class CampaignConditions {
     openapiRequiredFields.add("startTime");
     openapiRequiredFields.add("endTime");
     openapiRequiredFields.add("eaterType");
+    openapiRequiredFields.add("workingHour");
   }
 
   /**
@@ -390,10 +391,8 @@ public class CampaignConditions {
       }
       // validate the required field `eaterType`
       EaterTypeEnum.validateJsonElement(jsonObj.get("eaterType"));
-      // validate the optional field `workingHour`
-      if (jsonObj.get("workingHour") != null && !jsonObj.get("workingHour").isJsonNull()) {
-        WorkingHour.validateJsonElement(jsonObj.get("workingHour"));
-      }
+      // validate the required field `workingHour`
+      WorkingHour.validateJsonElement(jsonObj.get("workingHour"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

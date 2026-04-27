@@ -13,7 +13,7 @@ The conditions to apply to a campaign.
 |**eaterType** | [**EaterTypeEnum**](#EaterTypeEnum) | The type of eater eligible for the campaign.  * &#x60;all&#x60; - campaign will be applied to everyone. No limitation on campaign type. * &#x60;new&#x60; - campaign will be applied to consumers who have not ordered from this store in the last three months. Only applicable to **order-level** campaign.  |  |
 |**minBasketAmount** | **Double** | The minimum basket amount to be eligible for the campaign. Only applicable to **order-level** campaign but not to item-level discount campaign. |  [optional] |
 |**bundleQuantity** | **Integer** | Specify the bundle quantity for bundle offer campaign. |  [optional] |
-|**workingHour** | [**WorkingHour**](WorkingHour.md) |  |  [optional] |
+|**workingHour** | [**WorkingHour**](WorkingHour.md) |  |  |
 
 
 

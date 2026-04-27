@@ -121,8 +121,11 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.Currency.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.DineIn.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.EditOrderItem.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.EditOrderItemModifier.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.EditOrderRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.EditOrderV2Response.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.Error.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.GenerateSTOQRCodeResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.GetDineInVoucherResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.GetMembershipNativeResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.GetMembershipNativeResponsePointInfo.CustomTypeAdapterFactory());
@@ -132,6 +135,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.GetMenuOldResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.GetRewardNativeRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.GetRewardNativeResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.GrabDiscount1.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.GrabOauthRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.GrabOauthResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.ListCampaignResponse.CustomTypeAdapterFactory());
@@ -153,6 +157,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.MenuSyncFailServiceHours.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.MenuSyncResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.MenuSyncWebhookRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.MerchantEarning.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.ModifierGroup.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.NewOrderTimeRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.NotifyMembershipWebviewRequest.CustomTypeAdapterFactory());
@@ -169,15 +174,21 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.OrderReadyEstimation.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.OrderStateRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.OutOfStockInstruction.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.POSItem.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.PartnerOauthRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.PartnerOauthResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.PauseStoreRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.Payment.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.PosItemModifier.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.PosOrder.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.PosPriceDetails.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.Purchasability.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.PushIntegrationStatusWebhookRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.Receiver.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.RedeemDineInVoucherRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.RedeemDineInVoucherResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.RedeemResult.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.RefundOrderRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.RegisterMembershipNativeRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.RegisterMembershipNativeResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.RewardItem.CustomTypeAdapterFactory());
@@ -191,6 +202,8 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.StoreHourResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.StoreStatusResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.SubmitOrderRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.SyncPOSOrderRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.SyncPOSOrderResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.UnbindMembershipNativeRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.UnlinkMembershipWebviewRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.UpdateAdvancedPricing.CustomTypeAdapterFactory());
@@ -206,6 +219,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.UpdatePurchasability.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.UpdateSpecialHourRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.UpdateSpecialHourResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.VirtualContact.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.Voucher.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.VoucherDescriptionInfo.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.grab.grabfood.client.model.WorkingHour.CustomTypeAdapterFactory());
