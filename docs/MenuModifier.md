@@ -15,6 +15,7 @@
 |**barcode** | **String** | The barcode Number (GTIN). GTIN must be 8, 12, 13, 14 numeric digits. |  [optional] |
 |**sequence** | **Integer** | The sort or display order of the modifier within the menu. |  [optional] |
 |**advancedPricing** | [**AdvancedPricing**](AdvancedPricing.md) |  |  [optional] |
+|**bcRSUnit** | **Integer** | **For Singapore only.** Specifies the number of BCRS (Beverage Container Return Scheme) containers for this modifier. Only valid when value is greater than 0. If set to 0 or omitted, existing BCRS value will be removed. Refer to [FAQ](#section/Menu/How-do-I-set-up-BCRS-for-items-and-modifiers) for more details.  |  [optional] |
 
 
 

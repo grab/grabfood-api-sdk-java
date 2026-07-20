@@ -146,6 +146,10 @@ public class MenuModifier {
   @SerializedName(SERIALIZED_NAME_ADVANCED_PRICING)
   private AdvancedPricing advancedPricing;
 
+  public static final String SERIALIZED_NAME_BC_R_S_UNIT = "BCRSUnit";
+  @SerializedName(SERIALIZED_NAME_BC_R_S_UNIT)
+  private Integer bcRSUnit;
+
   public MenuModifier() {
   }
 
@@ -308,6 +312,25 @@ public class MenuModifier {
     this.advancedPricing = advancedPricing;
   }
 
+
+  public MenuModifier bcRSUnit(Integer bcRSUnit) {
+    this.bcRSUnit = bcRSUnit;
+    return this;
+  }
+
+  /**
+   * **For Singapore only.** Specifies the number of BCRS (Beverage Container Return Scheme) containers for this modifier. Only valid when value is greater than 0. If set to 0 or omitted, existing BCRS value will be removed. Refer to [FAQ](#section/Menu/How-do-I-set-up-BCRS-for-items-and-modifiers) for more details. 
+   * @return bcRSUnit
+   */
+  @javax.annotation.Nullable
+  public Integer getBcRSUnit() {
+    return bcRSUnit;
+  }
+
+  public void setBcRSUnit(Integer bcRSUnit) {
+    this.bcRSUnit = bcRSUnit;
+  }
+
   /**
    * A container for additional, undeclared properties.
    * This is a holder for any undeclared properties as specified with
@@ -370,13 +393,14 @@ public class MenuModifier {
         Objects.equals(this.price, menuModifier.price) &&
         Objects.equals(this.barcode, menuModifier.barcode) &&
         Objects.equals(this.sequence, menuModifier.sequence) &&
-        Objects.equals(this.advancedPricing, menuModifier.advancedPricing)&&
+        Objects.equals(this.advancedPricing, menuModifier.advancedPricing) &&
+        Objects.equals(this.bcRSUnit, menuModifier.bcRSUnit)&&
         Objects.equals(this.additionalProperties, menuModifier.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, nameTranslation, availableStatus, price, barcode, sequence, advancedPricing, additionalProperties);
+    return Objects.hash(id, name, nameTranslation, availableStatus, price, barcode, sequence, advancedPricing, bcRSUnit, additionalProperties);
   }
 
   @Override
@@ -391,6 +415,7 @@ public class MenuModifier {
     sb.append("    barcode: ").append(toIndentedString(barcode)).append("\n");
     sb.append("    sequence: ").append(toIndentedString(sequence)).append("\n");
     sb.append("    advancedPricing: ").append(toIndentedString(advancedPricing)).append("\n");
+    sb.append("    bcRSUnit: ").append(toIndentedString(bcRSUnit)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -422,6 +447,7 @@ public class MenuModifier {
     openapiFields.add("barcode");
     openapiFields.add("sequence");
     openapiFields.add("advancedPricing");
+    openapiFields.add("BCRSUnit");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
