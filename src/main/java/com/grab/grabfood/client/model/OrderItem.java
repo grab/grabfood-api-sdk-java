@@ -82,6 +82,10 @@ public class OrderItem {
   @SerializedName(SERIALIZED_NAME_SPECIFICATIONS)
   private String specifications;
 
+  public static final String SERIALIZED_NAME_BCRS_UNIT_COUNT = "bcrsUnitCount";
+  @SerializedName(SERIALIZED_NAME_BCRS_UNIT_COUNT)
+  private Integer bcrsUnitCount;
+
   public static final String SERIALIZED_NAME_OUT_OF_STOCK_INSTRUCTION = "outOfStockInstruction";
   @SerializedName(SERIALIZED_NAME_OUT_OF_STOCK_INSTRUCTION)
   private OutOfStockInstruction outOfStockInstruction;
@@ -207,6 +211,25 @@ public class OrderItem {
   }
 
 
+  public OrderItem bcrsUnitCount(Integer bcrsUnitCount) {
+    this.bcrsUnitCount = bcrsUnitCount;
+    return this;
+  }
+
+  /**
+   * **For Singapore only.** The number of BCRS (Beverage Container Return Scheme) eligible containers for this item. Only present when the item is BCRS-eligible and the merchant has BCRS enabled; omitted otherwise. This represents how many beverage containers (plastic bottles or metal cans) the item contributes towards the BCRS deposit charge. 
+   * @return bcrsUnitCount
+   */
+  @javax.annotation.Nullable
+  public Integer getBcrsUnitCount() {
+    return bcrsUnitCount;
+  }
+
+  public void setBcrsUnitCount(Integer bcrsUnitCount) {
+    this.bcrsUnitCount = bcrsUnitCount;
+  }
+
+
   public OrderItem outOfStockInstruction(OutOfStockInstruction outOfStockInstruction) {
     this.outOfStockInstruction = outOfStockInstruction;
     return this;
@@ -313,6 +336,7 @@ public class OrderItem {
         Objects.equals(this.price, orderItem.price) &&
         Objects.equals(this.tax, orderItem.tax) &&
         Objects.equals(this.specifications, orderItem.specifications) &&
+        Objects.equals(this.bcrsUnitCount, orderItem.bcrsUnitCount) &&
         Objects.equals(this.outOfStockInstruction, orderItem.outOfStockInstruction) &&
         Objects.equals(this.modifiers, orderItem.modifiers)&&
         Objects.equals(this.additionalProperties, orderItem.additionalProperties);
@@ -324,7 +348,7 @@ public class OrderItem {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, grabItemID, quantity, price, tax, specifications, outOfStockInstruction, modifiers, additionalProperties);
+    return Objects.hash(id, grabItemID, quantity, price, tax, specifications, bcrsUnitCount, outOfStockInstruction, modifiers, additionalProperties);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -344,6 +368,7 @@ public class OrderItem {
     sb.append("    price: ").append(toIndentedString(price)).append("\n");
     sb.append("    tax: ").append(toIndentedString(tax)).append("\n");
     sb.append("    specifications: ").append(toIndentedString(specifications)).append("\n");
+    sb.append("    bcrsUnitCount: ").append(toIndentedString(bcrsUnitCount)).append("\n");
     sb.append("    outOfStockInstruction: ").append(toIndentedString(outOfStockInstruction)).append("\n");
     sb.append("    modifiers: ").append(toIndentedString(modifiers)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
@@ -375,6 +400,7 @@ public class OrderItem {
     openapiFields.add("price");
     openapiFields.add("tax");
     openapiFields.add("specifications");
+    openapiFields.add("bcrsUnitCount");
     openapiFields.add("outOfStockInstruction");
     openapiFields.add("modifiers");
 

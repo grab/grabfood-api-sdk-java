@@ -91,6 +91,10 @@ public class OrderPrice {
   @SerializedName(SERIALIZED_NAME_SMALL_ORDER_FEE)
   private Long smallOrderFee;
 
+  public static final String SERIALIZED_NAME_BCRS_DEPOSIT_FEE_IN_MIN = "bcrsDepositFeeInMin";
+  @SerializedName(SERIALIZED_NAME_BCRS_DEPOSIT_FEE_IN_MIN)
+  private Long bcrsDepositFeeInMin;
+
   public static final String SERIALIZED_NAME_EATER_PAYMENT = "eaterPayment";
   @SerializedName(SERIALIZED_NAME_EATER_PAYMENT)
   private Long eaterPayment;
@@ -277,13 +281,32 @@ public class OrderPrice {
   }
 
 
+  public OrderPrice bcrsDepositFeeInMin(Long bcrsDepositFeeInMin) {
+    this.bcrsDepositFeeInMin = bcrsDepositFeeInMin;
+    return this;
+  }
+
+  /**
+   * The total BCRS (Beverage Container Return Scheme) deposit in the minor unit. A Singapore government-mandated refundable deposit charged to the consumer for eligible beverage containers (plastic bottles and metal cans). This is a non-taxable, non-commissionable pass-through — collected from consumers and not part of net sales. Only present when the order contains BCRS-eligible items; omitted otherwise. 
+   * @return bcrsDepositFeeInMin
+   */
+  @javax.annotation.Nullable
+  public Long getBcrsDepositFeeInMin() {
+    return bcrsDepositFeeInMin;
+  }
+
+  public void setBcrsDepositFeeInMin(Long bcrsDepositFeeInMin) {
+    this.bcrsDepositFeeInMin = bcrsDepositFeeInMin;
+  }
+
+
   public OrderPrice eaterPayment(Long eaterPayment) {
     this.eaterPayment = eaterPayment;
     return this;
   }
 
   /**
-   * The total amount paid by the consumer in the minor unit, excluding some additional fees charged by GrabFood. Only present when &#x60;paymentType:CASH&#x60; or &#x60;orderType:DeliveredByRestaurant&#x60;. Otherwise, it will be set to &#x60;0&#x60;.  &#x60;&#x60;&#x60; eaterPayment &#x3D; (subtotal + merchantChargeFee + deliveryFee) - (sum of all promo) | (2550+400)-775&#x3D;2175 
+   * The total amount paid by the consumer in the minor unit, excluding some additional fees charged by GrabFood. Only present when &#x60;paymentType:CASH&#x60; or &#x60;orderType:DeliveredByRestaurant&#x60;. Otherwise, it will be set to &#x60;0&#x60;. &#x60;&#x60;&#x60; eaterPayment &#x3D; (subtotal + merchantChargeFee + deliveryFee + bcrsDepositFeeInMin) - (sum of all promo) | (2550+0+400+0)-775&#x3D;2175 
    * @return eaterPayment
    */
   @javax.annotation.Nullable
@@ -397,6 +420,7 @@ public class OrderPrice {
         Objects.equals(this.basketPromo, orderPrice.basketPromo) &&
         Objects.equals(this.deliveryFee, orderPrice.deliveryFee) &&
         Objects.equals(this.smallOrderFee, orderPrice.smallOrderFee) &&
+        Objects.equals(this.bcrsDepositFeeInMin, orderPrice.bcrsDepositFeeInMin) &&
         Objects.equals(this.eaterPayment, orderPrice.eaterPayment) &&
         Objects.equals(this.total, orderPrice.total) &&
         Objects.equals(this.merchantEarning, orderPrice.merchantEarning)&&
@@ -409,7 +433,7 @@ public class OrderPrice {
 
   @Override
   public int hashCode() {
-    return Objects.hash(subtotal, tax, merchantChargeFee, serviceChargeFee, grabFundPromo, merchantFundPromo, basketPromo, deliveryFee, smallOrderFee, eaterPayment, total, merchantEarning, additionalProperties);
+    return Objects.hash(subtotal, tax, merchantChargeFee, serviceChargeFee, grabFundPromo, merchantFundPromo, basketPromo, deliveryFee, smallOrderFee, bcrsDepositFeeInMin, eaterPayment, total, merchantEarning, additionalProperties);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -432,6 +456,7 @@ public class OrderPrice {
     sb.append("    basketPromo: ").append(toIndentedString(basketPromo)).append("\n");
     sb.append("    deliveryFee: ").append(toIndentedString(deliveryFee)).append("\n");
     sb.append("    smallOrderFee: ").append(toIndentedString(smallOrderFee)).append("\n");
+    sb.append("    bcrsDepositFeeInMin: ").append(toIndentedString(bcrsDepositFeeInMin)).append("\n");
     sb.append("    eaterPayment: ").append(toIndentedString(eaterPayment)).append("\n");
     sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("    merchantEarning: ").append(toIndentedString(merchantEarning)).append("\n");
@@ -467,6 +492,7 @@ public class OrderPrice {
     openapiFields.add("basketPromo");
     openapiFields.add("deliveryFee");
     openapiFields.add("smallOrderFee");
+    openapiFields.add("bcrsDepositFeeInMin");
     openapiFields.add("eaterPayment");
     openapiFields.add("total");
     openapiFields.add("merchantEarning");

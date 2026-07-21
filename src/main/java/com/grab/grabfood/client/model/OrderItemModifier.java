@@ -65,9 +65,65 @@ public class OrderItemModifier {
   @SerializedName(SERIALIZED_NAME_TAX)
   private Long tax;
 
+  /**
+   * The number of modifiers present. The value is always 1.
+   */
+  @JsonAdapter(QuantityEnum.Adapter.class)
+  public enum QuantityEnum {
+    NUMBER_1(1),
+    
+    NUMBER_unknown_default_open_api(11184809);
+
+    private Integer value;
+
+    QuantityEnum(Integer value) {
+      this.value = value;
+    }
+
+    public Integer getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static QuantityEnum fromValue(Integer value) {
+      for (QuantityEnum b : QuantityEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return NUMBER_unknown_default_open_api;
+    }
+
+    public static class Adapter extends TypeAdapter<QuantityEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final QuantityEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public QuantityEnum read(final JsonReader jsonReader) throws IOException {
+        Integer value =  jsonReader.nextInt();
+        return QuantityEnum.fromValue(value);
+      }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      Integer value = jsonElement.getAsInt();
+      QuantityEnum.fromValue(value);
+    }
+  }
+
   public static final String SERIALIZED_NAME_QUANTITY = "quantity";
   @SerializedName(SERIALIZED_NAME_QUANTITY)
-  private Integer quantity;
+  private QuantityEnum quantity;
+
+  public static final String SERIALIZED_NAME_BCRS_UNIT_COUNT = "bcrsUnitCount";
+  @SerializedName(SERIALIZED_NAME_BCRS_UNIT_COUNT)
+  private Integer bcrsUnitCount;
 
   public OrderItemModifier() {
   }
@@ -129,22 +185,41 @@ public class OrderItemModifier {
   }
 
 
-  public OrderItemModifier quantity(Integer quantity) {
+  public OrderItemModifier quantity(QuantityEnum quantity) {
     this.quantity = quantity;
     return this;
   }
 
   /**
-   * The number of modifiers present.
+   * The number of modifiers present. The value is always 1.
    * @return quantity
    */
   @javax.annotation.Nullable
-  public Integer getQuantity() {
+  public QuantityEnum getQuantity() {
     return quantity;
   }
 
-  public void setQuantity(Integer quantity) {
+  public void setQuantity(QuantityEnum quantity) {
     this.quantity = quantity;
+  }
+
+
+  public OrderItemModifier bcrsUnitCount(Integer bcrsUnitCount) {
+    this.bcrsUnitCount = bcrsUnitCount;
+    return this;
+  }
+
+  /**
+   * **For Singapore only.** The number of BCRS (Beverage Container Return Scheme) eligible containers for this modifier. Only present when the modifier is BCRS-eligible and the merchant has BCRS enabled; omitted otherwise. 
+   * @return bcrsUnitCount
+   */
+  @javax.annotation.Nullable
+  public Integer getBcrsUnitCount() {
+    return bcrsUnitCount;
+  }
+
+  public void setBcrsUnitCount(Integer bcrsUnitCount) {
+    this.bcrsUnitCount = bcrsUnitCount;
   }
 
   /**
@@ -205,13 +280,14 @@ public class OrderItemModifier {
     return Objects.equals(this.id, orderItemModifier.id) &&
         Objects.equals(this.price, orderItemModifier.price) &&
         Objects.equals(this.tax, orderItemModifier.tax) &&
-        Objects.equals(this.quantity, orderItemModifier.quantity)&&
+        Objects.equals(this.quantity, orderItemModifier.quantity) &&
+        Objects.equals(this.bcrsUnitCount, orderItemModifier.bcrsUnitCount)&&
         Objects.equals(this.additionalProperties, orderItemModifier.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, price, tax, quantity, additionalProperties);
+    return Objects.hash(id, price, tax, quantity, bcrsUnitCount, additionalProperties);
   }
 
   @Override
@@ -222,6 +298,7 @@ public class OrderItemModifier {
     sb.append("    price: ").append(toIndentedString(price)).append("\n");
     sb.append("    tax: ").append(toIndentedString(tax)).append("\n");
     sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
+    sb.append("    bcrsUnitCount: ").append(toIndentedString(bcrsUnitCount)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -249,6 +326,7 @@ public class OrderItemModifier {
     openapiFields.add("price");
     openapiFields.add("tax");
     openapiFields.add("quantity");
+    openapiFields.add("bcrsUnitCount");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -269,6 +347,10 @@ public class OrderItemModifier {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+      }
+      // validate the optional field `quantity`
+      if (jsonObj.get("quantity") != null && !jsonObj.get("quantity").isJsonNull()) {
+        QuantityEnum.validateJsonElement(jsonObj.get("quantity"));
       }
   }
 

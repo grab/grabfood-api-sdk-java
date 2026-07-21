@@ -244,6 +244,10 @@ public class MenuItem {
   @SerializedName(SERIALIZED_NAME_MODIFIER_GROUPS)
   private List<ModifierGroup> modifierGroups = new ArrayList<>();
 
+  public static final String SERIALIZED_NAME_BC_R_S_UNIT = "BCRSUnit";
+  @SerializedName(SERIALIZED_NAME_BC_R_S_UNIT)
+  private Integer bcRSUnit;
+
   public MenuItem() {
   }
 
@@ -601,6 +605,25 @@ public class MenuItem {
     this.modifierGroups = modifierGroups;
   }
 
+
+  public MenuItem bcRSUnit(Integer bcRSUnit) {
+    this.bcRSUnit = bcRSUnit;
+    return this;
+  }
+
+  /**
+   * **For Singapore only.** Specifies the number of BCRS (Beverage Container Return Scheme) containers for this item. Only valid when value is greater than 0. If set to 0 or omitted, existing BCRS value will be removed. Refer to [FAQ](#section/Menu/How-do-I-set-up-BCRS-for-items-and-modifiers) for more details. 
+   * @return bcRSUnit
+   */
+  @javax.annotation.Nullable
+  public Integer getBcRSUnit() {
+    return bcRSUnit;
+  }
+
+  public void setBcRSUnit(Integer bcRSUnit) {
+    this.bcRSUnit = bcRSUnit;
+  }
+
   /**
    * A container for additional, undeclared properties.
    * This is a holder for any undeclared properties as specified with
@@ -672,13 +695,14 @@ public class MenuItem {
         Objects.equals(this.sequence, menuItem.sequence) &&
         Objects.equals(this.advancedPricing, menuItem.advancedPricing) &&
         Objects.equals(this.purchasability, menuItem.purchasability) &&
-        Objects.equals(this.modifierGroups, menuItem.modifierGroups)&&
+        Objects.equals(this.modifierGroups, menuItem.modifierGroups) &&
+        Objects.equals(this.bcRSUnit, menuItem.bcRSUnit)&&
         Objects.equals(this.additionalProperties, menuItem.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, nameTranslation, availableStatus, description, descriptionTranslation, price, photos, specialType, taxable, barcode, sellingTimeID, maxStock, sequence, advancedPricing, purchasability, modifierGroups, additionalProperties);
+    return Objects.hash(id, name, nameTranslation, availableStatus, description, descriptionTranslation, price, photos, specialType, taxable, barcode, sellingTimeID, maxStock, sequence, advancedPricing, purchasability, modifierGroups, bcRSUnit, additionalProperties);
   }
 
   @Override
@@ -702,6 +726,7 @@ public class MenuItem {
     sb.append("    advancedPricing: ").append(toIndentedString(advancedPricing)).append("\n");
     sb.append("    purchasability: ").append(toIndentedString(purchasability)).append("\n");
     sb.append("    modifierGroups: ").append(toIndentedString(modifierGroups)).append("\n");
+    sb.append("    bcRSUnit: ").append(toIndentedString(bcRSUnit)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -742,6 +767,7 @@ public class MenuItem {
     openapiFields.add("advancedPricing");
     openapiFields.add("purchasability");
     openapiFields.add("modifierGroups");
+    openapiFields.add("BCRSUnit");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

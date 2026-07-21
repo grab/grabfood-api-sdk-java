@@ -24,6 +24,7 @@
 |**advancedPricing** | [**AdvancedPricing**](AdvancedPricing.md) |  |  [optional] |
 |**purchasability** | [**Purchasability**](Purchasability.md) |  |  [optional] |
 |**modifierGroups** | [**List&lt;ModifierGroup&gt;**](ModifierGroup.md) | An array of the modifierGroup JSON objects. Max 30 allowed per item. Refer to [Modifier groups](#modifier-groups) for more information. |  [optional] |
+|**bcRSUnit** | **Integer** | **For Singapore only.** Specifies the number of BCRS (Beverage Container Return Scheme) containers for this item. Only valid when value is greater than 0. If set to 0 or omitted, existing BCRS value will be removed. Refer to [FAQ](#section/Menu/How-do-I-set-up-BCRS-for-items-and-modifiers) for more details.  |  [optional] |
 
 
 
